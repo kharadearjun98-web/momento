@@ -1,0 +1,1205 @@
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pricing — Memento</title>
+    <meta name="description"
+        content="Invest in your intellect. Flexible plans for students, researchers, and professionals.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- Preload UnicornStudio for faster animation loading -->
+    <script type="text/javascript">
+        // Wait for DOM to be ready before initializing
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!window.UnicornStudio) {
+                window.UnicornStudio = { isInitialized: !1 };
+                var i = document.createElement("script");
+                i.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js";
+                i.onload = function () {
+                    if (!window.UnicornStudio.isInitialized) {
+                        UnicornStudio.init();
+                        window.UnicornStudio.isInitialized = !0;
+                        // Reveal content with minimal delay
+                        setTimeout(() => {
+                            document.querySelectorAll('.content-wait-for-load').forEach(el => el.classList.add('content-loaded'));
+                        }, 100);
+                    }
+                };
+                (document.head || document.body).appendChild(i);
+            }
+        });
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        purple: {
+                            400: '#A78BFA',
+                            500: '#8B5CF6',
+                            600: '#7C3AED',
+                            900: '#2E1065',
+                        },
+                        neutral: {
+                            850: '#1a1a1a',
+                            900: '#111111',
+                            950: '#050505',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Geist', 'Inter', 'sans-serif'],
+                        display: ['Geist', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 60px -15px rgba(139, 92, 246, 0.15)',
+                        'glow-sm': '0 0 20px -5px rgba(139, 92, 246, 0.3)',
+                    },
+                    animation: {
+                        'marquee': 'marquee 40s linear infinite',
+                        'float': 'float 8s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            },
+            plugins: [
+                function ({ addUtilities }) {
+                    addUtilities({
+                        '.rotate-x-5': { transform: 'perspective(1000px) rotateX(5deg)' },
+                        '.rotate-x-12': { transform: 'perspective(1000px) rotateX(12deg)' },
+                        '.preserve-3d': { transformStyle: 'preserve-3d' },
+                        '.backface-hidden': { backfaceVisibility: 'hidden' },
+                    })
+                }
+            ]
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Geist', sans-serif;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444;
+        }
+
+        .glass {
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            filter: blur(5px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-content.open {
+            max-height: 200px;
+        }
+
+        .accordion-icon {
+            transition: transform 0.3s;
+        }
+
+        .accordion-icon.open {
+            transform: rotate(45deg);
+        }
+
+        .content-wait-for-load {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+            will-change: opacity;
+        }
+
+        .content-loaded {
+            opacity: 1;
+        }
+
+        /* Hero Gradient Animation */
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.15), transparent 60%);
+            animation: pulse-slow 6s infinite;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-purple-500/30 selection:text-white">
+
+    <nav class="fixed top-0 left-0 right-0 z-50 flex justify-center w-full content-wait-for-load">
+        <div id="navbar-bg"
+            class="flex bg-transparent w-full border-white/5 border-b py-6 px-8 relative backdrop-blur-xl items-center justify-between transition-all duration-300">
+            <!-- Logo Section -->
+            <a href="index.html" class="flex items-center gap-2.5 z-20 shrink-0">
+                <div
+                    class="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600/20 to-indigo-600/20 border border-purple-500/20 shadow-[0_0_15px_-3px_rgba(147,51,234,0.15)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="1em" viewBox="0 0 24 24"
+                        class="text-purple-300" data-icon-set="lucide" data-lucide="flower-2">
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2">
+                            <path
+                                d="M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1">
+                            </path>
+                            <circle cx="12" cy="8" r="2"></circle>
+                            <path
+                                d="M12 10v12m0 0c4.2 0 7-1.667 7-5c-4.2 0-7 1.667-7 5m0 0c-4.2 0-7-1.667-7-5c4.2 0 7 1.667 7 5">
+                            </path>
+                        </g>
+                    </svg>
+                </div>
+                <span class="text-sm font-semibold text-white tracking-tight">Memento</span>
+            </a>
+
+            <!-- Centered Navigation -->
+            <nav class="hidden md:flex -translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 items-center gap-1">
+                <!-- Product Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1 group-hover:text-white">
+                        Product
+                        <iconify-icon icon="lucide:chevron-down" width="12"
+                            class="group-hover:rotate-180 transition-transform duration-200 ease-out"></iconify-icon>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[500px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out transform origin-top -translate-y-3 group-hover:translate-y-0">
+                        <div
+                            class="bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
+                            <div class="p-6 grid grid-cols-2 gap-6">
+                                <!-- Item 1 -->
+                                <a href="features.html" class="block group/item">
+                                    <div class="flex items-start gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover/item:bg-purple-500/20 transition-colors border border-purple-500/10">
+                                            <iconify-icon icon="lucide:zap" width="16"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <div
+                                                class="text-sm font-medium text-white mb-1 group-hover/item:text-purple-300 transition-colors">
+                                                Features</div>
+                                            <p class="text-[11px] text-neutral-500 leading-snug">The complete knowledge
+                                                engine.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- Item 2 -->
+                                <a href="solutions.html" class="block group/item">
+                                    <div class="flex items-start gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover/item:bg-blue-500/20 transition-colors border border-blue-500/10">
+                                            <iconify-icon icon="lucide:users" width="16"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <div
+                                                class="text-sm font-medium text-white mb-1 group-hover/item:text-blue-300 transition-colors">
+                                                Solutions</div>
+                                            <p class="text-[11px] text-neutral-500 leading-snug">For students,
+                                                researchers, & pros.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- Item 3 -->
+                                <a href="pricing.html" class="block group/item">
+                                    <div class="flex items-start gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 group-hover/item:bg-green-500/20 transition-colors border border-green-500/10">
+                                            <iconify-icon icon="lucide:credit-card" width="16"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <div
+                                                class="text-sm font-medium text-white mb-1 group-hover/item:text-green-300 transition-colors">
+                                                Pricing</div>
+                                            <p class="text-[11px] text-neutral-500 leading-snug">Flexible plans for
+                                                every mind.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Footer -->
+                            <div class="bg-white/5 p-4 border-t border-white/5 flex flex-col gap-2">
+                                <a href="features.html"
+                                    class="flex items-center gap-2 text-xs text-neutral-400 hover:text-white transition-colors">
+                                    <iconify-icon icon="lucide:book" width="14"></iconify-icon>
+                                    Documentation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resources Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1 group-hover:text-white">
+                        Resources
+                        <iconify-icon icon="lucide:chevron-down" width="12"
+                            class="group-hover:rotate-180 transition-transform duration-200 ease-out"></iconify-icon>
+                    </button>
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[400px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out transform origin-top -translate-y-3 group-hover:translate-y-0">
+                        <div
+                            class="bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden p-6 grid gap-6">
+                            <a href="blog.html" class="flex items-center gap-3 group/item">
+                                <div
+                                    class="w-8 h-8 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-400 group-hover/item:bg-pink-500/20 transition-colors border border-pink-500/10">
+                                    <iconify-icon icon="lucide:newspaper" width="16"></iconify-icon>
+                                </div>
+                                <div>
+                                    <div
+                                        class="text-sm font-medium text-white group-hover/item:text-pink-300 transition-colors">
+                                        Blog
+                                    </div>
+                                    <p class="text-[11px] text-neutral-500">Latest updates & insights.</p>
+                                </div>
+                            </a>
+                            <a href="faq.html" class="flex items-center gap-3 group/item">
+                                <div
+                                    class="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover/item:bg-cyan-500/20 transition-colors border border-cyan-500/10">
+                                    <iconify-icon icon="lucide:help-circle" width="16"></iconify-icon>
+                                </div>
+                                <div>
+                                    <div
+                                        class="text-sm font-medium text-white group-hover/item:text-cyan-300 transition-colors">
+                                        FAQ
+                                    </div>
+                                    <p class="text-[11px] text-neutral-500">Common questions answered.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Company Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1 group-hover:text-white">
+                        Company
+                        <iconify-icon icon="lucide:chevron-down" width="12"
+                            class="group-hover:rotate-180 transition-transform duration-200 ease-out"></iconify-icon>
+                    </button>
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[400px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out transform origin-top -translate-y-3 group-hover:translate-y-0">
+                        <div
+                            class="bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
+                            <div class="p-6 grid gap-6">
+                                <a href="team.html" class="flex items-center gap-3 group/item">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-neutral-800 flex items-center justify-center text-white group-hover/item:bg-neutral-700 transition-colors border border-white/5">
+                                        <iconify-icon icon="lucide:users-2" width="16"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <div
+                                            class="text-sm font-medium text-white group-hover/item:text-neutral-300 transition-colors">
+                                            Our
+                                            Team</div>
+                                        <p class="text-[11px] text-neutral-500">Meet the builders.</p>
+                                    </div>
+                                </a>
+                                <a href="contact.html" class="flex items-center gap-3 group/item">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-neutral-800 flex items-center justify-center text-white group-hover/item:bg-neutral-700 transition-colors border border-white/5">
+                                        <iconify-icon icon="lucide:mail" width="16"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <div
+                                            class="text-sm font-medium text-white group-hover/item:text-neutral-300 transition-colors">
+                                            Contact Us</div>
+                                        <p class="text-[11px] text-neutral-500">Get in touch.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="bg-white/5 p-4 border-t border-white/5 flex items-center justify-between">
+                                <a href="privacy.html"
+                                    class="text-[10px] text-neutral-500 hover:text-white transition-colors">Privacy
+                                    Policy</a>
+                                <a href="terms.html"
+                                    class="text-[10px] text-neutral-500 hover:text-white transition-colors">Terms of
+                                    Service</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="pricing.html"
+                    class="px-4 py-2 text-xs font-medium text-white bg-white/5 rounded-full border border-white/10 transition-colors">Pricing</a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-4 z-20 shrink-0">
+                <a href="https://app.memento.lunartech.ai/signin" class="hidden sm:inline-flex text-xs font-medium text-neutral-400 hover:text-white transition-colors px-4 py-1.5 rounded-full border border-transparent hover:border-white/10 hover:bg-white/5">Sign in</a>
+                <a href="https://app.memento.lunartech.ai/signup" class="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-500/30 transition-all text-white shadow-[0_0_20px_-10px_rgba(168,85,247,0.3)] hover:shadow-[0_0_25px_-5px_rgba(168,85,247,0.5)] overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <iconify-icon icon="lucide:sparkles" width="14" stroke-width="1.5"
+                        class="text-purple-300 group-hover:text-purple-200 transition-colors relative z-10"></iconify-icon>
+                    <span class="z-10 text-xs font-medium tracking-wide relative">Sign up</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="md:px-10 md:pt-16 max-w-7xl mr-auto ml-auto pt-10 pr-6 pl-6">
+        <!-- Hero content will be inserted here - keeping existing pricing cards below -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 gap-10 md:gap-12 items-start mt-10 md:mt-16 pb-24">
+            <div class="lg:col-span-12 text-center">
+                <div
+                    class="border-gradient before:rounded-2xl inline-flex items-center gap-2 rounded-2xl px-2.5 py-1.5 [--fx-filter:blur(10px)_liquid-glass(5,10)_saturate(1.25)_noise(0.5,1,0)] mb-8">
+                    <div class="h-6 w-6 grid place-items-center rounded-xl bg-purple-500/10 text-purple-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
+                            class="text-sm">
+                            <path fill="currentColor"
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                        </svg>
+                    </div>
+                    <span class="text-xs text-white/70">Simple, transparent pricing</span>
+                </div>
+
+                <h1
+                    class="text-5xl sm:text-6xl md:text-7xl leading-[0.95] font-semibold text-white tracking-tight mt-5">
+                    Invest in your
+                    <span class="text-transparent bg-clip-text"
+                        style="background-image: linear-gradient(180deg, #fff, rgba(255,255,255,0.65));">intellectual
+                        velocity</span>
+                </h1>
+
+                <p class="sm:text-base leading-relaxed text-sm text-white/60 max-w-lg mt-5 mx-auto">
+                    Start for free, upgrade for power. Join thousands of thinkers who have made Memento their second
+                    brain.
+                </p>
+
+                <!-- Toggle -->
+                <div class="flex items-center justify-center gap-4 mt-8 mb-16">
+                    <span class="text-sm font-medium text-white">Monthly</span>
+                    <button
+                        class="w-14 h-8 bg-neutral-800 rounded-full relative border border-white/10 transition-colors hover:border-purple-500/50">
+                        <div
+                            class="absolute top-1 left-1 w-6 h-6 bg-purple-500 rounded-full shadow-lg transition-transform translate-x-6">
+                        </div>
+                    </button>
+                    <span class="text-sm font-medium text-neutral-400">Yearly</span>
+                    <span
+                        class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/20">SAVE
+                        20%</span>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- TRUSTED BY -->
+        <section class="border-y bg-black border-white/5 pt-8 pb-8 relative">
+            <div class="relative w-full overflow-hidden max-w-4xl mx-auto"
+                style="mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);">
+                <div class="flex gap-12 min-w-max animate-marquee opacity-40 grayscale gap-x-12 items-center">
+                    <iconify-icon icon="simple-icons:openai" width="18"></iconify-icon>
+                    <iconify-icon icon="simple-icons:meta" width="20"></iconify-icon>
+                    <iconify-icon icon="simple-icons:arxiv" width="24"></iconify-icon>
+                    <iconify-icon icon="simple-icons:google" width="18"></iconify-icon>
+                    <iconify-icon icon="simple-icons:nvidia" width="20"></iconify-icon>
+                    <iconify-icon icon="simple-icons:anthropic" width="20"></iconify-icon>
+                    <iconify-icon icon="simple-icons:microsoft" width="18"></iconify-icon>
+                    <iconify-icon icon="simple-icons:x" width="18"></iconify-icon>
+                    <iconify-icon icon="simple-icons:apple" width="20"></iconify-icon>
+                    <iconify-icon icon="simple-icons:amazon" width="20"></iconify-icon>
+                    <iconify-icon icon="simple-icons:openai" width="18"></iconify-icon>
+                    <iconify-icon icon="simple-icons:meta" width="20"></iconify-icon>
+                    <iconify-icon icon="simple-icons:arxiv" width="24"></iconify-icon>
+                    <iconify-icon icon="simple-icons:google" width="18"></iconify-icon>
+                    <iconify-icon icon="simple-icons:nvidia" width="20"></iconify-icon>
+                    <iconify-icon icon="simple-icons:anthropic" width="20"></iconify-icon>
+                    <iconify-icon icon="simple-icons:microsoft" width="18"></iconify-icon>
+                    <iconify-icon icon="simple-icons:x" width="18"></iconify-icon>
+                    <iconify-icon icon="simple-icons:apple" width="20"></iconify-icon>
+                    <iconify-icon icon="simple-icons:amazon" width="20"></iconify-icon>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PRICING TABLE -->
+        <section class="py-24 content-wait-for-load">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
+
+                    <!-- FREE PLAN -->
+                    <div
+                        class="rounded-3xl bg-neutral-900/30 border border-white/5 p-8 backdrop-blur-sm hover:border-white/10 transition-all duration-300 flex flex-col group">
+                        <div class="mb-6">
+                            <h3 class="text-xl font-medium text-white mb-2">Starter</h3>
+                            <p class="text-sm text-neutral-400">For casual learners.</p>
+                        </div>
+                        <div class="mb-8">
+                            <span class="text-5xl font-bold text-white tracking-tight">$0</span>
+                            <span class="text-neutral-500">/mo</span>
+                        </div>
+                        <button
+                            class="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-colors mb-8 group-hover:border-white/20">
+                            Get Started
+                        </button>
+                        <ul class="space-y-4 flex-1">
+                            <li class="flex items-start gap-3 text-sm text-neutral-300">
+                                <iconify-icon icon="lucide:check" class="text-neutral-500 mt-0.5"
+                                    width="16"></iconify-icon>
+                                <span>5 Uploads / month</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-neutral-300">
+                                <iconify-icon icon="lucide:check" class="text-neutral-500 mt-0.5"
+                                    width="16"></iconify-icon>
+                                <span>Basic Synthesis (GPT-3.5)</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-neutral-300">
+                                <iconify-icon icon="lucide:check" class="text-neutral-500 mt-0.5"
+                                    width="16"></iconify-icon>
+                                <span>100MB Storage</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- PRO PLAN (Highlighted) -->
+                    <div
+                        class="relative rounded-3xl bg-[#0A0A0A] border border-purple-500/50 p-8 shadow-[0_0_60px_-15px_rgba(139,92,246,0.2)] transform md:-translate-y-6 flex flex-col z-10">
+                        <div
+                            class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg border border-white/10">
+                            Most Popular
+                        </div>
+                        <div class="mb-6">
+                            <h3 class="text-xl font-medium text-white mb-2 flex items-center gap-2">
+                                Pro
+                                <iconify-icon icon="lucide:sparkles" class="text-purple-400" width="16"></iconify-icon>
+                            </h3>
+                            <p class="text-sm text-neutral-400">For serious intellects.</p>
+                        </div>
+                        <div class="mb-8">
+                            <span class="text-5xl font-bold text-white tracking-tight">$20</span>
+                            <span class="text-neutral-500">/mo</span>
+                        </div>
+                        <button
+                            class="w-full py-3 rounded-xl bg-purple-600 text-white font-medium hover:bg-purple-500 transition-all shadow-lg shadow-purple-900/20 mb-8 hover:shadow-purple-900/40 hover:scale-[1.02]">
+                            Upgrade to Pro
+                        </button>
+                        <ul class="space-y-4 flex-1">
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="lucide:check" class="text-purple-400 mt-0.5"
+                                    width="16"></iconify-icon>
+                                <span>Unlimited Uploads</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="lucide:check" class="text-purple-400 mt-0.5"
+                                    width="16"></iconify-icon>
+                                <span>Advanced Models (GPT-4o, Claude 3.5)</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="lucide:check" class="text-purple-400 mt-0.5"
+                                    width="16"></iconify-icon>
+                                <span>Voice Cloning & Podcast Studio</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="lucide:check" class="text-purple-400 mt-0.5"
+                                    width="16"></iconify-icon>
+                                <span>Debate Mode (Multi-Agent)</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-white">
+                                <iconify-icon icon="lucide:check" class="text-purple-400 mt-0.5"
+                                    width="16"></iconify-icon>
+                                <span>Priority Support</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- TEAM PLAN -->
+                    <div
+                        class="rounded-3xl bg-neutral-900/30 border border-white/5 p-8 backdrop-blur-sm hover:border-white/10 transition-all duration-300 flex flex-col group">
+                        <div class="mb-6">
+                            <h3 class="text-xl font-medium text-white mb-2">Team</h3>
+                            <p class="text-sm text-neutral-400">For research groups.</p>
+                        </div>
+                        <div class="mb-8">
+                            <span class="text-5xl font-bold text-white tracking-tight">$49</span>
+                            <span class="text-neutral-500">/user</span>
+                        </div>
+                        <button
+                            class="w-full py-3 rounded-xl bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-colors mb-8 group-hover:border-white/20">
+                            Contact Sales
+                        </button>
+                        <ul class="space-y-4 flex-1">
+                            <li class="flex items-start gap-3 text-sm text-neutral-300">
+                                <iconify-icon icon="lucide:check" class="text-neutral-500 mt-0.5"
+                                    width="16"></iconify-icon>
+                                <span>Everything in Pro</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-neutral-300">
+                                <iconify-icon icon="lucide:check" class="text-neutral-500 mt-0.5"
+                                    width="16"></iconify-icon>
+                                <span>Shared Knowledge Base</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-neutral-300">
+                                <iconify-icon icon="lucide:check" class="text-neutral-500 mt-0.5"
+                                    width="16"></iconify-icon>
+                                <span>Admin Controls & SSO</span>
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-neutral-300">
+                                <iconify-icon icon="lucide:check" class="text-neutral-500 mt-0.5"
+                                    width="16"></iconify-icon>
+                                <span>API Access</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. FEATURE COMPARISON -->
+        <section class="py-24 border-t border-white/5 bg-neutral-900/20 reveal-on-scroll">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <h2 class="text-3xl font-semibold text-white mb-12 text-center">Compare Features</h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-white/10">
+                                <th class="py-4 px-6 text-sm font-medium text-neutral-400 w-1/3">Features</th>
+                                <th class="py-4 px-6 text-sm font-medium text-white w-1/5 text-center">Starter</th>
+                                <th class="py-4 px-6 text-sm font-medium text-purple-400 w-1/5 text-center">Pro</th>
+                                <th class="py-4 px-6 text-sm font-medium text-white w-1/5 text-center">Team</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 text-neutral-300">AI Models</td>
+                                <td class="py-4 px-6 text-neutral-500 text-center">GPT-3.5</td>
+                                <td class="py-4 px-6 text-white text-center">GPT-4o, Claude 3.5</td>
+                                <td class="py-4 px-6 text-white text-center">All Models + Fine-tuning</td>
+                            </tr>
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 text-neutral-300">Upload Limit</td>
+                                <td class="py-4 px-6 text-neutral-500 text-center">5 / mo</td>
+                                <td class="py-4 px-6 text-white text-center">Unlimited</td>
+                                <td class="py-4 px-6 text-white text-center">Unlimited</td>
+                            </tr>
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 text-neutral-300">File Size</td>
+                                <td class="py-4 px-6 text-neutral-500 text-center">10MB</td>
+                                <td class="py-4 px-6 text-white text-center">500MB</td>
+                                <td class="py-4 px-6 text-white text-center">2GB</td>
+                            </tr>
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 text-neutral-300">Voice Cloning</td>
+                                <td class="py-4 px-6 text-neutral-500 text-center">-</td>
+                                <td class="py-4 px-6 text-purple-400 text-center"><iconify-icon icon="lucide:check"
+                                        width="16"></iconify-icon></td>
+                                <td class="py-4 px-6 text-white text-center"><iconify-icon icon="lucide:check"
+                                        width="16"></iconify-icon></td>
+                            </tr>
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 text-neutral-300">API Access</td>
+                                <td class="py-4 px-6 text-neutral-500 text-center">-</td>
+                                <td class="py-4 px-6 text-neutral-500 text-center">-</td>
+                                <td class="py-4 px-6 text-white text-center"><iconify-icon icon="lucide:check"
+                                        width="16"></iconify-icon></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. PRO DEEP DIVE (New Section) -->
+        <section class="py-24 reveal-on-scroll">
+            <div class="container mx-auto px-6">
+                <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-3xl font-semibold text-white mb-6">Why go Pro?</h2>
+                        <p class="text-neutral-400 text-lg mb-8 leading-relaxed">
+                            Unlock the full potential of your second brain. Pro users get access to our most advanced
+                            synthesis engines, allowing you to turn hours of reading into minutes of listening.
+                        </p>
+                        <ul class="space-y-6">
+                            <li class="flex gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 shrink-0 border border-purple-500/20">
+                                    <iconify-icon icon="lucide:mic" width="20"></iconify-icon>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-medium mb-1">Voice Cloning</h4>
+                                    <p class="text-sm text-neutral-500">Listen to your notes in your own voice.</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 shrink-0 border border-blue-500/20">
+                                    <iconify-icon icon="lucide:brain-circuit" width="20"></iconify-icon>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-medium mb-1">Reality Mode</h4>
+                                    <p class="text-sm text-neutral-500">Simulate debates with historical figures.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="relative">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 blur-3xl rounded-full">
+                        </div>
+                        <div class="relative rounded-2xl bg-[#0A0A0A] border border-white/10 p-6 shadow-2xl">
+                            <!-- Mockup of Audio Player -->
+                            <div class="flex items-center gap-4 mb-6">
+                                <div class="w-12 h-12 rounded-lg bg-purple-600 flex items-center justify-center">
+                                    <iconify-icon icon="lucide:play" width="20" class="text-white"></iconify-icon>
+                                </div>
+                                <div>
+                                    <div class="text-white font-medium">Deep Work Summary</div>
+                                    <div class="text-xs text-neutral-500">Generated by Memento Pro</div>
+                                </div>
+                            </div>
+                            <!-- Waveform -->
+                            <div class="flex items-center gap-1 h-12 mb-4">
+                                <div class="w-1 bg-purple-500 h-4 rounded-full"></div>
+                                <div class="w-1 bg-purple-500 h-8 rounded-full"></div>
+                                <div class="w-1 bg-purple-500 h-6 rounded-full"></div>
+                                <div class="w-1 bg-purple-500 h-10 rounded-full"></div>
+                                <div class="w-1 bg-purple-500 h-5 rounded-full"></div>
+                                <div class="w-1 bg-neutral-800 h-3 rounded-full flex-1"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. ENTERPRISE BANNER -->
+        <section class="py-20 reveal-on-scroll">
+            <div class="container mx-auto px-6">
+                <div
+                    class="max-w-5xl mx-auto rounded-[2.5rem] bg-gradient-to-r from-neutral-900 to-neutral-950 border border-white/10 p-12 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div
+                        class="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 blur-[100px] rounded-full pointer-events-none">
+                    </div>
+
+                    <div class="relative z-10">
+                        <h3 class="text-3xl font-semibold text-white mb-3">Need Enterprise Scale?</h3>
+                        <p class="text-neutral-400 max-w-md">Custom deployments, SLA guarantees, and dedicated success
+                            managers for large organizations.</p>
+                    </div>
+
+                    <div class="relative z-10 flex gap-4">
+                        <button
+                            class="px-6 py-3 rounded-xl bg-white text-black font-medium hover:bg-neutral-200 transition-colors">
+                            Contact Sales
+                        </button>
+                        <button
+                            class="px-6 py-3 rounded-xl border border-white/10 text-white font-medium hover:bg-white/5 transition-colors">
+                            View Documentation
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. ROI / VALUE (New Section) -->
+        <section class="py-24 border-t border-white/5 bg-neutral-900/20 reveal-on-scroll">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-semibold text-white mb-16">The Cost of Ignorance</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="p-6">
+                        <div class="text-4xl font-bold text-red-400 mb-2">2.5 hrs</div>
+                        <p class="text-neutral-400 text-sm">Lost daily searching for information.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-4xl font-bold text-red-400 mb-2">90%</div>
+                        <p class="text-neutral-400 text-sm">Of read material is forgotten within a week.</p>
+                    </div>
+                    <div class="p-6">
+                        <div class="text-4xl font-bold text-red-400 mb-2">$10k+</div>
+                        <p class="text-neutral-400 text-sm">Annual value of lost productivity per person.</p>
+                    </div>
+                </div>
+                <div class="mt-16">
+                    <p class="text-lg text-white font-medium">Memento pays for itself in <span class="text-purple-400">3
+                            days</span>.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="py-24 bg-neutral-900/20">
+            <div class="container mx-auto px-6 max-w-3xl">
+                <h2 class="text-3xl font-semibold text-white mb-12 text-center">Frequently Asked Questions</h2>
+
+                <div class="space-y-4">
+                    <!-- Item 1 -->
+                    <div
+                        class="group border border-white/5 bg-[#0A0A0A] rounded-2xl overflow-hidden transition-all hover:border-white/10">
+                        <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+                            <span class="font-medium text-white text-lg">Can I cancel my subscription anytime?</span>
+                            <iconify-icon icon="lucide:plus"
+                                class="text-neutral-500 transition-transform duration-300 group-[.open]:rotate-45"></iconify-icon>
+                        </button>
+                        <div class="faq-content h-0 overflow-hidden transition-all duration-300">
+                            <div class="p-6 pt-0 text-neutral-400 leading-relaxed">
+                                Yes, you can cancel your subscription at any time. You will continue to have access to
+                                the
+                                features you paid for until the end of your billing cycle.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div
+                        class="group border border-white/5 bg-[#0A0A0A] rounded-2xl overflow-hidden transition-all hover:border-white/10">
+                        <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+                            <span class="font-medium text-white text-lg">Is there a student discount?</span>
+                            <iconify-icon icon="lucide:plus"
+                                class="text-neutral-500 transition-transform duration-300 group-[.open]:rotate-45"></iconify-icon>
+                        </button>
+                        <div class="faq-content h-0 overflow-hidden transition-all duration-300">
+                            <div class="p-6 pt-0 text-neutral-400 leading-relaxed">
+                                Absolutely. We offer 50% off for students and educators with a valid .edu email address.
+                                Contact support to apply.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div
+                        class="group border border-white/5 bg-[#0A0A0A] rounded-2xl overflow-hidden transition-all hover:border-white/10">
+                        <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+                            <span class="font-medium text-white text-lg">How does the AI search work?</span>
+                            <iconify-icon icon="lucide:plus"
+                                class="text-neutral-500 transition-transform duration-300 group-[.open]:rotate-45"></iconify-icon>
+                        </button>
+                        <div class="faq-content h-0 overflow-hidden transition-all duration-300">
+                            <div class="p-6 pt-0 text-neutral-400 leading-relaxed">
+                                We use advanced vector embeddings to understand the semantic meaning of your notes, not
+                                just
+                                keyword matching. This allows you to find connections between ideas that you might have
+                                missed.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div
+                        class="group border border-white/5 bg-[#0A0A0A] rounded-2xl overflow-hidden transition-all hover:border-white/10">
+                        <button class="faq-trigger w-full flex items-center justify-between p-6 text-left">
+                            <span class="font-medium text-white text-lg">Is my data secure?</span>
+                            <iconify-icon icon="lucide:plus"
+                                class="text-neutral-500 transition-transform duration-300 group-[.open]:rotate-45"></iconify-icon>
+                        </button>
+                        <div class="faq-content h-0 overflow-hidden transition-all duration-300">
+                            <div class="p-6 pt-0 text-neutral-400 leading-relaxed">
+                                Security is our top priority. All data is encrypted at rest and in transit. We do not
+                                train
+                                our public models on your private data.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. STARTUP PROGRAM -->
+        <section class="py-24 border-t border-white/5 reveal-on-scroll">
+            <div class="container mx-auto px-6">
+                <div class="bg-[#0A0A0A] border border-white/10 rounded-3xl p-12 relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-96 h-96 bg-purple-500/10 blur-[120px] rounded-full pointer-events-none">
+                    </div>
+                    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                        <div>
+                            <div
+                                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-medium mb-6">
+                                <iconify-icon icon="lucide:rocket" width="14"></iconify-icon>
+                                Memento for Startups
+                            </div>
+                            <h2 class="text-3xl md:text-4xl font-semibold text-white mb-6">We back the builders.</h2>
+                            <p class="text-neutral-400 mb-8 leading-relaxed text-lg">Early-stage startups get $5,000 in
+                                Memento credits and priority support. Focus on building your product, not managing your
+                                knowledge.</p>
+                            <button
+                                class="bg-white text-black px-8 py-4 rounded-xl font-medium hover:bg-neutral-200 transition-colors flex items-center gap-2 group">
+                                Apply Now <iconify-icon icon="lucide:arrow-right" width="16"
+                                    class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-black/40 backdrop-blur-md border border-white/10 p-6 rounded-2xl">
+                                <div class="text-3xl font-bold text-white mb-1">$5k</div>
+                                <div class="text-sm text-neutral-500">Credits</div>
+                            </div>
+                            <div class="bg-black/40 backdrop-blur-md border border-white/10 p-6 rounded-2xl">
+                                <div class="text-3xl font-bold text-white mb-1">24/7</div>
+                                <div class="text-sm text-neutral-500">Priority Support</div>
+                            </div>
+                            <div class="bg-black/40 backdrop-blur-md border border-white/10 p-6 rounded-2xl col-span-2">
+                                <div class="text-3xl font-bold text-white mb-1">Unlimited</div>
+                                <div class="text-sm text-neutral-500">Team Members</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIALS (Marquee) -->
+        <section class="py-32 overflow-hidden">
+            <div class="container mx-auto px-6 mb-16 text-center">
+                <h2 class="text-3xl font-semibold text-white mb-4">Loved by the world's best thinkers</h2>
+                <p class="text-neutral-400">Join 50,000+ users who are building their second brain.</p>
+            </div>
+
+            <!-- Marquee Row 1 (Left) -->
+            <div class="relative flex overflow-x-hidden mb-8 group">
+                <div class="animate-marquee whitespace-nowrap flex gap-6">
+                    <!-- Card 1 -->
+                    <div
+                        class="w-[400px] p-6 rounded-2xl bg-[#0A0A0A] border border-white/5 shrink-0 whitespace-normal">
+                        <div class="flex items-center gap-4 mb-4">
+                            <img src="https://i.pravatar.cc/150?u=1" alt="User"
+                                class="w-10 h-10 rounded-full grayscale opacity-70">
+                            <div>
+                                <div class="text-white font-medium text-sm">Sarah Chen</div>
+                                <div class="text-neutral-500 text-xs">AI Researcher @ DeepMind</div>
+                            </div>
+                        </div>
+                        <p class="text-neutral-300 text-sm leading-relaxed">"Memento has completely changed how I
+                            organize
+                            my research papers. The semantic search is a game changer."</p>
+                    </div>
+                    <!-- Card 2 -->
+                    <div
+                        class="w-[400px] p-6 rounded-2xl bg-[#0A0A0A] border border-white/5 shrink-0 whitespace-normal">
+                        <div class="flex items-center gap-4 mb-4">
+                            <img src="https://i.pravatar.cc/150?u=2" alt="User"
+                                class="w-10 h-10 rounded-full grayscale opacity-70">
+                            <div>
+                                <div class="text-white font-medium text-sm">Alex Rivera</div>
+                                <div class="text-neutral-500 text-xs">Product Designer @ Linear</div>
+                            </div>
+                        </div>
+                        <p class="text-neutral-300 text-sm leading-relaxed">"The design is stunning, but the
+                            functionality
+                            is even better. It's the first knowledge base that feels alive."</p>
+                    </div>
+                    <!-- Card 3 -->
+                    <div
+                        class="w-[400px] p-6 rounded-2xl bg-[#0A0A0A] border border-white/5 shrink-0 whitespace-normal">
+                        <div class="flex items-center gap-4 mb-4">
+                            <img src="https://i.pravatar.cc/150?u=3" alt="User"
+                                class="w-10 h-10 rounded-full grayscale opacity-70">
+                            <div>
+                                <div class="text-white font-medium text-sm">David Kim</div>
+                                <div class="text-neutral-500 text-xs">Founder @ Stealth</div>
+                            </div>
+                        </div>
+                        <p class="text-neutral-300 text-sm leading-relaxed">"I've tried every tool out there. Memento is
+                            the
+                            only one that actually helps me think clearly."</p>
+                    </div>
+                    <!-- Card 4 -->
+                    <div
+                        class="w-[400px] p-6 rounded-2xl bg-[#0A0A0A] border border-white/5 shrink-0 whitespace-normal">
+                        <div class="flex items-center gap-4 mb-4">
+                            <img src="https://i.pravatar.cc/150?u=4" alt="User"
+                                class="w-10 h-10 rounded-full grayscale opacity-70">
+                            <div>
+                                <div class="text-white font-medium text-sm">Emily Zhang</div>
+                                <div class="text-neutral-500 text-xs">PhD Student @ Stanford</div>
+                            </div>
+                        </div>
+                        <p class="text-neutral-300 text-sm leading-relaxed">"The ability to connect disparate ideas
+                            automatically is magical. It feels like having a research assistant."</p>
+                    </div>
+
+                    <!-- Duplicate for loop -->
+                    <div
+                        class="w-[400px] p-6 rounded-2xl bg-[#0A0A0A] border border-white/5 shrink-0 whitespace-normal">
+                        <div class="flex items-center gap-4 mb-4">
+                            <img src="https://i.pravatar.cc/150?u=1" alt="User"
+                                class="w-10 h-10 rounded-full grayscale opacity-70">
+                            <div>
+                                <div class="text-white font-medium text-sm">Sarah Chen</div>
+                                <div class="text-neutral-500 text-xs">AI Researcher @ DeepMind</div>
+                            </div>
+                        </div>
+                        <p class="text-neutral-300 text-sm leading-relaxed">"Memento has completely changed how I
+                            organize
+                            my research papers. The semantic search is a game changer."</p>
+                    </div>
+                    <div
+                        class="w-[400px] p-6 rounded-2xl bg-[#0A0A0A] border border-white/5 shrink-0 whitespace-normal">
+                        <div class="flex items-center gap-4 mb-4">
+                            <img src="https://i.pravatar.cc/150?u=2" alt="User"
+                                class="w-10 h-10 rounded-full grayscale opacity-70">
+                            <div>
+                                <div class="text-white font-medium text-sm">Alex Rivera</div>
+                                <div class="text-neutral-500 text-xs">Product Designer @ Linear</div>
+                            </div>
+                        </div>
+                        <p class="text-neutral-300 text-sm leading-relaxed">"The design is stunning, but the
+                            functionality
+                            is even better. It's the first knowledge base that feels alive."</p>
+                    </div>
+                    <div
+                        class="w-[400px] p-6 rounded-2xl bg-[#0A0A0A] border border-white/5 shrink-0 whitespace-normal">
+                        <div class="flex items-center gap-4 mb-4">
+                            <img src="https://i.pravatar.cc/150?u=3" alt="User"
+                                class="w-10 h-10 rounded-full grayscale opacity-70">
+                            <div>
+                                <div class="text-white font-medium text-sm">David Kim</div>
+                                <div class="text-neutral-500 text-xs">Founder @ Stealth</div>
+                            </div>
+                        </div>
+                        <p class="text-neutral-300 text-sm leading-relaxed">"I've tried every tool out there. Memento is
+                            the
+                            only one that actually helps me think clearly."</p>
+                    </div>
+                    <div
+                        class="w-[400px] p-6 rounded-2xl bg-[#0A0A0A] border border-white/5 shrink-0 whitespace-normal">
+                        <div class="flex items-center gap-4 mb-4">
+                            <img src="https://i.pravatar.cc/150?u=4" alt="User"
+                                class="w-10 h-10 rounded-full grayscale opacity-70">
+                            <div>
+                                <div class="text-white font-medium text-sm">Emily Zhang</div>
+                                <div class="text-neutral-500 text-xs">PhD Student @ Stanford</div>
+                            </div>
+                        </div>
+                        <p class="text-neutral-300 text-sm leading-relaxed">"The ability to connect disparate ideas
+                            automatically is magical. It feels like having a research assistant."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. COMPARE EDITIONS -->
+        <section class="py-24 reveal-on-scroll">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <h2 class="text-3xl font-semibold text-white mb-12 text-center">Compare Editions</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-white/10">
+                                <th class="py-4 px-6 text-neutral-500 font-medium text-sm">Feature</th>
+                                <th class="py-4 px-6 text-white font-medium text-sm">Free</th>
+                                <th class="py-4 px-6 text-purple-400 font-medium text-sm">Pro</th>
+                                <th class="py-4 px-6 text-white font-medium text-sm">Enterprise</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 text-neutral-300">Uploads per month</td>
+                                <td class="py-4 px-6 text-neutral-400">50</td>
+                                <td class="py-4 px-6 text-white font-medium">Unlimited</td>
+                                <td class="py-4 px-6 text-neutral-400">Unlimited</td>
+                            </tr>
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 text-neutral-300">Knowledge Graph</td>
+                                <td class="py-4 px-6 text-neutral-400">Basic</td>
+                                <td class="py-4 px-6 text-white font-medium">Advanced</td>
+                                <td class="py-4 px-6 text-neutral-400">Custom</td>
+                            </tr>
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 text-neutral-300">AI Models</td>
+                                <td class="py-4 px-6 text-neutral-400">GPT-3.5</td>
+                                <td class="py-4 px-6 text-white font-medium">GPT-4, Claude 3</td>
+                                <td class="py-4 px-6 text-neutral-400">Fine-tuned</td>
+                            </tr>
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 text-neutral-300">API Access</td>
+                                <td class="py-4 px-6 text-neutral-400">-</td>
+                                <td class="py-4 px-6 text-white font-medium"><iconify-icon icon="lucide:check"
+                                        class="text-purple-500"></iconify-icon></td>
+                                <td class="py-4 px-6 text-neutral-400"><iconify-icon icon="lucide:check"
+                                        class="text-white"></iconify-icon></td>
+                            </tr>
+                            <tr class="border-b border-white/5 hover:bg-white/5 transition-colors">
+                                <td class="py-4 px-6 text-neutral-300">SSO</td>
+                                <td class="py-4 px-6 text-neutral-400">-</td>
+                                <td class="py-4 px-6 text-white font-medium">-</td>
+                                <td class="py-4 px-6 text-neutral-400"><iconify-icon icon="lucide:check"
+                                        class="text-white"></iconify-icon></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <footer class="overflow-hidden bg-[#050505] w-full border-white/5 border-t pt-20 pb-0 relative">
+
+            <!-- Newsletter Pill -->
+            <div class="flex -translate-y-1/2 z-30 mt-16 mb-16 pr-6 pl-6 absolute top-0 right-0 left-0 justify-center">
+                <div
+                    class="bg-[#0A0A0A] border border-white/10 rounded-full py-3 pl-6 pr-2 flex items-center gap-4 shadow-2xl max-w-md w-full group hover:border-purple-500/50 transition-colors">
+                    <input type="text" placeholder="Join the waitlist..."
+                        class="bg-transparent border-none outline-none text-white text-sm w-full placeholder:text-neutral-600 font-mono focus:ring-0">
+                    <button
+                        class="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center hover:bg-purple-500 hover:text-white transition-colors shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            data-lucide="arrow-right" class="lucide lucide-arrow-right w-4 h-4">
+                            <path d="M5 12h14" class=""></path>
+                            <path d="m12 5 7 7-7 7" class=""></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="w-full px-6 lg:px-12 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-20">
+                <!-- Left -->
+                <div class="lg:col-span-7">
+                    <h2
+                        class="text-5xl lg:text-[6rem] leading-[0.9] font-medium text-white tracking-tighter mb-10 font-display">
+                        Capture.
+                        <span class="text-neutral-700">Synthesize.</span>
+                        Master.
+                    </h2>
+                    <div class="flex flex-wrap gap-8 opacity-40 hover:opacity-100 transition-opacity duration-500">
+                        <!-- Logos (Letters only style) -->
+                        <span class="font-display font-bold tracking-tighter text-xl text-white">OPENAI</span>
+                        <span class="font-display font-bold tracking-tighter text-xl text-white">ANTHROPIC</span>
+                        <span class="font-display font-bold tracking-tighter text-xl text-white">META</span>
+                        <span class="font-display font-bold tracking-tighter text-xl text-white">MISTRAL</span>
+                    </div>
+                </div>
+
+                <!-- Right (Purple Card) -->
+                <div class="lg:col-span-5 flex lg:justify-end items-center">
+                    <div
+                        class="w-full max-w-sm bg-purple-600 p-8 relative overflow-hidden group transform hover:-translate-y-2 transition-transform duration-500 rounded-3xl">
+                        <iconify-icon icon="lucide:brain-circuit" width="128"
+                            class="absolute -right-4 -top-4 text-black/10 rotate-12"></iconify-icon>
+
+                        <div class="relative z-10">
+                            <h3 class="text-2xl font-bold text-white mb-4 tracking-tight font-display">Start Learning
+                                Now
+                            </h3>
+                            <p class="text-white/80 text-sm font-medium leading-relaxed mb-8">
+                                Access the complete knowledge engine. Transform your library today.
+                            </p>
+                            <div class="flex items-center justify-between border-t border-white/20 pt-4">
+                                <span class="text-xs font-bold uppercase tracking-widest text-white">v2.4 Reality
+                                    Mode</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" data-lucide="arrow-up-right"
+                                    class="lucide lucide-arrow-up-right w-5 h-5 text-white">
+                                    <path d="M7 7h10v10" class=""></path>
+                                    <path d="M7 17 17 7" class=""></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Watermark -->
+            <div class="relative w-full overflow-hidden pointer-events-none select-none pt-12">
+                <h1
+                    class="text-[20vw] leading-none font-bold text-white/5 text-center -mb-12 tracking-tighter font-display">
+                    MEMENTO
+                </h1>
+                <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#050505] to-transparent"></div>
+            </div>
+
+            <div class="absolute bottom-6 w-full flex justify-center z-30">
+                <p class="text-[10px] text-neutral-700 font-mono uppercase tracking-widest">© 2026 Memento Inc.</p>
+            </div>
+        </footer>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                // Navbar scroll effect
+                const navbarBg = document.getElementById('navbar-bg');
+                window.addEventListener('scroll', () => {
+                    if (window.scrollY > 50) {
+                        navbarBg.classList.remove('bg-transparent');
+                        navbarBg.classList.add('bg-black/50');
+                    } else {
+                        navbarBg.classList.add('bg-transparent');
+                        navbarBg.classList.remove('bg-black/50');
+                    }
+                });
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('is-visible');
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+                document.querySelectorAll('.faq-trigger').forEach(trigger => {
+                    trigger.addEventListener('click', () => {
+                        const content = trigger.nextElementSibling;
+                        const icon = trigger.querySelector('.accordion-icon');
+                        content.classList.toggle('open');
+                        icon.classList.toggle('open');
+                        document.querySelectorAll('.accordion-content').forEach(c => {
+                            if (c !== content) c.classList.remove('open');
+                        });
+                        document.querySelectorAll('.accordion-icon').forEach(i => {
+                            if (i !== icon) i.classList.remove('open');
+                        });
+                    });
+                });
+            });
+        </script>
+
+</body>
+
+</html>

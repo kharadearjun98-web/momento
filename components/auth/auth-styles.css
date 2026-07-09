@@ -1,0 +1,287 @@
+/* Auth Pages Shared Styles */
+/* Glassmorphism, animations, and premium form styling */
+
+/* ========================================
+   MESH GRADIENT BACKGROUND
+   ======================================== */
+.mesh-gradient {
+  background-color: #191022;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(271,78%,45%,1) 0, transparent 50%), 
+    radla-gradient(at 100% 0%, hsla(217,89%,61%,1) 0, transparent 50%), 
+    radial-gradient(at 100% 100%, hsla(189,100%,56%,1) 0, transparent 50%), 
+    radial-gradient(at 0% 100%, hsla(266,74%,46%,1) 0, transparent 50%);
+}
+
+/* ========================================
+   GLASS CARD EFFECTS
+   ======================================== */
+.glass-card {
+  background: rgba(15, 10, 20, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.glass-review-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 20px 20px 50px -5px rgba(0, 0, 0, 0.3);
+  transform-style: preserve-3d;
+  transition: all 0.3s ease;
+}
+
+.glass-review-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 30px rgba(140, 43, 238, 0.3);
+  transform: translateZ(20px);
+}
+
+/* Highlighted card variant */
+.glass-review-card-highlight {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   FLOATING LABEL INPUTS
+   ======================================== */
+.floating-input-group {
+  position: relative;
+}
+
+.floating-input {
+  display: block;
+  width: 100%;
+  padding: 1.25rem 1rem 0.625rem 1rem;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: rgba(30, 22, 37, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.75rem;
+  outline: none;
+  transition: all 0.2s ease;
+  caret-color: #a855f7;
+}
+
+.floating-input:-webkit-autofill,
+.floating-input:-webkit-autofill:hover,
+.floating-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(30, 22, 37, 0.95) inset !important;
+  box-shadow: 0 0 0px 1000px rgba(30, 22, 37, 0.95) inset !important;
+  background-color: rgba(30, 22, 37, 0.95) !important;
+  border-color: rgba(168, 85, 247, 0.5) !important;
+}
+
+.floating-input::placeholder {
+  color: rgba(156, 163, 175, 0.6);
+}
+
+.floating-input:focus {
+  border-color: #a855f7;
+  box-shadow: 0 0 0 3px rgba(168, 85, 247, 0.15), 0 0 20px rgba(168, 85, 247, 0.1);
+  background-color: rgba(30, 22, 37, 0.95);
+}
+
+.floating-input:hover:not(:focus) {
+  border-color: rgba(255, 255, 255, 0.25);
+  background-color: rgba(30, 22, 37, 0.9);
+}
+
+/* 
+ * FLOATING LABEL - Positioning handled by Tailwind peer-* classes
+ * CSS only handles non-positional styles to avoid cascade conflicts
+ */
+.floating-label {
+  pointer-events: none;
+}
+
+/* ========================================
+   3D PERSPECTIVE CONTAINER
+   ======================================== */
+.iso-container {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.iso-plane {
+  transform: rotateX(15deg) rotateY(-10deg) rotateZ(5deg) scale(1.05);
+  transform-style: preserve-3d;
+}
+
+/* ========================================
+   SCROLLING ANIMATIONS
+   ======================================== */
+@keyframes scroll-vertical {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+
+.animate-scroll-slow {
+  animation: scroll-vertical 80s linear infinite;
+}
+
+.animate-scroll-medium {
+  animation: scroll-vertical 65s linear infinite;
+}
+
+.animate-scroll-fast {
+  animation: scroll-vertical 50s linear infinite;
+}
+
+/* ========================================
+   GRADIENT MASKS
+   ======================================== */
+.gradient-mask-y {
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
+/* ========================================
+   PASSWORD STRENGTH INDICATOR
+   ======================================== */
+.password-strength-bar {
+  height: 6px;
+  border-radius: 9999px;
+  transition: all 0.3s ease;
+}
+
+.password-strength-weak {
+  background-color: #ef4444;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+}
+
+.password-strength-fair {
+  background-color: #eab308;
+  box-shadow: 0 0 10px rgba(234, 179, 8, 0.4);
+}
+
+.password-strength-good {
+  background-color: #22c55e;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+}
+
+.password-strength-strong {
+  background-color: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.4);
+}
+
+.password-strength-inactive {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   BUTTON EFFECTS
+   ======================================== */
+.btn-primary-glow {
+  background-color: #8c2bee;
+  box-shadow: 0 0 20px rgba(140, 43, 238, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-primary-glow:hover {
+  background-color: #7a25d0;
+  box-shadow: 0 0 35px rgba(140, 43, 238, 0.6);
+  transform: translateY(-1px);
+}
+
+.btn-social {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.2s ease;
+  color: #ffffff;
+}
+
+.btn-social:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   NOISE TEXTURE OVERLAY
+   ======================================== */
+.noise-overlay {
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.2;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ========================================
+   COMPANY LOGO STYLES
+   ======================================== */
+.company-logo-section {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.company-logo-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.company-logo-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ========================================
+   SOCIAL PROOF SECTION
+   ======================================== */
+.social-proof-avatars {
+  display: flex;
+}
+
+.social-proof-avatars > * {
+  margin-left: -0.75rem;
+}
+
+.social-proof-avatars > *:first-child {
+  margin-left: 0;
+}
+
+.social-proof-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  border: 2px solid #0f0f12;
+  object-fit: cover;
+}
+
+.social-proof-count {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  border: 2px solid #0f0f12;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* Star icon glow */
+.star-glow {
+  filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.5));
+}

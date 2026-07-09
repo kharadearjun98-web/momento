@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Memento</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Inter+Tight:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Inter Tight', 'sans-serif'],
+              mono: ['JetBrains Mono', 'monospace'],
+            },
+            colors: {
+              memento: {
+                bg: '#0B0E13',
+                glass: 'rgba(15, 18, 24, 0.6)',
+                purple: {
+                  400: '#A78BFA',
+                  500: '#8B5CF6',
+                  600: '#7C3AED',
+                  900: '#4C1D95',
+                },
+                accent: {
+                  cyan: '#22D3EE',
+                  blue: '#60A5FA',
+                  pink: '#F472B6',
+                }
+              }
+            },
+            backgroundImage: {
+              'aurora': 'linear-gradient(120deg, rgba(139,92,246,0.15) 0%, rgba(34,211,238,0.1) 50%, rgba(96,165,250,0.1) 100%)',
+              'glass-gradient': 'linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%)',
+            },
+            boxShadow: {
+              'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.36)',
+              'glass-hover': '0 8px 32px 0 rgba(139, 92, 246, 0.15)',
+              'glow': '0 0 20px rgba(139, 92, 246, 0.3)',
+            },
+            animation: {
+              'spin-slow': 'spin 4s linear infinite',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #0B0E13;
+        color: #E2E8F0;
+        overflow: hidden; /* App-like feel */
+      }
+      /* Custom Scrollbar for that premium feel */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.2);
+      }
+    </style>
+    <link rel="stylesheet" href="/index.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

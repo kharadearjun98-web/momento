@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Page</title>
+    <style>
+        body {
+            background: #0B0E13;
+            color: white;
+            font-family: Arial;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>✅ Server is working!</h1>
+    <p>If you see this, the Vite server is running correctly.</p>
+    <p>Time: <span id="time"></span></p>
+    <script>
+        document.getElementById('time').textContent = new Date().toLocaleTimeString();
+    </script>
+</body>
+</html>

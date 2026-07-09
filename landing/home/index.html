@@ -1,0 +1,2640 @@
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Memento — Harness Your Brilliance</title>
+  <meta name="description" content="The ultimate AI-powered learning companion.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+    rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+  <!-- Preload UnicornStudio for faster animation loading -->
+  <script type="text/javascript">
+    // Wait for DOM to be ready before initializing
+    document.addEventListener('DOMContentLoaded', function () {
+      if (!window.UnicornStudio) {
+        window.UnicornStudio = { isInitialized: !1 };
+        var i = document.createElement("script");
+        i.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js";
+        i.onload = function () {
+          if (!window.UnicornStudio.isInitialized) {
+            UnicornStudio.init();
+            window.UnicornStudio.isInitialized = !0;
+            // Reveal content with minimal delay
+            setTimeout(() => {
+              document.querySelectorAll('.content-wait-for-load').forEach(el => el.classList.add('content-loaded'));
+            }, 100);
+          }
+        };
+        (document.head || document.body).appendChild(i);
+      }
+    });
+  </script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            purple: {
+              400: '#A78BFA',
+              500: '#8B5CF6',
+              600: '#7C3AED',
+              900: '#2E1065',
+            },
+            neutral: {
+              850: '#1a1a1a',
+              900: '#111111',
+              950: '#050505',
+            }
+          },
+          fontFamily: {
+            sans: ['Geist', 'Inter', 'sans-serif'],
+            display: ['Geist', 'sans-serif'],
+          },
+          boxShadow: {
+            'glow': '0 0 60px -15px rgba(139, 92, 246, 0.15)',
+            'glow-sm': '0 0 20px -5px rgba(139, 92, 246, 0.3)',
+          },
+          animation: {
+            'marquee': 'marquee 40s linear infinite',
+            'float': 'float 8s ease-in-out infinite',
+          },
+          keyframes: {
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0)' },
+              '50%': { transform: 'translateY(-10px)' },
+            }
+          }
+        }
+      },
+      plugins: [
+        function ({ addUtilities }) {
+          addUtilities({
+            '.rotate-x-5': { transform: 'perspective(1000px) rotateX(5deg)' },
+            '.rotate-x-12': { transform: 'perspective(1000px) rotateX(12deg)' },
+            '.preserve-3d': { transformStyle: 'preserve-3d' },
+          })
+        }
+      ]
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #050505;
+      color: #ffffff;
+      font-family: 'Geist', sans-serif;
+      overflow-x: hidden;
+      overflow-y: auto;
+      font-size: 14px;
+    }
+
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #444;
+    }
+
+    .glass {
+      background: rgba(5, 5, 5, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(5px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .accordion-content.open {
+      max-height: 200px;
+    }
+
+    .accordion-icon {
+      transition: transform 0.3s;
+    }
+
+    .accordion-icon.open {
+      transform: rotate(45deg);
+    }
+  </style>
+  <link id="all-fonts-link-font-roboto" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap">
+  <style id="all-fonts-style-font-roboto">
+    .font-roboto {
+      font-family: 'Roboto', sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-montserrat" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap">
+  <style id="all-fonts-style-font-montserrat">
+    .font-montserrat {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-poppins" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap">
+  <style id="all-fonts-style-font-poppins">
+    .font-poppins {
+      font-family: 'Poppins', sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-playfair" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;display=swap">
+  <style id="all-fonts-style-font-playfair">
+    .font-playfair {
+      font-family: 'Playfair Display', serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-instrument-serif" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;500;600;700&amp;display=swap">
+  <style id="all-fonts-style-font-instrument-serif">
+    .font-instrument-serif {
+      font-family: 'Instrument Serif', serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-merriweather" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&amp;display=swap">
+  <style id="all-fonts-style-font-merriweather">
+    .font-merriweather {
+      font-family: 'Merriweather', serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-bricolage" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&amp;display=swap">
+  <style id="all-fonts-style-font-bricolage">
+    .font-bricolage {
+      font-family: 'Bricolage Grotesque', sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-jakarta" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap">
+  <style id="all-fonts-style-font-jakarta">
+    .font-jakarta {
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-manrope" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap">
+  <style id="all-fonts-style-font-manrope">
+    .font-manrope {
+      font-family: 'Manrope', sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-space-grotesk" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap">
+  <style id="all-fonts-style-font-space-grotesk">
+    .font-space-grotesk {
+      font-family: 'Space Grotesk', sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-work-sans" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&amp;display=swap">
+  <style id="all-fonts-style-font-work-sans">
+    .font-work-sans {
+      font-family: 'Work Sans', sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-pt-serif" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&amp;display=swap">
+  <style id="all-fonts-style-font-pt-serif">
+    .font-pt-serif {
+      font-family: 'PT Serif', serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-geist-mono" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&amp;display=swap">
+  <style id="all-fonts-style-font-geist-mono">
+    .font-geist-mono {
+      font-family: 'Geist Mono', monospace !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-space-mono" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap">
+  <style id="all-fonts-style-font-space-mono">
+    .font-space-mono {
+      font-family: 'Space Mono', monospace !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-quicksand" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap">
+  <style id="all-fonts-style-font-quicksand">
+    .font-quicksand {
+      font-family: 'Quicksand', sans-serif !important;
+    }
+  </style>
+  <link id="all-fonts-link-font-nunito" rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&amp;display=swap">
+  <style id="all-fonts-style-font-nunito">
+    .font-nunito {
+      font-family: 'Nunito', sans-serif !important;
+    }
+  </style>
+</head>
+
+<body class="antialiased selection:bg-purple-500/30 selection:text-white">
+
+  <nav class="fixed top-0 left-0 right-0 z-50 flex justify-center w-full content-wait-for-load">
+    <div id="navbar-bg"
+      class="flex bg-transparent w-full border-white/5 border-b py-6 px-8 relative backdrop-blur-xl items-center justify-between transition-all duration-300">
+      <!-- Logo Section -->
+      <div class="flex items-center gap-2.5 z-20 shrink-0">
+        <div
+          class="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600/20 to-indigo-600/20 border border-purple-500/20 shadow-[0_0_15px_-3px_rgba(147,51,234,0.15)]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="1em" viewBox="0 0 24 24" class="text-purple-300"
+            data-icon-set="lucide" data-lucide="flower-2">
+            <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+              <path
+                d="M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1">
+              </path>
+              <circle cx="12" cy="8" r="2"></circle>
+              <path d="M12 10v12m0 0c4.2 0 7-1.667 7-5c-4.2 0-7 1.667-7 5m0 0c-4.2 0-7-1.667-7-5c4.2 0 7 1.667 7 5">
+              </path>
+            </g>
+          </svg>
+        </div>
+        <span class="text-sm font-semibold text-white tracking-tight">Memento</span>
+      </div>
+
+      <!-- Centered Navigation -->
+      <!-- Centered Navigation -->
+      <nav class="hidden md:flex -translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 items-center gap-1">
+        <!-- Product Dropdown -->
+        <div class="relative group">
+          <button
+            class="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1 group-hover:text-white">
+            Product
+            <iconify-icon icon="lucide:chevron-down" width="12"
+              class="group-hover:rotate-180 transition-transform duration-200 ease-out"></iconify-icon>
+          </button>
+          <!-- Dropdown Menu -->
+          <div
+            class="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[500px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out transform origin-top -translate-y-3 group-hover:translate-y-0">
+            <div class="bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
+              <div class="p-6 grid grid-cols-2 gap-6">
+                <!-- Item 1 -->
+                <a href="features.html" class="block group/item">
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover/item:bg-purple-500/20 transition-colors border border-purple-500/10">
+                      <iconify-icon icon="lucide:zap" width="16"></iconify-icon>
+                    </div>
+                    <div>
+                      <div
+                        class="text-sm font-medium text-white mb-1 group-hover/item:text-purple-300 transition-colors">
+                        Features</div>
+                      <p class="text-[11px] text-neutral-500 leading-snug">The complete knowledge engine.</p>
+                    </div>
+                  </div>
+                </a>
+                <!-- Item 2 -->
+                <a href="solutions.html" class="block group/item">
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover/item:bg-blue-500/20 transition-colors border border-blue-500/10">
+                      <iconify-icon icon="lucide:users" width="16"></iconify-icon>
+                    </div>
+                    <div>
+                      <div class="text-sm font-medium text-white mb-1 group-hover/item:text-blue-300 transition-colors">
+                        Solutions</div>
+                      <p class="text-[11px] text-neutral-500 leading-snug">For students, researchers, & pros.</p>
+                    </div>
+                  </div>
+                </a>
+                <!-- Item 3 -->
+                <a href="pricing.html" class="block group/item">
+                  <div class="flex items-start gap-3">
+                    <div
+                      class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 group-hover/item:bg-green-500/20 transition-colors border border-green-500/10">
+                      <iconify-icon icon="lucide:credit-card" width="16"></iconify-icon>
+                    </div>
+                    <div>
+                      <div
+                        class="text-sm font-medium text-white mb-1 group-hover/item:text-green-300 transition-colors">
+                        Pricing</div>
+                      <p class="text-[11px] text-neutral-500 leading-snug">Flexible plans for every mind.</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <!-- Footer -->
+              <div class="bg-white/5 p-4 border-t border-white/5 flex flex-col gap-2">
+                <a href="features.html"
+                  class="flex items-center gap-2 text-xs text-neutral-400 hover:text-white transition-colors">
+                  <iconify-icon icon="lucide:book" width="14"></iconify-icon>
+                  Documentation
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Resources Dropdown -->
+        <div class="relative group">
+          <button
+            class="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1 group-hover:text-white">
+            Resources
+            <iconify-icon icon="lucide:chevron-down" width="12"
+              class="group-hover:rotate-180 transition-transform duration-200 ease-out"></iconify-icon>
+          </button>
+          <div
+            class="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[400px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out transform origin-top -translate-y-3 group-hover:translate-y-0">
+            <div
+              class="bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden p-6 grid gap-6">
+              <a href="blog.html" class="flex items-center gap-3 group/item">
+                <div
+                  class="w-8 h-8 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-400 group-hover/item:bg-pink-500/20 transition-colors border border-pink-500/10">
+                  <iconify-icon icon="lucide:newspaper" width="16"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-sm font-medium text-white group-hover/item:text-pink-300 transition-colors">Blog
+                  </div>
+                  <p class="text-[11px] text-neutral-500">Latest updates & insights.</p>
+                </div>
+              </a>
+              <a href="blog.html" class="flex items-center gap-3 group/item">
+                <div
+                  class="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center text-orange-400 group-hover/item:bg-orange-500/20 transition-colors border border-orange-500/10">
+                  <iconify-icon icon="lucide:graduation-cap" width="16"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-sm font-medium text-white group-hover/item:text-orange-300 transition-colors">
+                    Academy</div>
+                  <p class="text-[11px] text-neutral-500">Learning resources & guides.</p>
+                </div>
+              </a>
+              <a href="faq.html" class="flex items-center gap-3 group/item">
+                <div
+                  class="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover/item:bg-cyan-500/20 transition-colors border border-cyan-500/10">
+                  <iconify-icon icon="lucide:help-circle" width="16"></iconify-icon>
+                </div>
+                <div>
+                  <div class="text-sm font-medium text-white group-hover/item:text-cyan-300 transition-colors">FAQ
+                  </div>
+                  <p class="text-[11px] text-neutral-500">Common questions answered.</p>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Company Dropdown -->
+        <div class="relative group">
+          <button
+            class="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1 group-hover:text-white">
+            Company
+            <iconify-icon icon="lucide:chevron-down" width="12"
+              class="group-hover:rotate-180 transition-transform duration-200 ease-out"></iconify-icon>
+          </button>
+          <div
+            class="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[400px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out transform origin-top -translate-y-3 group-hover:translate-y-0">
+            <div class="bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
+              <div class="p-6 grid gap-6">
+                <a href="team.html" class="flex items-center gap-3 group/item">
+                  <div
+                    class="w-8 h-8 rounded-lg bg-neutral-800 flex items-center justify-center text-white group-hover/item:bg-neutral-700 transition-colors border border-white/5">
+                    <iconify-icon icon="lucide:users-2" width="16"></iconify-icon>
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-white group-hover/item:text-neutral-300 transition-colors">Our
+                      Team</div>
+                    <p class="text-[11px] text-neutral-500">Meet the builders.</p>
+                  </div>
+                </a>
+                <a href="contact.html" class="flex items-center gap-3 group/item">
+                  <div
+                    class="w-8 h-8 rounded-lg bg-neutral-800 flex items-center justify-center text-white group-hover/item:bg-neutral-700 transition-colors border border-white/5">
+                    <iconify-icon icon="lucide:mail" width="16"></iconify-icon>
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium text-white group-hover/item:text-neutral-300 transition-colors">
+                      Contact Us</div>
+                    <p class="text-[11px] text-neutral-500">Get in touch.</p>
+                  </div>
+                </a>
+              </div>
+              <div class="bg-white/5 p-4 border-t border-white/5 flex items-center justify-between">
+                <a href="privacy.html" class="text-[10px] text-neutral-500 hover:text-white transition-colors">Privacy
+                  Policy</a>
+                <a href="terms.html" class="text-[10px] text-neutral-500 hover:text-white transition-colors">Terms of
+                  Service</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a href="pricing.html"
+          class="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors">Pricing</a>
+      </nav>
+
+      <!-- Right Actions -->
+      <div class="flex items-center gap-4 z-20 shrink-0">
+        <a href="https://app.memento.lunartech.ai/signin" class="hidden sm:inline-flex text-xs font-medium text-neutral-400 hover:text-white transition-colors px-4 py-1.5 rounded-full border border-transparent hover:border-white/10 hover:bg-white/5">Sign in</a>
+        <a href="https://app.memento.lunartech.ai/signup" class="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-500/30 transition-all text-white shadow-[0_0_20px_-10px_rgba(168,85,247,0.3)] hover:shadow-[0_0_25px_-5px_rgba(168,85,247,0.5)] overflow-hidden">
+          <div
+            class="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+          </div>
+          <iconify-icon icon="lucide:sparkles" width="14" stroke-width="1.5"
+            class="text-purple-300 group-hover:text-purple-200 transition-colors relative z-10"></iconify-icon>
+          <span class="z-10 text-xs font-medium tracking-wide relative">Sign up</span></a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="overflow-hidden pt-32 pb-16 relative">
+    <!-- Rain Of Tears -->
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+      <div class="aura-background-component absolute inset-0 w-full h-full">
+        <div data-us-project="XxCmD31vVBmiINgvYCho" class="absolute inset-0 w-full h-full bg-neutral-950"
+          style="filter: hue-rotate(50deg) saturate(150%);"></div>
+        <style>
+          .content-wait-for-load {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+            will-change: opacity;
+          }
+
+          .content-loaded {
+            opacity: 1;
+          }
+        </style>
+      </div>
+      <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent"></div>
+    </div>
+
+    <div
+      class="container z-10 reveal-on-scroll is-visible text-center max-w-4xl mr-auto mb-12 ml-auto pr-6 pl-6 content-wait-for-load">
+      <div
+        class="inline-flex items-center gap-2 text-[10px] font-medium text-purple-300 bg-purple-500/10 border border-purple-500/20 rounded-full mb-6 py-1 px-3 backdrop-blur-sm">
+        <span class="relative flex h-1.5 w-1.5">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-purple-500"></span>
+        </span>
+        Reality Mode v2.4
+      </div>
+
+      <h1 class="text-5xl md:text-7xl font-semibold text-white mb-6 leading-[0.95] tracking-tighter">
+        Harness your <br>
+        <span class="text-transparent bg-clip-text bg-gradient-to-br from-white via-purple-100 to-purple-400">
+          brilliance.
+        </span>
+      </h1>
+
+      <p class="text-base font-light text-neutral-400 max-w-xl mx-auto mb-6 leading-relaxed">
+        Transform raw knowledge into podcasts, debates, and courses. Harness the world’s first autonomous learning
+        engine to
+        curate, create, and coach you to mastery.
+      </p>
+
+      <div class="flex items-center justify-center gap-3 mb-8 animate-fade-in-up">
+        <div class="flex -space-x-3">
+          <img class="w-8 h-8 rounded-full border-2 border-[#050505] object-cover"
+            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&amp;fit=crop&amp;w=64&amp;h=64"
+            alt="User">
+          <img class="w-8 h-8 rounded-full border-2 border-[#050505] object-cover"
+            src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&amp;fit=crop&amp;w=64&amp;h=64"
+            alt="User">
+          <img class="w-8 h-8 rounded-full border-2 border-[#050505] object-cover"
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&amp;fit=crop&amp;w=64&amp;h=64"
+            alt="User">
+        </div>
+        <div class="text-xs font-medium text-neutral-300">
+          Trusted by <span class="text-white">30,000+</span> Users
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 gap-x-3 gap-y-3 items-center justify-center">
+        <a href="https://app.memento.lunartech.ai/signup"
+          class="group px-6 py-2.5 rounded-full bg-white text-black font-medium text-sm hover:bg-neutral-200 transition-all shadow-[0_0_20px_-5px_rgba(255,255,255,0.3)]">
+          <span class="flex items-center gap-2">
+            Start Learning
+            <iconify-icon icon="lucide:arrow-right" width="14"
+              class="group-hover:translate-x-0.5 transition-transform"></iconify-icon>
+          </span>
+        </a>
+        <button
+          class="px-6 py-2.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-md text-white font-medium text-sm hover:bg-white/10 transition-colors">
+          View Demo
+        </button>
+      </div>
+    </div>
+
+    <div
+      class="relative w-full flex justify-center perspective-[1000px] mt-10 reveal-on-scroll is-visible content-wait-for-load">
+      <div class="transform-style-preserve-3d w-full max-w-6xl pr-4 pl-4">
+        <div
+          class="overflow-hidden aspect-[16/9] flex flex-col bg-[#050505] border-white/10 border rounded-xl mr-auto ml-auto relative shadow-2xl font-sans">
+
+          <!-- Top Navigation -->
+          <div class="h-14 bg-[#050505] border-b border-white/5 flex items-center justify-between px-4 shrink-0 z-20">
+            <div class="flex items-center gap-3">
+              <div class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center">
+                <iconify-icon icon="lucide:flower-2" width="18"></iconify-icon>
+              </div>
+              <span class="font-bold text-sm tracking-wider text-white uppercase">MEMENTO</span>
+            </div>
+
+            <div class="flex-1 max-w-xl mx-4">
+              <div class="relative group">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <iconify-icon icon="lucide:search" class="text-neutral-600" width="14"></iconify-icon>
+                </div>
+                <input type="text"
+                  class="block w-full pl-10 pr-10 py-2 border border-neutral-800 rounded-xl bg-[#111] text-neutral-300 placeholder-neutral-600 focus:outline-none focus:border-neutral-700 text-xs transition-all"
+                  placeholder="Search sources, commands, or notebooks...">
+                <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                  <span
+                    class="text-neutral-600 text-[10px] border border-neutral-800 rounded px-1.5 py-0.5 font-mono">⌘K</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-4">
+              <iconify-icon icon="lucide:bell"
+                class="text-neutral-400 hover:text-white transition-colors cursor-pointer" width="18"></iconify-icon>
+              <iconify-icon icon="lucide:hash"
+                class="text-neutral-400 hover:text-white transition-colors cursor-pointer" width="18"></iconify-icon>
+              <div
+                class="w-8 h-8 rounded bg-purple-600 flex items-center justify-center text-xs font-bold text-white cursor-pointer hover:bg-purple-500 transition-colors">
+                IR
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Content Area -->
+          <div class="flex flex-1 overflow-hidden relative">
+
+            <!-- LEFT SIDEBAR -->
+            <div class="w-72 bg-[#080808] border-r border-white/5 flex flex-col hidden lg:flex">
+              <div class="p-4 flex flex-col gap-4 flex-1 overflow-hidden">
+                <div class="flex justify-between items-center">
+                  <h3 class="text-sm font-bold text-white">Sources</h3>
+                  <span class="text-[10px] bg-neutral-800 text-neutral-400 px-1.5 py-0.5 rounded-sm">5</span>
+                </div>
+
+                <div class="relative">
+                  <input type="text" placeholder="Search or describe..."
+                    class="w-full bg-[#111] border border-white/5 rounded-lg px-3 py-2 text-xs text-neutral-300 focus:outline-none focus:border-cyan-500/50 pl-8">
+                  <div class="absolute left-2.5 top-2 text-neutral-500">
+                    <iconify-icon icon="lucide:search" width="12"></iconify-icon>
+                  </div>
+                  <div
+                    class="absolute right-2 top-1.5 text-[9px] bg-cyan-900/20 text-cyan-400 px-1.5 py-0.5 rounded border border-cyan-500/20 font-bold tracking-wider flex items-center gap-1">
+                    <iconify-icon icon="lucide:zap" width="8"></iconify-icon> FAST
+                  </div>
+                </div>
+
+                <div class="flex gap-2 overflow-x-auto no-scrollbar pb-1">
+                  <button
+                    class="px-3 py-1 rounded-full bg-white text-black text-[10px] font-medium shrink-0">All</button>
+                  <button
+                    class="px-3 py-1 rounded-full bg-[#111] text-neutral-400 hover:text-white text-[10px] border border-white/5 shrink-0 transition-colors">Web</button>
+                  <button
+                    class="px-3 py-1 rounded-full bg-[#111] text-neutral-400 hover:text-white text-[10px] border border-white/5 shrink-0 transition-colors">Academic</button>
+                  <button
+                    class="px-3 py-1 rounded-full bg-[#111] text-neutral-400 hover:text-white text-[10px] border border-white/5 shrink-0 transition-colors">Video</button>
+                </div>
+
+                <div
+                  class="border border-dashed border-neutral-800 rounded-xl p-4 flex flex-col items-center justify-center gap-2 hover:bg-white/5 transition-colors cursor-pointer group shrink-0">
+                  <div
+                    class="w-8 h-8 rounded-full bg-neutral-800 flex items-center justify-center text-neutral-500 group-hover:text-white transition-colors">
+                    <iconify-icon icon="lucide:plus" width="14"></iconify-icon>
+                  </div>
+                  <span class="text-[10px] text-neutral-500">Drop PDF, URL, or Audio</span>
+                </div>
+
+                <div class="flex-1 overflow-y-auto space-y-2 pr-1 custom-scrollbar">
+                  <!-- Source 1 -->
+                  <div
+                    class="group p-3 rounded-xl bg-[#111] border border-white/5 hover:border-white/10 transition-all cursor-pointer relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-1">
+                      <div class="flex items-start gap-3">
+                        <div class="p-1.5 rounded-lg bg-red-500/10 text-red-400 shrink-0"><iconify-icon
+                            icon="lucide:file-text" width="14"></iconify-icon></div>
+                        <div class="overflow-hidden">
+                          <div class="text-[11px] font-medium text-neutral-200 truncate pr-4">Advanced Neuroplasticity
+                            Mechanisms</div>
+                          <div class="text-[10px] text-neutral-500 mt-0.5">PDF • Oct 24</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="absolute top-3 right-3 text-[9px] bg-green-500/10 text-green-400 px-1.5 rounded-full font-mono border border-green-500/20">
+                      98%</div>
+                  </div>
+
+                  <!-- Source 2 -->
+                  <div
+                    class="group p-3 rounded-xl bg-[#111] border border-white/5 hover:border-white/10 transition-all cursor-pointer relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-1">
+                      <div class="flex items-start gap-3">
+                        <div class="p-1.5 rounded-lg bg-red-500/10 text-red-400 shrink-0"><iconify-icon
+                            icon="lucide:youtube" width="14"></iconify-icon></div>
+                        <div class="overflow-hidden">
+                          <div class="text-[11px] font-medium text-neutral-200 truncate pr-4">Huberman Lab: Focus
+                            Toolkit</div>
+                          <div class="text-[10px] text-neutral-500 mt-0.5">YOUTUBE • Nov 02</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="absolute top-3 right-3 text-[9px] bg-yellow-500/10 text-yellow-400 px-1.5 rounded-full font-mono border border-yellow-500/20">
+                      85%</div>
+                  </div>
+
+                  <!-- Source 3 -->
+                  <div
+                    class="group p-3 rounded-xl bg-[#111] border border-white/5 hover:border-white/10 transition-all cursor-pointer relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-1">
+                      <div class="flex items-start gap-3">
+                        <div class="p-1.5 rounded-lg bg-blue-500/10 text-blue-400 shrink-0"><iconify-icon
+                            icon="lucide:globe" width="14"></iconify-icon></div>
+                        <div class="overflow-hidden">
+                          <div class="text-[11px] font-medium text-neutral-200 truncate pr-4">MIT OpenCourseWare: Intro
+                            to ...</div>
+                          <div class="text-[10px] text-neutral-500 mt-0.5">WEB • Nov 05</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="absolute top-3 right-3 text-[9px] bg-green-500/10 text-green-400 px-1.5 rounded-full font-mono border border-green-500/20">
+                      92%</div>
+                  </div>
+
+                  <!-- Source 4 -->
+                  <div
+                    class="group p-3 rounded-xl bg-[#111] border border-white/5 hover:border-white/10 transition-all cursor-pointer relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-1">
+                      <div class="flex items-start gap-3">
+                        <div class="p-1.5 rounded-lg bg-blue-500/10 text-blue-400 shrink-0"><iconify-icon
+                            icon="lucide:globe" width="14"></iconify-icon></div>
+                        <div class="overflow-hidden">
+                          <div class="text-[11px] font-medium text-neutral-200 truncate pr-4">The Cognitive Benefits of
+                            Deep...</div>
+                          <div class="text-[10px] text-neutral-500 mt-0.5">WEB • Nov 06</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="absolute top-3 right-3 text-[9px] bg-yellow-500/10 text-yellow-400 px-1.5 rounded-full font-mono border border-yellow-500/20">
+                      88%</div>
+                  </div>
+
+                  <!-- Source 5 -->
+                  <div
+                    class="group p-3 rounded-xl bg-[#111] border border-white/5 hover:border-white/10 transition-all cursor-pointer relative overflow-hidden">
+                    <div class="flex justify-between items-start mb-1">
+                      <div class="flex items-start gap-3">
+                        <div class="p-1.5 rounded-lg bg-red-500/10 text-red-400 shrink-0"><iconify-icon
+                            icon="lucide:file-text" width="14"></iconify-icon></div>
+                        <div class="overflow-hidden">
+                          <div class="text-[11px] font-medium text-neutral-200 truncate pr-4">Sleep and Memory
+                            Consolidation</div>
+                          <div class="text-[10px] text-neutral-500 mt-0.5">PDF • Nov 07</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="absolute top-3 right-3 text-[9px] bg-green-500/10 text-green-400 px-1.5 rounded-full font-mono border border-green-500/20">
+                      95%</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Left Sidebar Footer -->
+              <div
+                class="h-10 border-t border-white/5 bg-[#050505] flex items-center justify-between px-4 text-[10px] text-neutral-500 shrink-0">
+                <div class="flex items-center gap-2">
+                  <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                  <span class="font-mono tracking-wider text-green-500/80">SYSTEM NOMINAL</span>
+                </div>
+                <span class="font-mono">QUEUE: IDLE</span>
+              </div>
+            </div>
+
+            <!-- CENTER CONTENT -->
+            <div class="flex-1 bg-[#050505] flex flex-col relative min-w-0">
+              <!-- Header -->
+              <div class="px-8 py-6 flex justify-between items-start shrink-0">
+                <div class="">
+                  <h2 class="text-2xl font-bold text-white mb-1">Neuroscience &amp; Focus</h2>
+                  <div class="flex items-center gap-2 text-xs text-neutral-500">
+                    <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                    AI Assistant Active • 3 Sources
+                  </div>
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-neutral-900 text-neutral-400 transition-colors"><iconify-icon
+                      icon="lucide:maximize-2" width="16"></iconify-icon></button>
+                  <button
+                    class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-neutral-900 text-neutral-400 transition-colors"><iconify-icon
+                      icon="lucide:more-vertical" width="16"></iconify-icon></button>
+                </div>
+              </div>
+
+              <!-- Scrollable Chat Area -->
+              <div class="flex-1 overflow-y-auto px-8 pb-4 space-y-6 custom-scrollbar">
+
+                <!-- Auto Summary -->
+                <div class="rounded-2xl bg-[#0a0a0a] border border-purple-500/30 p-5 relative overflow-hidden group">
+                  <div class="absolute left-0 top-0 bottom-0 w-1 bg-purple-500"></div>
+                  <div class="flex items-center gap-2 mb-3 text-purple-400">
+                    <iconify-icon icon="lucide:sparkles" width="16" class=""></iconify-icon>
+                    <span class="text-xs font-bold uppercase tracking-widest">Auto-Summary</span>
+                  </div>
+                  <p class="text-sm text-neutral-300 leading-relaxed font-light">
+                    This notebook aggregates research on neuroplasticity. Key themes include the relationship between
+                    and focus duration, the "Standard Protocol" for deep work sessions (90 min), and the physiological
+                    markers of cognitive load.
+                  </p>
+                </div>
+
+                <!-- Bot Message -->
+                <div class="flex gap-4">
+                  <div
+                    class="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center shrink-0 shadow-lg border border-white/10 mt-1">
+                    <iconify-icon icon="lucide:bot" class="text-white" width="18"></iconify-icon>
+                  </div>
+                  <div class="flex-1 space-y-4 max-w-3xl">
+                    <div
+                      class="text-sm text-neutral-200 leading-relaxed p-4 rounded-2xl bg-[#111] border border-white/5">
+                      Hello! I've analyzed your sources on .
+                      I found some fascinating connections between the Huberman podcast and the MIT coursework regarding
+                      focus
+                      protocols. What would you like to explore?
+                    </div>
+
+                    <div class="flex gap-2">
+                      <button
+                        class="px-3 py-1.5 rounded-lg bg-[#111] border border-white/10 text-xs text-neutral-400 hover:text-white hover:border-white/20 transition-all flex items-center gap-2">
+                        <iconify-icon icon="lucide:quote" width="12"></iconify-icon> Source 1
+                      </button>
+                      <button
+                        class="px-3 py-1.5 rounded-lg bg-[#111] border border-white/10 text-xs text-neutral-400 hover:text-white hover:border-white/20 transition-all flex items-center gap-2">
+                        <iconify-icon icon="lucide:quote" width="12"></iconify-icon> Source 2
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Suggestion Chips -->
+                <div class="flex flex-wrap gap-2 pl-[52px]">
+                  <button
+                    class="px-4 py-2 rounded-full border border-white/10 bg-neutral-900/40 hover:bg-neutral-800 hover:border-white/20 text-xs text-neutral-300 transition-all">Explain
+                    the key concepts</button>
+                  <button
+                    class="px-4 py-2 rounded-full border border-white/10 bg-neutral-900/40 hover:bg-neutral-800 hover:border-white/20 text-xs text-neutral-300 transition-all">Create
+                    a study plan</button>
+                  <button
+                    class="px-4 py-2 rounded-full border border-white/10 bg-neutral-900/40 hover:bg-neutral-800 hover:border-white/20 text-xs text-neutral-300 transition-all">Compare
+                    arguments</button>
+                  <button
+                    class="px-4 py-2 rounded-full border border-white/10 bg-neutral-900/40 hover:bg-neutral-800 hover:border-white/20 text-xs text-neutral-300 transition-all">Find
+                    missing perspectives</button>
+                </div>
+              </div>
+
+              <!-- Bottom Input Area -->
+              <div
+                class="p-4 mx-8 mb-6 mt-2 bg-[#0A0A0A] rounded-2xl border border-white/10 focus-within:border-white/20 transition-colors relative shadow-lg">
+                <div class="flex gap-3 mb-3 border-b border-white/5 pb-2">
+                  <button
+                    class="flex items-center gap-1.5 text-[11px] text-neutral-400 hover:text-white transition-colors px-1 rounded hover:bg-white/5"><iconify-icon
+                      icon="lucide:quote" width="12"></iconify-icon> Cite</button>
+                  <button
+                    class="flex items-center gap-1.5 text-[11px] text-neutral-400 hover:text-white transition-colors px-1 rounded hover:bg-white/5"><iconify-icon
+                      icon="lucide:image" width="12"></iconify-icon> Figure</button>
+                  <button
+                    class="flex items-center gap-1.5 text-[11px] text-neutral-400 hover:text-white transition-colors px-1 rounded hover:bg-white/5"><iconify-icon
+                      icon="lucide:split" width="12"></iconify-icon> Compare</button>
+                  <button
+                    class="flex items-center gap-1.5 text-[11px] text-neutral-400 hover:text-white transition-colors px-1 rounded hover:bg-white/5"><iconify-icon
+                      icon="lucide:lightbulb" width="12"></iconify-icon> Idea</button>
+                </div>
+
+                <div class="flex items-end gap-3">
+                  <textarea rows="1" placeholder="Ask to compare, brainstorm, or generate..."
+                    class="w-full bg-transparent text-sm text-white placeholder-neutral-600 focus:outline-none resize-none py-1 h-auto min-h-[24px] max-h-[120px]"></textarea>
+                </div>
+
+                <div class="flex justify-between items-center mt-3 pt-2">
+                  <div class="flex gap-2">
+                    <button class="text-neutral-500 hover:text-white transition-colors"><iconify-icon
+                        icon="lucide:paperclip" width="16"></iconify-icon></button>
+                    <button class="text-neutral-500 hover:text-white transition-colors"><iconify-icon icon="lucide:mic"
+                        width="16"></iconify-icon></button>
+                  </div>
+
+                  <div class="flex items-center gap-3">
+                    <span class="text-[10px] text-neutral-600 font-mono">⌘ + Enter</span>
+                    <button
+                      class="w-7 h-7 rounded-lg bg-neutral-800 hover:bg-purple-600 flex items-center justify-center text-neutral-400 hover:text-white transition-all">
+                      <iconify-icon icon="lucide:arrow-up" width="14"></iconify-icon>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT SIDEBAR - STUDIO -->
+            <!-- Changed visibility to flex on lg screens to fix 'missing bar' issue on desktop view -->
+            <div class="w-[300px] bg-[#080808] border-l border-white/5 flex flex-col hidden lg:flex relative shrink-0">
+              <div class="p-5 flex flex-col h-full overflow-hidden">
+                <div class="mb-6 shrink-0">
+                  <h3 class="text-base font-bold text-white mb-1">Studio</h3>
+                  <p class="text-[11px] text-neutral-500">Transform your sources into artifacts.</p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 mb-auto overflow-y-auto pr-1 custom-scrollbar pb-4">
+
+                  <!-- Card 1 -->
+                  <div
+                    class="bg-[#111] border border-white/5 hover:border-cyan-500/30 rounded-xl p-3 flex flex-col gap-3 cursor-pointer group transition-all">
+                    <div
+                      class="w-9 h-9 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 border border-cyan-500/10 group-hover:bg-cyan-500/20 transition-colors">
+                      <iconify-icon icon="lucide:headphones" width="18" class=""></iconify-icon>
+                    </div>
+                    <div class="">
+                      <div class="text-[11px] font-bold text-white leading-tight mb-0.5">Audio Overview</div>
+                      <div class="text-[9px] text-neutral-500">Deep Dive</div>
+                    </div>
+                  </div>
+
+                  <!-- Card 2 -->
+                  <div
+                    class="bg-[#111] border border-white/5 hover:border-purple-500/30 rounded-xl p-3 flex flex-col gap-3 cursor-pointer group transition-all">
+                    <div
+                      class="w-9 h-9 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 border border-purple-500/10 group-hover:bg-purple-500/20 transition-colors">
+                      <iconify-icon icon="lucide:video" width="18"></iconify-icon>
+                    </div>
+                    <div>
+                      <div class="text-[11px] font-bold text-white leading-tight mb-0.5">Video Overview</div>
+                      <div class="text-[9px] text-neutral-500">Visual summary</div>
+                    </div>
+                  </div>
+
+                  <!-- Card 3 -->
+                  <div
+                    class="bg-[#111] border border-white/5 hover:border-pink-500/30 rounded-xl p-3 flex flex-col gap-3 cursor-pointer group transition-all">
+                    <div
+                      class="w-9 h-9 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-400 border border-pink-500/10 group-hover:bg-pink-500/20 transition-colors">
+                      <iconify-icon icon="lucide:users" width="18"></iconify-icon>
+                    </div>
+                    <div>
+                      <div class="text-[11px] font-bold text-white leading-tight mb-0.5">Mentor Hour</div>
+                      <div class="text-[9px] text-neutral-500">AI Coaching</div>
+                    </div>
+                  </div>
+
+                  <!-- Card 4 -->
+                  <div
+                    class="bg-[#111] border border-white/5 hover:border-blue-500/30 rounded-xl p-3 flex flex-col gap-3 cursor-pointer group transition-all">
+                    <div
+                      class="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 border border-blue-500/10 group-hover:bg-blue-500/20 transition-colors">
+                      <iconify-icon icon="lucide:book-open" width="18"></iconify-icon>
+                    </div>
+                    <div>
+                      <div class="text-[11px] font-bold text-white leading-tight mb-0.5">Generate Handbook</div>
+                      <div class="text-[9px] text-neutral-500">Comprehensive Guide</div>
+                    </div>
+                  </div>
+
+                  <!-- Card 5 -->
+                  <div
+                    class="bg-[#111] border border-white/5 hover:border-teal-500/30 rounded-xl p-3 flex flex-col gap-3 cursor-pointer group transition-all">
+                    <div
+                      class="w-9 h-9 rounded-lg bg-teal-500/10 flex items-center justify-center text-teal-400 border border-teal-500/10 group-hover:bg-teal-500/20 transition-colors">
+                      <iconify-icon icon="lucide:network" width="18"></iconify-icon>
+                    </div>
+                    <div>
+                      <div class="text-[11px] font-bold text-white leading-tight mb-0.5">Mind Map</div>
+                      <div class="text-[9px] text-neutral-500">Visualize connections</div>
+                    </div>
+                  </div>
+
+                  <!-- Card 6 -->
+                  <div
+                    class="bg-[#111] border border-white/5 hover:border-indigo-500/30 rounded-xl p-3 flex flex-col gap-3 cursor-pointer group transition-all">
+                    <div
+                      class="w-9 h-9 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-400 border border-indigo-500/10 group-hover:bg-indigo-500/20 transition-colors">
+                      <iconify-icon icon="lucide:file-text" width="18"></iconify-icon>
+                    </div>
+                    <div>
+                      <div class="text-[11px] font-bold text-white leading-tight mb-0.5">Reports</div>
+                      <div class="text-[9px] text-neutral-500">Deep dive docs</div>
+                    </div>
+                  </div>
+
+                  <!-- Card 7 -->
+                  <div
+                    class="bg-[#111] border border-white/5 hover:border-rose-500/30 rounded-xl p-3 flex flex-col gap-3 cursor-pointer group transition-all">
+                    <div
+                      class="w-9 h-9 rounded-lg bg-rose-500/10 flex items-center justify-center text-rose-400 border border-rose-500/10 group-hover:bg-rose-500/20 transition-colors">
+                      <iconify-icon icon="lucide:layers" width="18"></iconify-icon>
+                    </div>
+                    <div>
+                      <div class="text-[11px] font-bold text-white leading-tight mb-0.5">Flashcards</div>
+                      <div class="text-[9px] text-neutral-500">Active recall</div>
+                    </div>
+                  </div>
+
+                  <!-- Card 8 -->
+                  <div
+                    class="bg-[#111] border border-white/5 hover:border-sky-500/30 rounded-xl p-3 flex flex-col gap-3 cursor-pointer group transition-all">
+                    <div
+                      class="w-9 h-9 rounded-lg bg-sky-500/10 flex items-center justify-center text-sky-400 border border-sky-500/10 group-hover:bg-sky-500/20 transition-colors">
+                      <iconify-icon icon="lucide:graduation-cap" width="18"></iconify-icon>
+                    </div>
+                    <div>
+                      <div class="text-[11px] font-bold text-white leading-tight mb-0.5">Quiz</div>
+                      <div class="text-[9px] text-neutral-500">Test knowledge</div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Output Queue -->
+                <div class="pt-4 border-t border-white/5 shrink-0 mb-4">
+                  <div class="flex justify-between items-center mb-3">
+                    <div class="flex items-center gap-2 text-neutral-400">
+                      <iconify-icon icon="lucide:loader" width="14" class="animate-spin"></iconify-icon>
+                      <span class="text-[10px] font-bold uppercase tracking-wider">Output Queue</span>
+                    </div>
+                    <span class="text-[9px] bg-neutral-800 text-neutral-400 px-1.5 py-0.5 rounded-sm">2 Active</span>
+                  </div>
+
+                  <div
+                    class="bg-[#111] border border-white/5 rounded-xl p-3 flex items-center gap-3 relative overflow-hidden group hover:bg-[#161616] cursor-pointer transition-colors">
+                    <div class="absolute bottom-0 left-0 h-0.5 bg-neutral-800 w-full">
+                      <div class="h-full bg-green-500 w-[65%]"></div>
+                    </div>
+                    <div
+                      class="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center text-green-400 shrink-0 border border-green-500/10">
+                      <iconify-icon icon="lucide:play" width="12"></iconify-icon>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-[11px] text-white font-medium truncate">Deep Dive: Neuro</div>
+                      <div class="text-[9px] text-neutral-500 font-mono">AUDIO • 10:24</div>
+                    </div>
+                  </div>
+
+                  <div
+                    class="bg-[#111] border border-white/5 rounded-xl p-3 flex items-center gap-3 mt-2 opacity-50 group hover:opacity-100 cursor-pointer transition-opacity">
+                    <div
+                      class="w-8 h-8 rounded-full bg-neutral-800 flex items-center justify-center text-neutral-500 shrink-0 border border-white/5">
+                      <iconify-icon icon="lucide:file-text" width="12"></iconify-icon>
+                    </div>
+                    <div class="flex-1 min-w-0">
+                      <div class="text-[11px] text-white font-medium truncate">Executive Summary</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Footer -->
+              <div
+                class="h-10 border-t border-white/5 bg-[#050505] flex items-center justify-between px-4 text-[10px] text-neutral-500 shrink-0 absolute bottom-0 w-full">
+                <span class="font-mono tracking-wider">SYNC: <span class="text-neutral-400">CONNECTED</span></span>
+                <span class="font-mono">v2.4.0-beta</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="absolute -bottom-10 left-1/2 -translate-x-1/2 w-[90%] h-20 bg-purple-600/20 blur-[80px] -z-10">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="border-y bg-black border-white/5 pt-8 pb-8 relative">
+    <div class="relative w-full overflow-hidden max-w-4xl mx-auto"
+      style="mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);">
+      <div class="flex gap-12 min-w-max animate-marquee opacity-40 grayscale gap-x-12 items-center">
+        <iconify-icon icon="simple-icons:openai" width="18"></iconify-icon>
+        <iconify-icon icon="simple-icons:meta" width="20"></iconify-icon>
+        <iconify-icon icon="simple-icons:arxiv" width="24"></iconify-icon>
+        <iconify-icon icon="simple-icons:google" width="18"></iconify-icon>
+        <iconify-icon icon="simple-icons:nvidia" width="20" class=""></iconify-icon>
+        <iconify-icon icon="simple-icons:anthropic" width="20"></iconify-icon>
+        <iconify-icon icon="simple-icons:microsoft" width="18"></iconify-icon>
+        <iconify-icon icon="simple-icons:x" width="18"></iconify-icon>
+        <iconify-icon icon="simple-icons:apple" width="20" class=""></iconify-icon>
+        <iconify-icon icon="simple-icons:amazon" width="20" class=""></iconify-icon>
+        <iconify-icon icon="simple-icons:openai" width="18" class=""></iconify-icon>
+        <iconify-icon icon="simple-icons:meta" width="20"></iconify-icon>
+        <iconify-icon icon="simple-icons:arxiv" width="24" class=""></iconify-icon>
+        <iconify-icon icon="simple-icons:google" width="18" class=""></iconify-icon>
+        <iconify-icon icon="simple-icons:nvidia" width="20"></iconify-icon>
+        <iconify-icon icon="simple-icons:anthropic" width="20"></iconify-icon>
+        <iconify-icon icon="simple-icons:microsoft" width="18"></iconify-icon>
+        <iconify-icon icon="simple-icons:x" width="18"></iconify-icon>
+        <iconify-icon icon="simple-icons:apple" width="20"></iconify-icon>
+        <iconify-icon icon="simple-icons:amazon" width="20"></iconify-icon>
+      </div>
+    </div>
+  </section>
+
+  <section class="container bg-black mr-auto ml-auto pt-24 pr-6 pb-24 pl-6" id="features">
+    <div class="mb-24 max-w-3xl relative">
+      <div
+        class="absolute -left-20 -top-20 w-64 h-64 bg-purple-500/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen">
+      </div>
+      <h2 class="text-4xl md:text-6xl font-medium mb-8 tracking-tighter text-white relative z-10">
+        The Knowledge <span
+          class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-violet-400 to-indigo-400">Engine</span>
+      </h2>
+      <p class="text-neutral-400 text-lg md:text-xl font-light leading-relaxed max-w-xl">
+        A symphony of tools designed to transform passive consumption into active mastery. Don't just read—experience
+        your knowledge.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
+
+      <!-- Item 1: Wide Feature -->
+      <div
+        class="md:col-span-2 group relative p-8 md:p-12 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-purple-500/20 transition-all duration-500 backdrop-blur-sm">
+        <div
+          class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+        <div
+          class="absolute top-0 right-0 w-80 h-80 bg-purple-500/5 blur-[80px] rounded-full group-hover:bg-purple-500/10 transition-colors duration-700">
+        </div>
+
+        <div class="relative z-10 flex flex-col h-full justify-between items-start">
+          <div
+            class="w-14 h-14 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-8 text-purple-300 shadow-lg shadow-purple-900/20 group-hover:scale-105 transition-transform duration-500">
+            <iconify-icon icon="lucide:database" width="28"></iconify-icon>
+          </div>
+          <div class="">
+            <h3 class="text-2xl md:text-3xl font-medium text-white mb-4 tracking-tight">Intelligent Source Management
+            </h3>
+            <p class="text-neutral-400 text-base md:text-lg leading-relaxed max-w-lg font-light">The central nervous
+              system for your library. Automatically categorize, tag, and cross-reference PDFs, articles, and notes into
+              a cohesive knowledge graph.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2: Tall/Standard -->
+      <div
+        class="group relative p-8 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-blue-500/20 transition-all duration-500 backdrop-blur-sm flex flex-col justify-between">
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+
+        <div class="relative z-10">
+          <div
+            class="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-6 text-blue-300 shadow-lg shadow-blue-900/20">
+            <iconify-icon icon="lucide:globe" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-medium text-white mb-3 tracking-tight">Auto-Discovery</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed font-light">Proactively hunts for relevant materials
+            tailored to your skill level.</p>
+        </div>
+      </div>
+
+      <!-- Item 3: Standard -->
+      <div
+        class="group relative p-8 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-emerald-500/20 transition-all duration-500 backdrop-blur-sm">
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+        <div class="relative z-10">
+          <div
+            class="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-6 text-emerald-300 shadow-lg shadow-emerald-900/20">
+            <iconify-icon icon="lucide:search" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-medium text-white mb-3 tracking-tight">Deep Research</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed font-light">Semantic search with built-in fact checking and
+            source verification.</p>
+        </div>
+      </div>
+
+      <!-- Item 4: Wide Feature (Podcast) -->
+      <div
+        class="md:col-span-2 group relative p-8 md:p-12 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-pink-500/20 transition-all duration-500 backdrop-blur-sm">
+        <div
+          class="absolute inset-0 bg-gradient-to-bl from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+        <div
+          class="absolute -right-20 -bottom-20 w-80 h-80 bg-pink-500/5 blur-[80px] rounded-full group-hover:bg-pink-500/10 transition-colors duration-700">
+        </div>
+
+        <div class="relative z-10 flex flex-col md:flex-row gap-8 justify-between h-full items-end">
+          <div class="max-w-md">
+            <div
+              class="w-14 h-14 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-8 text-pink-300 shadow-lg shadow-pink-900/20">
+              <iconify-icon icon="lucide:mic-2" width="28"></iconify-icon>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-medium text-white mb-4 tracking-tight">AI Podcast Studio</h3>
+            <p class="text-neutral-400 text-base md:text-lg leading-relaxed font-light">Generate immersive,
+              multi-participant podcasts where AI co-hosts discuss, debate, and improvise based on your materials.</p>
+          </div>
+
+          <!-- Visual Waveform Decoration -->
+          <div class="hidden md:flex items-center gap-1.5 h-16 opacity-40">
+            <span class="w-1 h-4 bg-pink-400/80 rounded-full animate-pulse"></span>
+            <span class="w-1 h-8 bg-pink-400/80 rounded-full animate-[pulse_1.5s_ease-in-out_infinite]"></span>
+            <span class="w-1 h-12 bg-pink-400/80 rounded-full animate-[pulse_1s_ease-in-out_infinite]"></span>
+            <span class="w-1 h-6 bg-pink-400/80 rounded-full animate-[pulse_1.2s_ease-in-out_infinite]"></span>
+            <span class="w-1 h-10 bg-pink-400/80 rounded-full animate-[pulse_1.8s_ease-in-out_infinite]"></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row 3: Three singles -->
+      <div
+        class="group relative p-8 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-amber-500/20 transition-all duration-500 backdrop-blur-sm">
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+        <div class="relative z-10">
+          <div
+            class="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-6 text-amber-300 shadow-lg shadow-amber-900/20">
+            <iconify-icon icon="lucide:audio-waveform" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-medium text-white mb-3 tracking-tight">Voice Cloning</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed font-light">Personalized narrations in your own voice.</p>
+        </div>
+      </div>
+
+      <div
+        class="group relative p-8 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-cyan-500/20 transition-all duration-500 backdrop-blur-sm">
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+        <div class="relative z-10">
+          <div
+            class="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-6 text-cyan-300 shadow-lg shadow-cyan-900/20">
+            <iconify-icon icon="lucide:clapperboard" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-medium text-white mb-3 tracking-tight">Auto Video</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed font-light">Turn notes into professional video content.</p>
+        </div>
+      </div>
+
+      <div
+        class="group relative p-8 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-rose-500/20 transition-all duration-500 backdrop-blur-sm">
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+        <div class="relative z-10">
+          <div
+            class="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-6 text-rose-300 shadow-lg shadow-rose-900/20">
+            <iconify-icon icon="lucide:users" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-medium text-white mb-3 tracking-tight">Debate Room</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed font-light">Live roundtable debates on any topic.</p>
+        </div>
+      </div>
+
+      <!-- Row 4: Large + Small -->
+      <div
+        class="md:col-span-2 group relative p-8 md:p-12 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-violet-500/20 transition-all duration-500 backdrop-blur-sm">
+        <div
+          class="absolute inset-0 bg-gradient-to-tr from-violet-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+        <div class="relative z-10">
+          <div class="flex items-center justify-between mb-8">
+            <div
+              class="w-14 h-14 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center text-violet-300 shadow-lg shadow-violet-900/20">
+              <iconify-icon icon="lucide:brain-circuit" width="28"></iconify-icon>
+            </div>
+            <span
+              class="px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-xs font-medium text-violet-300 backdrop-blur-md">Interactive</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-medium text-white mb-4 tracking-tight">Reality Mode Tutor</h3>
+          <p class="text-neutral-400 text-base md:text-lg leading-relaxed max-w-lg font-light">Immersive 1-on-1 sessions
+            with an adaptive AI tutor that listens, questions, and identifies knowledge gaps just like a human
+            professor.</p>
+        </div>
+      </div>
+
+      <div
+        class="group relative p-8 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-indigo-500/20 transition-all duration-500 backdrop-blur-sm">
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+        </div>
+        <div class="relative z-10">
+          <div
+            class="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-6 text-indigo-300 shadow-lg shadow-indigo-900/20">
+            <iconify-icon icon="lucide:layers" width="24"></iconify-icon>
+          </div>
+          <h3 class="text-xl font-medium text-white mb-3 tracking-tight">Course Builder</h3>
+          <p class="text-sm text-neutral-400 leading-relaxed font-light">Instant curriculum generation from uploads.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="py-24 bg-neutral-900/20 border-y border-white/5 relative">
+    <section class="py-32 bg-neutral-950 relative z-10 border-t border-white/5">
+      <div class="container mr-auto ml-auto pr-6 pl-6">
+
+        <div class="text-center mb-20 max-w-3xl mx-auto">
+          <h2 class="text-3xl md:text-5xl font-semibold mb-4 tracking-tight text-white">Deep Learning Synthesis</h2>
+          <p class="text-neutral-400">Don't just read. Listen, watch, and interact with 6 modes of synthesis.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <div
+            class="group relative rounded-2xl border border-white/10 bg-neutral-900 overflow-hidden p-6 hover:border-purple-500/30 transition-colors duration-500 reveal-on-scroll">
+            <div
+              class="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-4 text-purple-400">
+              <iconify-icon icon="lucide:mic" width="20"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Text to Audio</h3>
+            <p class="text-sm text-neutral-400 mb-6 h-10">Upload a complex paper. Get a lively debate podcast between
+              two AI
+              hosts.</p>
+
+            <div class="bg-black rounded-xl border border-white/5 p-4 relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent"></div>
+              <div
+                class="bg-neutral-900 rounded-lg px-3 py-2 text-[10px] text-neutral-300 font-mono mb-3 border border-white/5 truncate">
+                Input: "Theory_of_Relativity.pdf"
+              </div>
+              <div
+                class="flex items-center justify-center h-12 bg-neutral-900/50 rounded-lg border border-white/5 gap-1">
+                <div class="w-1 bg-purple-400 h-4 animate-float"></div>
+                <div class="w-1 bg-purple-400 h-8 animate-[float_0.5s_infinite]"></div>
+                <div class="w-1 bg-purple-400 h-6 animate-[float_0.7s_infinite]"></div>
+                <div class="w-1 bg-purple-400 h-3 animate-float"></div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="group relative rounded-2xl border border-white/10 bg-neutral-900 overflow-hidden p-6 hover:border-blue-500/30 transition-colors duration-500 reveal-on-scroll delay-75">
+            <div
+              class="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4 text-blue-400">
+              <iconify-icon icon="lucide:video" width="20"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Concept to Docu</h3>
+            <p class="text-sm text-neutral-400 mb-6 h-10">Auto-generate mini-documentaries with relevant stock footage
+              and
+              narration.</p>
+
+            <div class="bg-black rounded-xl border border-white/5 p-4 relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent"></div>
+              <div class="flex gap-2 mb-3">
+                <div class="flex-1 h-8 bg-neutral-800 rounded border border-white/5"></div>
+                <div class="flex-1 h-8 bg-neutral-800 rounded border border-white/5"></div>
+                <div class="flex-1 h-8 bg-neutral-800 rounded border border-white/5"></div>
+              </div>
+              <div class="h-1 rounded-full bg-neutral-800 w-full overflow-hidden">
+                <div class="h-full bg-blue-500 w-[72%]"></div>
+              </div>
+              <div class="flex justify-between mt-2">
+                <span class="text-[10px] text-neutral-500">Rendering...</span>
+                <span class="text-[10px] text-blue-400">72%</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="group relative rounded-2xl border border-white/10 bg-neutral-900 overflow-hidden p-6 hover:border-green-500/30 transition-colors duration-500 reveal-on-scroll delay-150">
+            <div
+              class="w-10 h-10 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-4 text-green-400">
+              <iconify-icon icon="lucide:users" width="20"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Debate Sim</h3>
+            <p class="text-sm text-neutral-400 mb-6 h-10">Spawn 4 AI experts with opposing viewpoints to argue a topic
+              live.
+            </p>
+
+            <div class="bg-black rounded-xl border border-white/5 p-4 relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-b from-green-500/5 to-transparent"></div>
+              <div class="space-y-2">
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-green-500/20"></div>
+                  <div class="h-1.5 w-2/3 bg-neutral-800 rounded"></div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-red-500/20"></div>
+                  <div class="h-1.5 w-1/2 bg-neutral-800 rounded"></div>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-3 h-3 rounded-full bg-blue-500/20"></div>
+                  <div class="h-1.5 w-3/4 bg-neutral-800 rounded"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="group relative rounded-2xl border border-white/10 bg-neutral-900 overflow-hidden p-6 hover:border-pink-500/30 transition-colors duration-500 reveal-on-scroll">
+            <div
+              class="w-10 h-10 rounded-full bg-pink-500/10 border border-pink-500/20 flex items-center justify-center mb-4 text-pink-400">
+              <iconify-icon icon="lucide:brain-circuit" width="20"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Reality Tutor</h3>
+            <p class="text-sm text-neutral-400 mb-6 h-10">An adaptive AI professor that tests your gaps with Socratic
+              questioning.</p>
+
+            <div class="bg-black rounded-xl border border-white/5 p-4 relative overflow-hidden flex flex-col gap-2">
+              <div class="absolute inset-0 bg-gradient-to-b from-pink-500/5 to-transparent"></div>
+              <div
+                class="self-start bg-neutral-800 rounded-lg rounded-tl-none px-2 py-1.5 max-w-[80%] border border-white/5">
+                <div class="h-1 w-12 bg-neutral-600 rounded mb-1"></div>
+                <div class="h-1 w-20 bg-neutral-600 rounded"></div>
+              </div>
+              <div
+                class="self-end bg-pink-900/30 rounded-lg rounded-tr-none px-2 py-1.5 max-w-[80%] border border-pink-500/20">
+                <div class="h-1 w-16 bg-pink-400/50 rounded"></div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="group relative rounded-2xl border border-white/10 bg-neutral-900 overflow-hidden p-6 hover:border-orange-500/30 transition-colors duration-500 reveal-on-scroll delay-75">
+            <div
+              class="w-10 h-10 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-4 text-orange-400">
+              <iconify-icon icon="lucide:library" width="20"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Course Builder</h3>
+            <p class="text-sm text-neutral-400 mb-6 h-10">Turn loose notes into a structured curriculum with modules and
+              quizzes.</p>
+
+            <div class="bg-black rounded-xl border border-white/5 p-4 relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-b from-orange-500/5 to-transparent"></div>
+              <div class="space-y-1.5">
+                <div class="flex items-center justify-between bg-neutral-900 border border-white/5 p-1.5 rounded">
+                  <div class="h-1.5 w-16 bg-neutral-700 rounded"></div>
+                  <div class="w-3 h-3 rounded-full border border-white/10"></div>
+                </div>
+                <div class="flex items-center justify-between bg-neutral-900 border border-white/5 p-1.5 rounded">
+                  <div class="h-1.5 w-20 bg-neutral-700 rounded"></div>
+                  <div class="w-3 h-3 rounded-full border border-white/10"></div>
+                </div>
+                <div class="flex items-center justify-between bg-neutral-900 border border-white/5 p-1.5 rounded">
+                  <div class="h-1.5 w-12 bg-neutral-700 rounded"></div>
+                  <div class="w-3 h-3 rounded-full bg-orange-500"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="group relative rounded-2xl border border-white/10 bg-neutral-900 overflow-hidden p-6 hover:border-cyan-500/30 transition-colors duration-500 reveal-on-scroll delay-150">
+            <div
+              class="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-4 text-cyan-400">
+              <iconify-icon icon="lucide:fingerprint" width="20"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-semibold text-white mb-2">Voice Cloning</h3>
+            <p class="text-sm text-neutral-400 mb-6 h-10">Listen to your study materials narrated in your own voice or a
+              custom AI persona.</p>
+
+            <div class="bg-black rounded-xl border border-white/5 p-4 relative overflow-hidden flex items-center gap-3">
+              <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/5 to-transparent"></div>
+              <div class="w-8 h-8 rounded-full bg-neutral-800 border border-white/10 flex items-center justify-center">
+                <iconify-icon icon="lucide:user" width="14" class="text-neutral-500"></iconify-icon>
+              </div>
+              <div class="flex-1 flex items-center gap-0.5 h-6">
+                <div class="w-0.5 bg-cyan-500 h-2 animate-float"></div>
+                <div class="w-0.5 bg-cyan-500 h-4 animate-[float_0.3s_infinite]"></div>
+                <div class="w-0.5 bg-cyan-500 h-3 animate-float"></div>
+                <div class="w-0.5 bg-cyan-500 h-5 animate-[float_0.6s_infinite]"></div>
+                <div class="w-0.5 bg-cyan-500 h-2 animate-float"></div>
+                <div class="w-0.5 bg-neutral-800 h-1"></div>
+                <div class="w-0.5 bg-neutral-800 h-1"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section class="container bg-black mr-auto ml-auto pt-24 pr-6 pb-24 pl-6" id="learnings">
+    <div class="flex flex-col md:flex-row mb-12 items-end justify-between">
+      <div>
+        <h2 class="text-3xl font-semibold mb-3 text-white tracking-tight">Recent Learnings</h2>
+        <p class="text-neutral-400">Real-time artifacts generated by the community.</p>
+      </div>
+
+    </div>
+
+    <div class="columns-1 sm:columns-2 lg:columns-4 gap-4 space-y-4 gap-x-4 gap-y-4">
+
+      <div
+        class="group break-inside-avoid relative rounded-2xl overflow-hidden bg-neutral-950 border border-white/10 p-6 hover:border-purple-500/30 transition-all duration-500">
+        <div class="absolute inset-0 z-0">
+          <img src="https://images.unsplash.com/photo-1640906152676-dace6710d24b?w=2160&amp;q=80"
+            class="w-full h-full object-cover opacity-40 group-hover:scale-110 group-hover:opacity-50 transition-all duration-700"
+            alt="Background">
+          <div class="absolute inset-0 bg-gradient-to-b from-neutral-900/60 via-neutral-950/80 to-neutral-950"></div>
+        </div>
+        <div class="absolute top-0 right-0 p-4 opacity-20 z-10">
+          <iconify-icon icon="lucide:sparkles" width="64" class="text-purple-500"></iconify-icon>
+        </div>
+        <div class="relative z-10">
+          <div
+            class="inline-flex items-center justify-center rounded-full bg-white/5 border border-white/10 px-2.5 py-1 text-[10px] text-neutral-300 mb-4 backdrop-blur-md shadow-sm">
+            Knowledge Engine v2.4
+          </div>
+          <h3 class="text-2xl font-semibold text-white mb-4 tracking-tight">Generate Brilliance</h3>
+          <ul class="space-y-2 mb-6">
+            <li class="flex items-center gap-2 text-sm text-neutral-300">
+              <div
+                class="w-5 h-5 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 border border-purple-500/20">
+                <iconify-icon icon="lucide:check" width="12"></iconify-icon>
+              </div>
+              Text-to-Podcast
+            </li>
+            <li class="flex items-center gap-2 text-sm text-neutral-300">
+              <div
+                class="w-5 h-5 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 border border-purple-500/20">
+                <iconify-icon icon="lucide:check" width="12"></iconify-icon>
+              </div>
+              Auto-Course Creation
+            </li>
+            <li class="flex items-center gap-2 text-sm text-neutral-300">
+              <div
+                class="w-5 h-5 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 border border-purple-500/20">
+                <iconify-icon icon="lucide:check" width="12"></iconify-icon>
+              </div>
+              Live AI Debates
+            </li>
+          </ul>
+          <div class="flex gap-2">
+            <span
+              class="px-2 py-1 rounded bg-white/10 text-[10px] text-neutral-400 border border-white/5 backdrop-blur-sm">GPT-4o</span>
+            <div
+              class="z-10 bg-black/50 px-3 py-1 rounded-full text-[10px] font-mono border border-white/10 backdrop-blur-sm">
+              Demo: Rendering... 72%
+            </div>
+            <span
+              class="px-2 py-1 rounded bg-white/10 text-[10px] text-neutral-400 border border-white/5 backdrop-blur-sm">Claude
+              3.5</span>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="group break-inside-avoid relative rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 cursor-pointer hover:border-purple-500/50 transition-all duration-500">
+        <div class="relative h-[320px] overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-60"
+            alt="Quantum">
+          <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent"></div>
+          <div
+            class="absolute top-3 left-3 px-2 py-1 rounded-md bg-purple-500/20 backdrop-blur-md border border-purple-500/20 text-[10px] font-medium text-purple-200 flex items-center gap-1">
+            <iconify-icon icon="lucide:headphones" width="12"></iconify-icon> Podcast
+          </div>
+          <div
+            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <div
+              class="w-12 h-12 rounded-full bg-purple-600 text-white flex items-center justify-center shadow-glow hover:scale-110 transition-transform">
+              <iconify-icon icon="lucide:play" width="20" class="ml-1"></iconify-icon>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 bg-neutral-900">
+          <h4 class="text-white font-medium mb-1">Quantum Mechanics</h4>
+          <p class="text-xs text-neutral-400 mb-2">Deep dive into wave functions.</p>
+          <div class="w-full h-0.5 bg-white/10 rounded-full overflow-hidden group-hover:h-1 transition-all">
+            <div class="w-1/3 h-full bg-purple-500"></div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="group break-inside-avoid relative rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 cursor-pointer hover:border-blue-500/50 transition-all duration-500">
+        <div class="relative h-[200px] overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1517976487492-5750f3195933?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-60"
+            alt="Aerospace">
+          <div
+            class="absolute top-3 left-3 px-2 py-1 rounded-md bg-blue-500/20 backdrop-blur-md border border-blue-500/20 text-[10px] font-medium text-blue-200 flex items-center gap-1">
+            <iconify-icon icon="lucide:graduation-cap" width="12"></iconify-icon> Course
+          </div>
+        </div>
+        <div class="p-4 bg-neutral-900">
+          <h4 class="text-white font-medium mb-1">Aerospace 101</h4>
+          <p class="text-xs text-neutral-400">Flight dynamics basics.</p>
+        </div>
+      </div>
+
+      <div
+        class="group break-inside-avoid relative rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 cursor-pointer hover:border-green-500/50 transition-all duration-500">
+        <div class="relative h-[200px] overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1629946832022-c327f74956e0?w=2160&amp;q=80"
+            class="transition-transform duration-700 group-hover:scale-110 group-hover:opacity-60 opacity-80 w-full h-full object-cover"
+            alt="Math">
+          <div
+            class="absolute top-3 left-3 px-2 py-1 rounded-md bg-green-500/20 backdrop-blur-md border border-green-500/20 text-[10px] font-medium text-green-200 flex items-center gap-1">
+            <iconify-icon icon="lucide:users" width="12"></iconify-icon> Debate
+          </div>
+        </div>
+        <div class="p-4 bg-neutral-900">
+          <h4 class="text-white font-medium mb-1">Linear Algebra</h4>
+          <p class="text-xs text-neutral-400">Eigenvectors &amp; spaces.</p>
+        </div>
+      </div>
+
+      <div
+        class="group break-inside-avoid relative rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 cursor-pointer hover:border-pink-500/50 transition-all duration-500">
+        <div class="relative h-[380px] overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-60"
+            alt="AI">
+          <div class="absolute inset-0 bg-gradient-to-t from-neutral-950 via-transparent to-transparent"></div>
+          <div
+            class="absolute top-3 left-3 px-2 py-1 rounded-md bg-pink-500/20 backdrop-blur-md border border-pink-500/20 text-[10px] font-medium text-pink-200 flex items-center gap-1">
+            <iconify-icon icon="lucide:video" width="12"></iconify-icon> Documentary
+          </div>
+          <div
+            class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+            <div
+              class="w-12 h-12 rounded-full bg-pink-600 text-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+              <iconify-icon icon="lucide:play" width="20" class="ml-1"></iconify-icon>
+            </div>
+          </div>
+        </div>
+        <div class="p-4 bg-neutral-900">
+          <h4 class="text-white font-medium mb-1">Deep Learning</h4>
+          <p class="text-xs text-neutral-400 mb-2">Neural networks explained.</p>
+        </div>
+      </div>
+
+      <div
+        class="group break-inside-avoid relative rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 cursor-pointer hover:border-purple-500/50 transition-all duration-500">
+        <div class="relative h-[220px] overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1559757175-5700dde675bc?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-60"
+            alt="Brain">
+          <div
+            class="absolute top-3 left-3 px-2 py-1 rounded-md bg-purple-500/20 backdrop-blur-md border border-purple-500/20 text-[10px] font-medium text-purple-200 flex items-center gap-1">
+            <iconify-icon icon="lucide:headphones" width="12"></iconify-icon> Podcast
+          </div>
+        </div>
+        <div class="p-4 bg-neutral-900">
+          <h4 class="text-white font-medium mb-1">Neuroscience</h4>
+          <p class="text-xs text-neutral-400">Brain structure deep dive.</p>
+        </div>
+      </div>
+
+      <div
+        class="group break-inside-avoid relative rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 cursor-pointer hover:border-green-500/50 transition-all duration-500">
+        <div class="overflow-hidden h-[340px] relative">
+          <img src="https://images.unsplash.com/photo-1724525647065-f948fc102e68?w=2160&amp;q=80"
+            class="transition-transform duration-700 group-hover:scale-110 group-hover:opacity-60 opacity-80 w-full h-full object-cover"
+            alt="Econ">
+          <div
+            class="text-[10px] flex gap-1 font-medium text-green-200 bg-green-500/20 border-green-500/20 border rounded-md pt-1 pr-2 pb-1 pl-2 absolute top-3 left-3 backdrop-blur-md gap-x-1 gap-y-1 items-center">
+            <iconify-icon icon="lucide:users" width="12" class=""></iconify-icon> Debate
+          </div>
+        </div>
+        <div class="p-4 bg-neutral-900">
+          <h4 class="text-white font-medium mb-1">Macroeconomics</h4>
+          <p class="text-xs text-neutral-400">Keynes vs. Hayek simulation.</p>
+        </div>
+      </div>
+
+      <div
+        class="group break-inside-avoid relative rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 cursor-pointer hover:border-blue-500/50 transition-all duration-500">
+        <div class="relative h-[200px] overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-60"
+            alt="Chem">
+          <div
+            class="absolute top-3 left-3 px-2 py-1 rounded-md bg-blue-500/20 backdrop-blur-md border border-blue-500/20 text-[10px] font-medium text-blue-200 flex items-center gap-1">
+            <iconify-icon icon="lucide:graduation-cap" width="12" class=""></iconify-icon> Course
+          </div>
+        </div>
+        <div class="p-4 bg-neutral-900">
+          <h4 class="text-white font-medium mb-1">Organic Chemistry</h4>
+          <p class="text-xs text-neutral-400">Molecular bonding.</p>
+        </div>
+      </div>
+
+      <div
+        class="group break-inside-avoid relative rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 cursor-pointer hover:border-pink-500/50 transition-all duration-500">
+        <div class="relative h-[240px] overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1548786811-dd6e453ccca7?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-60"
+            alt="History">
+          <div
+            class="absolute top-3 left-3 px-2 py-1 rounded-md bg-pink-500/20 backdrop-blur-md border border-pink-500/20 text-[10px] font-medium text-pink-200 flex items-center gap-1">
+            <iconify-icon icon="lucide:video" width="12"></iconify-icon> Docu
+          </div>
+        </div>
+        <div class="p-4 bg-neutral-900">
+          <h4 class="text-white font-medium mb-1">European History</h4>
+          <p class="text-xs text-neutral-400">The Renaissance era.</p>
+        </div>
+      </div>
+
+      <div
+        class="group break-inside-avoid relative rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 cursor-pointer hover:border-purple-500/50 transition-all duration-500">
+        <div class="relative h-[320px] overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+            class="transition-transform duration-700 group-hover:scale-110 group-hover:opacity-60 opacity-80 w-full h-full object-cover"
+            alt="Psych">
+          <div
+            class="absolute top-3 left-3 px-2 py-1 rounded-md bg-purple-500/20 backdrop-blur-md border border-purple-500/20 text-[10px] font-medium text-purple-200 flex items-center gap-1">
+            <iconify-icon icon="lucide:headphones" width="12" class=""></iconify-icon> Podcast
+          </div>
+        </div>
+        <div class="p-4 bg-neutral-900">
+          <h4 class="text-white font-medium mb-1">Cognitive Psych</h4>
+          <p class="text-xs text-neutral-400">Behavioral economics.</p>
+        </div>
+      </div>
+
+      <div
+        class="group break-inside-avoid relative rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 cursor-pointer hover:border-blue-500/50 transition-all duration-500">
+        <div class="relative h-[360px] overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-60"
+            alt="Space">
+          <div
+            class="absolute top-3 left-3 px-2 py-1 rounded-md bg-blue-500/20 backdrop-blur-md border border-blue-500/20 text-[10px] font-medium text-blue-200 flex items-center gap-1">
+            <iconify-icon icon="lucide:graduation-cap" width="12"></iconify-icon> Course
+          </div>
+        </div>
+        <div class="p-4 bg-neutral-900">
+          <h4 class="text-white font-medium mb-1">Astrophysics</h4>
+          <p class="text-xs text-neutral-400">Stellar evolution.</p>
+        </div>
+      </div>
+
+      <div
+        class="group break-inside-avoid relative rounded-2xl overflow-hidden bg-neutral-900 border border-white/10 cursor-pointer hover:border-green-500/50 transition-all duration-500">
+        <div class="relative h-[220px] overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1529699211952-734e80c4d42b?q=80&amp;w=800&amp;auto=format&amp;fit=crop"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-80 group-hover:opacity-60"
+            alt="Game Theory">
+          <div
+            class="absolute top-3 left-3 px-2 py-1 rounded-md bg-green-500/20 backdrop-blur-md border border-green-500/20 text-[10px] font-medium text-green-200 flex items-center gap-1">
+            <iconify-icon icon="lucide:users" width="12"></iconify-icon> Debate
+          </div>
+        </div>
+        <div class="p-4 bg-neutral-900">
+          <h4 class="text-white font-medium mb-1">Game Theory</h4>
+          <p class="text-xs text-neutral-400">Nash equilibrium.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="container mr-auto ml-auto pr-6 pl-6 py-24 relative" id="who-can-use">
+    <!-- Background Glow -->
+    <div class="absolute left-0 top-0 w-full h-full overflow-hidden pointer-events-none">
+      <div
+        class="absolute left-[-10%] top-[10%] w-[600px] h-[600px] bg-purple-600/10 blur-[120px] rounded-full mix-blend-screen animate-pulse">
+      </div>
+      <div
+        class="absolute right-[-10%] bottom-[10%] w-[600px] h-[600px] bg-indigo-600/10 blur-[120px] rounded-full mix-blend-screen animate-pulse"
+        style="animation-delay: 2s;"></div>
+    </div>
+
+    <div class="flex flex-col gap-20 relative z-10">
+      <!-- Top row: brands & headline -->
+      <div class="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-12">
+        <div class="flex-1 flex flex-col gap-10">
+          <!-- Trusted by (Redesigned) -->
+          <div class="flex flex-wrap items-center gap-6">
+            <div
+              class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#0A0A0A] border border-white/10 shadow-[0_0_15px_-3px_rgba(168,85,246,0.2)]">
+              <span class="w-2 h-2 rounded-full bg-[#A78BFA] shadow-[0_0_10px_rgba(167,139,250,0.5)]"></span>
+              <span class="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#E9D5FF]">
+                Trusted by top institutions
+              </span>
+            </div>
+            <div class="flex items-center gap-8 text-[12px] font-medium text-neutral-500 uppercase tracking-[0.15em]">
+              <span class="hover:text-white transition-colors duration-300 cursor-default">MIT</span>
+              <span class="hover:text-white transition-colors duration-300 cursor-default">Stanford</span>
+              <span class="hover:text-white transition-colors duration-300 cursor-default">Oxford</span>
+              <span class="hover:text-white transition-colors duration-300 cursor-default">Cambridge</span>
+            </div>
+          </div>
+
+          <!-- Heading -->
+          <div class="max-w-3xl relative">
+            <div
+              class="absolute -left-20 -top-20 w-40 h-40 bg-purple-500/20 blur-[80px] rounded-full pointer-events-none mix-blend-screen">
+            </div>
+            <h2 class="text-5xl md:text-7xl font-medium mb-8 tracking-tighter text-white relative z-10 leading-[0.9]">
+              Knowledge infrastructure <br /> for <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-[#A78BFA] via-[#8B5CF6] to-[#6366F1] drop-shadow-[0_0_30px_rgba(139,92,246,0.3)]">every
+                mind</span>
+            </h2>
+            <p class="text-neutral-400 text-lg md:text-xl font-light leading-relaxed max-w-xl">
+              Memento adapts to your learning style, whether you're decoding quantum physics, mastering a new codebase,
+              or researching for your next novel.
+            </p>
+          </div>
+
+          <!-- Stats row -->
+          <div class="flex flex-wrap gap-6">
+            <div
+              class="group flex items-center gap-5 px-6 py-4 rounded-2xl bg-neutral-900/40 border border-white/5 backdrop-blur-md hover:border-purple-500/30 hover:bg-purple-500/5 transition-all duration-500">
+              <div
+                class="w-12 h-12 rounded-xl bg-neutral-800/50 border border-white/10 flex items-center justify-center text-purple-300 group-hover:scale-110 group-hover:text-purple-200 group-hover:shadow-[0_0_20px_rgba(168,85,246,0.2)] transition-all duration-500">
+                <iconify-icon icon="lucide:book-open" width="20"></iconify-icon>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-base font-medium text-white group-hover:text-purple-100 transition-colors">1.2M+
+                  Papers</span>
+                <span class="text-xs text-neutral-500 group-hover:text-purple-300/70 transition-colors">Synthesized
+                  daily</span>
+              </div>
+            </div>
+
+            <div
+              class="group flex items-center gap-5 px-6 py-4 rounded-2xl bg-neutral-900/40 border border-white/5 backdrop-blur-md hover:border-purple-500/30 hover:bg-purple-500/5 transition-all duration-500">
+              <div
+                class="w-12 h-12 rounded-xl bg-neutral-800/50 border border-white/10 flex items-center justify-center text-purple-300 group-hover:scale-110 group-hover:text-purple-200 group-hover:shadow-[0_0_20px_rgba(168,85,246,0.2)] transition-all duration-500">
+                <iconify-icon icon="lucide:users" width="20"></iconify-icon>
+              </div>
+              <div class="flex flex-col">
+                <span class="text-base font-medium text-white group-hover:text-purple-100 transition-colors">85k+
+                  Learners</span>
+                <span class="text-xs text-neutral-500 group-hover:text-purple-300/70 transition-colors">From 120+
+                  countries</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right column: CTA Card -->
+        <div class="w-full max-w-sm pt-8 lg:pt-0">
+          <div
+            class="group relative p-8 rounded-[2.5rem] bg-[#0A0A0A] border border-white/10 overflow-hidden hover:border-purple-500/50 transition-all duration-500 shadow-2xl">
+            <!-- Card Glow -->
+            <div
+              class="absolute inset-0 bg-gradient-to-br from-purple-600/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+            </div>
+            <div
+              class="absolute -top-20 -right-20 w-60 h-60 bg-purple-500/20 blur-[60px] rounded-full group-hover:bg-purple-500/30 transition-colors duration-700">
+            </div>
+
+            <div class="relative z-10 flex flex-col gap-8">
+              <div class="flex items-center justify-between">
+                <div class="flex flex-col gap-1">
+                  <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-purple-400 mb-1">Academic
+                    Access</span>
+                  <span class="text-2xl font-semibold text-white tracking-tight">Get Memento Pro</span>
+                </div>
+                <div
+                  class="w-12 h-12 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-300 group-hover:scale-110 group-hover:bg-purple-500 group-hover:text-white group-hover:shadow-[0_0_30px_rgba(168,85,246,0.4)] transition-all duration-500">
+                  <iconify-icon icon="lucide:graduation-cap" width="24"></iconify-icon>
+                </div>
+              </div>
+
+              <p class="text-sm text-neutral-400 font-light leading-relaxed border-l-2 border-purple-500/20 pl-4">
+                Students and educators get <span class="text-white font-medium">50% off</span> Memento Pro. Verify your
+                academic email to unlock unlimited synthesis.
+              </p>
+
+              <button
+                class="flex items-center justify-between w-full px-5 py-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-purple-600 hover:border-purple-500 text-sm font-medium text-white transition-all duration-300 group/btn shadow-lg hover:shadow-purple-500/25">
+                <span>Verify Student Status</span>
+                <iconify-icon icon="lucide:arrow-right" width="18"
+                  class="group-hover/btn:translate-x-1 transition-transform"></iconify-icon>
+              </button>
+
+              <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                <span class="text-[10px] text-neutral-500 uppercase tracking-widest font-medium">Next cohort: <span
+                    class="text-neutral-300">Dec 1st</span></span>
+                <div
+                  class="flex items-center gap-2 px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                  <span
+                    class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+                  <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider">Open</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom row: Image Cards -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Card 1: Academia -->
+        <div
+          class="group relative rounded-[2.5rem] bg-[#0A0A0A] border border-white/5 overflow-hidden hover:border-purple-500/40 transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(168,85,246,0.15)]">
+          <div class="h-48 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/20 to-transparent z-10"></div>
+            <img
+              src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+              alt="Students"
+              class="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 grayscale group-hover:grayscale-0">
+          </div>
+          <div class="p-8 relative z-20 -mt-16">
+            <div
+              class="w-12 h-12 rounded-2xl bg-[#0A0A0A] border border-white/10 flex items-center justify-center text-purple-400 mb-6 shadow-xl group-hover:scale-110 group-hover:border-purple-500/30 group-hover:shadow-[0_0_20px_rgba(168,85,246,0.2)] transition-all duration-500">
+              <iconify-icon icon="lucide:graduation-cap" width="20"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-medium text-white mb-3 group-hover:text-purple-200 transition-colors">Students</h3>
+            <p
+              class="text-sm text-neutral-400 font-light leading-relaxed group-hover:text-neutral-300 transition-colors">
+              Turn hundreds of PDFs into a searchable knowledge base. Generate citations instantly.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 2: Enterprise -->
+        <div
+          class="group relative rounded-[2.5rem] bg-[#0A0A0A] border border-white/5 overflow-hidden hover:border-blue-500/40 transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(59,130,246,0.15)]">
+          <div class="h-48 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/20 to-transparent z-10"></div>
+            <img
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+              alt="Professionals"
+              class="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 grayscale group-hover:grayscale-0">
+          </div>
+          <div class="p-8 relative z-20 -mt-16">
+            <div
+              class="w-12 h-12 rounded-2xl bg-[#0A0A0A] border border-white/10 flex items-center justify-center text-blue-400 mb-6 shadow-xl group-hover:scale-110 group-hover:border-blue-500/30 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.2)] transition-all duration-500">
+              <iconify-icon icon="lucide:briefcase" width="20"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-medium text-white mb-3 group-hover:text-blue-200 transition-colors">Professionals
+            </h3>
+            <p
+              class="text-sm text-neutral-400 font-light leading-relaxed group-hover:text-neutral-300 transition-colors">
+              Ingest market reports and technical docs to make data-driven decisions faster.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 3: Developers -->
+        <div
+          class="group relative rounded-[2.5rem] bg-[#0A0A0A] border border-white/5 overflow-hidden hover:border-emerald-500/40 transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(16,185,129,0.15)]">
+          <div class="h-48 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/20 to-transparent z-10"></div>
+            <img
+              src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+              alt="Developers"
+              class="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 grayscale group-hover:grayscale-0">
+          </div>
+          <div class="p-8 relative z-20 -mt-16">
+            <div
+              class="w-12 h-12 rounded-2xl bg-[#0A0A0A] border border-white/10 flex items-center justify-center text-emerald-400 mb-6 shadow-xl group-hover:scale-110 group-hover:border-emerald-500/30 group-hover:shadow-[0_0_20px_rgba(16,185,129,0.2)] transition-all duration-500">
+              <iconify-icon icon="lucide:code-2" width="20"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-medium text-white mb-3 group-hover:text-emerald-200 transition-colors">Developers
+            </h3>
+            <p
+              class="text-sm text-neutral-400 font-light leading-relaxed group-hover:text-neutral-300 transition-colors">
+              Upload codebases. Ask for refactoring, docs, or debugging help with context.
+            </p>
+          </div>
+        </div>
+
+        <!-- Card 4: Creative -->
+        <div
+          class="group relative rounded-[2.5rem] bg-[#0A0A0A] border border-white/5 overflow-hidden hover:border-pink-500/40 transition-all duration-500 hover:shadow-[0_0_40px_-10px_rgba(236,72,153,0.15)]">
+          <div class="h-48 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/20 to-transparent z-10"></div>
+            <img
+              src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&amp;fit=crop&amp;w=800&amp;q=80"
+              alt="Creators"
+              class="w-full h-full object-cover opacity-50 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 grayscale group-hover:grayscale-0">
+          </div>
+          <div class="p-8 relative z-20 -mt-16">
+            <div
+              class="w-12 h-12 rounded-2xl bg-[#0A0A0A] border border-white/10 flex items-center justify-center text-pink-400 mb-6 shadow-xl group-hover:scale-110 group-hover:border-pink-500/30 group-hover:shadow-[0_0_20px_rgba(236,72,153,0.2)] transition-all duration-500">
+              <iconify-icon icon="lucide:pen-tool" width="20"></iconify-icon>
+            </div>
+            <h3 class="text-xl font-medium text-white mb-3 group-hover:text-pink-200 transition-colors">Creators</h3>
+            <p
+              class="text-sm text-neutral-400 font-light leading-relaxed group-hover:text-neutral-300 transition-colors">
+              Overcome writer's block. Brainstorm plot points and organize research.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="overflow-hidden bg-neutral-950 border-white/5 border-t py-24 relative">
+    <div class="container mx-auto px-6 mb-16">
+      <div class="max-w-2xl">
+        <p class="text-xs font-medium text-neutral-500 uppercase tracking-wider mb-3">What people say</p>
+        <h2 class="text-3xl md:text-5xl font-medium text-white tracking-tight">Testimonials</h2>
+      </div>
+    </div>
+
+    <div class="w-full relative space-y-6">
+      <div
+        class="pointer-events-none absolute inset-y-0 left-0 w-24 md:w-40 bg-gradient-to-r from-neutral-950 to-transparent z-10">
+      </div>
+      <div
+        class="pointer-events-none absolute inset-y-0 right-0 w-24 md:w-40 bg-gradient-to-l from-neutral-950 to-transparent z-10">
+      </div>
+
+      <div class="flex gap-6 animate-marquee-ltr hover:[animation-play-state:paused] w-max will-change-transform">
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1640906152676-dace6710d24b?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Ava Thompson</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@ava_builds</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">Memento's text-to-podcast is incredible. I uploaded a
+            dense
+            50-page PDF and got a lively debate that explained every concept perfectly in minutes.</p>
+        </article>
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div class="">
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Noah Patel</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@noah_ops</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">The synthesis quality is unmatched. It didn't just
+            summarize; it connected dots between three different papers I uploaded. Perfect for my thesis.</p>
+        </article>
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div class="">
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Maya Kim</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@mayak</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">Lightning fast course creation. I turned my messy lecture
+            notes into a structured module with quizzes. Saved my finals week.</p>
+        </article>
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Ethan Garcia</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@egarcia</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">The Debate Room is magic. Watching two AI agents argue
+            about
+            Quantum Mechanics helped me understand superposition better than any textbook.</p>
+        </article>
+
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1640906152676-dace6710d24b?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Ava Thompson</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@ava_builds</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">Memento's text-to-podcast is incredible. I uploaded a
+            dense
+            50-page PDF and got a lively debate that explained every concept perfectly in minutes.</p>
+        </article>
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Noah Patel</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@noah_ops</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">The synthesis quality is unmatched. It didn't just
+            summarize; it connected dots between three different papers I uploaded. Perfect for my thesis.</p>
+        </article>
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Maya Kim</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@mayak</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">Lightning fast course creation. I turned my messy lecture
+            notes into a structured module with quizzes. Saved my finals week.</p>
+        </article>
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Ethan Garcia</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@egarcia</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">The Debate Room is magic. Watching two AI agents argue
+            about
+            Quantum Mechanics helped me understand superposition better than any textbook.</p>
+        </article>
+      </div>
+
+      <div class="flex gap-6 animate-marquee-rtl hover:[animation-play-state:paused] w-max will-change-transform">
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1628157588553-5eeea00af15c?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Priya Singh</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@priya_dev</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">The Deep Search integration is seamless. It fact-checks my
+            notes against Arxiv in real-time. No more hallucinated citations.</p>
+        </article>
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Leo Martin</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@leom</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">I use the Documentary mode to visualize history. Seeing
+            the
+            French Revolution generated from my reading list was mind-blowing.</p>
+        </article>
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Sofia Alvarez</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@sofialabs</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">The local-first processing gives me peace of mind. My
+            proprietary research data stays completely private and secure.</p>
+        </article>
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Jackson Lee</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@jacksonlee</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">The voice cloning is scary good. Listening to my own notes
+            read back to me in a professional narrator's voice changed how I study.</p>
+        </article>
+
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1628157588553-5eeea00af15c?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Priya Singh</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@priya_dev</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">The Deep Search integration is seamless. It fact-checks my
+            notes against Arxiv in real-time. No more hallucinated citations.</p>
+        </article>
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Leo Martin</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@leom</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">I use the Documentary mode to visualize history. Seeing
+            the
+            French Revolution generated from my reading list was mind-blowing.</p>
+        </article>
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Sofia Alvarez</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@sofialabs</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">The local-first processing gives me peace of mind. My
+            proprietary research data stays completely private and secure.</p>
+        </article>
+        <article
+          class="w-[320px] md:w-[400px] p-6 rounded-2xl bg-neutral-900/30 border border-white/5 backdrop-blur-sm shrink-0">
+          <div class="flex items-center gap-3 mb-4">
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&amp;h=100&amp;fit=crop&amp;q=80"
+              alt="Avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+            <div>
+              <div class="flex items-center gap-1.5">
+                <span class="text-sm font-medium text-white">Jackson Lee</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="text-purple-400">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <path d="m9 12 2 2 4-4"></path>
+                </svg>
+              </div>
+              <div class="text-[10px] text-neutral-500">@jacksonlee</div>
+            </div>
+          </div>
+          <p class="text-sm text-neutral-300 leading-relaxed">The voice cloning is scary good. Listening to my own notes
+            read back to me in a professional narrator's voice changed how I study.</p>
+        </article>
+      </div>
+    </div>
+
+    <style>
+      .animate-marquee-ltr {
+        animation: marquee-ltr 80s linear infinite;
+      }
+
+      .animate-marquee-rtl {
+        animation: marquee-rtl 80s linear infinite;
+      }
+
+      @keyframes marquee-ltr {
+        0% {
+          transform: translateX(-50%);
+        }
+
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes marquee-rtl {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </section>
+
+  <section class="container bg-black mr-auto ml-auto pt-24 pr-6 pb-24 pl-6" id="faq">
+    <div
+      class="max-w-3xl mx-auto bg-neutral-900/30 border border-white/5 rounded-3xl p-8 md:p-12 backdrop-blur-sm reveal-on-scroll">
+      <div class="mb-10">
+        <h2 class="text-3xl font-semibold text-white mb-2">Help &amp; FAQs</h2>
+        <p class="text-neutral-400 text-sm">Everything you need to know about your new second brain.</p>
+      </div>
+
+      <div class="space-y-4">
+        <div class="faq-item rounded-2xl border border-white/5 bg-white/5 overflow-hidden">
+          <button
+            class="faq-trigger w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">How accurate is the AI synthesis and does it hallucinate?</span>
+            <iconify-icon icon="lucide:plus" class="accordion-icon text-neutral-400"></iconify-icon>
+          </button>
+          <div class="accordion-content bg-black/20">
+            <div class="p-5 pt-0 text-sm text-neutral-400 leading-relaxed">
+              We utilize a proprietary "Check-and-Verify" multi-agent architecture. Memento doesn't just generate text;
+              it cross-references every claim against your uploaded source materials and, if enabled, verifies facts
+              against trusted external databases like Arxiv and PubMed. Every output includes clickable citations,
+              allowing you to trace any insight back to the exact paragraph in your original document.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item rounded-2xl border border-white/5 bg-white/5 overflow-hidden">
+          <button
+            class="faq-trigger w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">Can I process messy handwritten notes or whiteboard photos?</span>
+            <iconify-icon icon="lucide:plus" class="accordion-icon text-neutral-400"></iconify-icon>
+          </button>
+          <div class="accordion-content bg-black/20">
+            <div class="p-5 pt-0 text-sm text-neutral-400 leading-relaxed">
+              Absolutely. Our advanced OCR (Optical Character Recognition) engine is specifically tuned to decipher
+              complex handwriting, diagrams, and whiteboard sketches. Simply snap a photo of your notebook, and Memento
+              will digitize the text, interpret the logic flows in your diagrams, and integrate them into your Knowledge
+              Engine alongside your PDFs and digital files.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item rounded-2xl border border-white/5 bg-white/5 overflow-hidden">
+          <button
+            class="faq-trigger w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">Is my proprietary research and personal data private?</span>
+            <iconify-icon icon="lucide:plus" class="accordion-icon text-neutral-400"></iconify-icon>
+          </button>
+          <div class="accordion-content bg-black/20">
+            <div class="p-5 pt-0 text-sm text-neutral-400 leading-relaxed">
+              Privacy is our foundational principle. We offer Local-First processing options where data never leaves
+              your device for synthesis. For cloud-based features, your uploads are end-to-end encrypted and stored in
+              isolated containers. We legally guarantee that your data is never used to train our public models or
+              shared with third parties without your explicit, written consent.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item rounded-2xl border border-white/5 bg-white/5 overflow-hidden">
+          <button
+            class="faq-trigger w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">How does the "Debate Mode" work?</span>
+            <iconify-icon icon="lucide:plus" class="accordion-icon text-neutral-400"></iconify-icon>
+          </button>
+          <div class="accordion-content bg-black/20">
+            <div class="p-5 pt-0 text-sm text-neutral-400 leading-relaxed">
+              Debate Mode is designed to break echo chambers. Memento spawns two or more AI agents with opposing
+              viewpoints (e.g., a "Keynesian Economist" vs. a "Austrian School Theorist") based on your topic. They
+              discuss the material in real-time, highlighting strengths and weaknesses in the arguments. You can watch
+              the debate unfold passively or jump in via voice to challenge the agents yourself.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item rounded-2xl border border-white/5 bg-white/5 overflow-hidden">
+          <button
+            class="faq-trigger w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">Can I ingest video content like YouTube or Lectures?</span>
+            <iconify-icon icon="lucide:plus" class="accordion-icon text-neutral-400"></iconify-icon>
+          </button>
+          <div class="accordion-content bg-black/20">
+            <div class="p-5 pt-0 text-sm text-neutral-400 leading-relaxed">
+              Yes. Paste a URL from YouTube, Vimeo, or upload a raw video file. Memento generates a high-fidelity
+              transcript, identifies different speakers, and captures visual context (like slides shown on screen). This
+              content becomes part of your library, meaning you can "chat" with a 3-hour lecture video just as easily as
+              you chat with a PDF.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item rounded-2xl border border-white/5 bg-white/5 overflow-hidden">
+          <button
+            class="faq-trigger w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">Does Memento support technical subjects like Math and Code?</span>
+            <iconify-icon icon="lucide:plus" class="accordion-icon text-neutral-400"></iconify-icon>
+          </button>
+          <div class="accordion-content bg-black/20">
+            <div class="p-5 pt-0 text-sm text-neutral-400 leading-relaxed">
+              Memento is built for complexity. We support LaTeX rendering for advanced mathematics and physics
+              equations, ensuring formulas are displayed and understood correctly. For developers, our code interpreter
+              handles Python, JavaScript, C++, and more, allowing you to upload codebases and ask for refactoring
+              advice, explanation of logic, or debugging help within the context of your learning.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item rounded-2xl border border-white/5 bg-white/5 overflow-hidden">
+          <button
+            class="faq-trigger w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">Can I clone my own voice for the podcasts?</span>
+            <iconify-icon icon="lucide:plus" class="accordion-icon text-neutral-400"></iconify-icon>
+          </button>
+          <div class="accordion-content bg-black/20">
+            <div class="p-5 pt-0 text-sm text-neutral-400 leading-relaxed">
+              Yes, with our Pro plan. You can upload a 30-second sample of your voice to create a custom "Narrator
+              Profile." This allows you to listen to your study materials, flashcards, or generated summaries in a voice
+              that feels familiar and natural to you. Alternatively, choose from our library of premium AI voices
+              ranging from "The Professor" to "The Casual Peer."
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item rounded-2xl border border-white/5 bg-white/5 overflow-hidden">
+          <button
+            class="faq-trigger w-full flex items-center justify-between p-5 text-left hover:bg-white/5 transition-colors">
+            <span class="font-medium text-white">What happens if I cancel my subscription?</span>
+            <iconify-icon icon="lucide:plus" class="accordion-icon text-neutral-400"></iconify-icon>
+          </button>
+          <div class="accordion-content bg-black/20">
+            <div class="p-5 pt-0 text-sm text-neutral-400 leading-relaxed">
+              Your knowledge belongs to you. If you choose to cancel, you can export your entire library—including
+              generated summaries, course structures, podcasts (MP3), and flashcards (CSV/Anki)—in a single click. We
+              believe in zero lock-in. Your account will revert to the Free tier, where your data remains accessible but
+              new generation limits will apply.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer class="overflow-hidden bg-[#050505] w-full border-white/5 border-t pt-20 pb-0 relative">
+
+    <!-- Newsletter Pill -->
+    <div class="flex -translate-y-1/2 z-30 mt-16 mb-16 pr-6 pl-6 absolute top-0 right-0 left-0 justify-center">
+      <div
+        class="bg-[#0A0A0A] border border-white/10 rounded-full py-3 pl-6 pr-2 flex items-center gap-4 shadow-2xl max-w-md w-full group hover:border-purple-500/50 transition-colors">
+        <input type="text" placeholder="Join the waitlist..."
+          class="bg-transparent border-none outline-none text-white text-sm w-full placeholder:text-neutral-600 font-mono focus:ring-0">
+        <button
+          class="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center hover:bg-purple-500 hover:text-white transition-colors shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            data-lucide="arrow-right" class="lucide lucide-arrow-right w-4 h-4">
+            <path d="M5 12h14" class=""></path>
+            <path d="m12 5 7 7-7 7" class=""></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="w-full px-6 lg:px-12 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-20">
+      <!-- Left -->
+      <div class="lg:col-span-7">
+        <h2 class="text-5xl lg:text-[6rem] leading-[0.9] font-medium text-white tracking-tighter mb-10 font-display">
+          Capture.
+          <span class="text-neutral-700">Synthesize.</span>
+          Master.
+        </h2>
+        <div class="flex flex-wrap gap-8 opacity-40 hover:opacity-100 transition-opacity duration-500">
+          <!-- Logos (Letters only style) -->
+          <span class="font-display font-bold tracking-tighter text-xl text-white">OPENAI</span>
+          <span class="font-display font-bold tracking-tighter text-xl text-white">ANTHROPIC</span>
+          <span class="font-display font-bold tracking-tighter text-xl text-white">META</span>
+          <span class="font-display font-bold tracking-tighter text-xl text-white">MISTRAL</span>
+        </div>
+      </div>
+
+      <!-- Right (Purple Card) -->
+      <div class="lg:col-span-5 flex lg:justify-end items-center">
+        <div
+          class="w-full max-w-sm bg-purple-600 p-8 relative overflow-hidden group transform hover:-translate-y-2 transition-transform duration-500 rounded-3xl">
+          <iconify-icon icon="lucide:brain-circuit" width="128"
+            class="absolute -right-4 -top-4 text-black/10 rotate-12"></iconify-icon>
+
+          <div class="relative z-10">
+            <h3 class="text-2xl font-bold text-white mb-4 tracking-tight font-display">Start Learning Now</h3>
+            <p class="text-white/80 text-sm font-medium leading-relaxed mb-8">
+              Access the complete knowledge engine. Transform your library today.
+            </p>
+            <div class="flex items-center justify-between border-t border-white/20 pt-4">
+              <span class="text-xs font-bold uppercase tracking-widest text-white">v2.4 Reality Mode</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                data-lucide="arrow-up-right" class="lucide lucide-arrow-up-right w-5 h-5 text-white">
+                <path d="M7 7h10v10" class=""></path>
+                <path d="M7 17 17 7" class=""></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Watermark -->
+    <div class="relative w-full overflow-hidden pointer-events-none select-none pt-12">
+      <h1 class="text-[20vw] leading-none font-bold text-white/5 text-center -mb-12 tracking-tighter font-display">
+        MEMENTO
+      </h1>
+      <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#050505] to-transparent"></div>
+    </div>
+
+    <div class="absolute bottom-6 w-full flex justify-center z-30">
+      <p class="text-[10px] text-neutral-700 font-mono uppercase tracking-widest">© 2026 Memento Inc.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Navbar scroll effect
+      const navbarBg = document.getElementById('navbar-bg');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbarBg.classList.remove('bg-transparent');
+          navbarBg.classList.add('bg-black/50');
+        } else {
+          navbarBg.classList.add('bg-transparent');
+          navbarBg.classList.remove('bg-black/50');
+        }
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+      document.querySelectorAll('.faq-trigger').forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          const content = trigger.nextElementSibling;
+          const icon = trigger.querySelector('.accordion-icon');
+          content.classList.toggle('open');
+          icon.classList.toggle('open');
+          document.querySelectorAll('.accordion-content').forEach(c => {
+            if (c !== content) c.classList.remove('open');
+          });
+          document.querySelectorAll('.accordion-icon').forEach(i => {
+            if (i !== icon) i.classList.remove('open');
+          });
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

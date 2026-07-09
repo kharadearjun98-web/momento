@@ -1,0 +1,1163 @@
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Features — Memento</title>
+    <meta name="description" content="The complete knowledge engine. Capture, synthesize, and master any topic.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- Preload UnicornStudio -->
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!window.UnicornStudio) {
+                window.UnicornStudio = { isInitialized: !1 };
+                var i = document.createElement("script");
+                i.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js";
+                i.onload = function () {
+                    if (!window.UnicornStudio.isInitialized) {
+                        UnicornStudio.init();
+                        window.UnicornStudio.isInitialized = !0;
+                        setTimeout(() => {
+                            document.querySelectorAll('.content-wait-for-load').forEach(el => el.classList.add('content-loaded'));
+                        }, 100);
+                    }
+                };
+                (document.head || document.body).appendChild(i);
+            }
+        });
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        purple: {
+                            400: '#A78BFA',
+                            500: '#8B5CF6',
+                            600: '#7C3AED',
+                            900: '#2E1065',
+                        },
+                        neutral: {
+                            850: '#1a1a1a',
+                            900: '#111111',
+                            950: '#050505',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Geist', 'Inter', 'sans-serif'],
+                        display: ['Geist', 'sans-serif'],
+                        mono: ['Geist Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 60px -15px rgba(139, 92, 246, 0.15)',
+                        'glow-sm': '0 0 20px -5px rgba(139, 92, 246, 0.3)',
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'bounce-slow': 'bounce 3s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'marquee': 'marquee 40s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        marquee: {
+                            '0%': { transform: 'translateX(0%)' },
+                            '100%': { transform: 'translateX(-50%)' },
+                        }
+                    }
+                }
+            },
+            plugins: [
+                function ({ addUtilities }) {
+                    addUtilities({
+                        '.perspective-1000': { perspective: '1000px' },
+                        '.perspective-1200': { perspective: '1200px' },
+                        '.transform-style-3d': { transformStyle: 'preserve-3d' },
+                        '.backface-hidden': { backfaceVisibility: 'hidden' },
+                        '.grid-bg': {
+                            backgroundImage: 'linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px)',
+                            backgroundSize: '40px 40px',
+                        },
+                        '.beam-border-v': {
+                            position: 'absolute',
+                            top: '0',
+                            bottom: '0',
+                            width: '1px',
+                            background: 'linear-gradient(to bottom, transparent, rgba(139, 92, 246, 0.5), transparent)',
+                            opacity: '0.5'
+                        }
+                    })
+                }
+            ]
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Geist', sans-serif;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444;
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            filter: blur(5px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        .content-wait-for-load {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+            will-change: opacity;
+        }
+
+        .content-loaded {
+            opacity: 1;
+        }
+
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-purple-500/30 selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 flex justify-center w-full content-wait-for-load">
+        <div id="navbar-bg"
+            class="flex bg-transparent w-full border-white/5 border-b py-6 px-8 relative backdrop-blur-xl items-center justify-between transition-all duration-300">
+            <!-- Logo Section -->
+            <a href="index.html" class="flex items-center gap-2.5 z-20 shrink-0">
+                <div
+                    class="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600/20 to-indigo-600/20 border border-purple-500/20 shadow-[0_0_15px_-3px_rgba(147,51,234,0.15)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="1em" viewBox="0 0 24 24"
+                        class="text-purple-300" data-icon-set="lucide" data-lucide="flower-2">
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2">
+                            <path
+                                d="M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1">
+                            </path>
+                            <circle cx="12" cy="8" r="2"></circle>
+                            <path
+                                d="M12 10v12m0 0c4.2 0 7-1.667 7-5c-4.2 0-7 1.667-7 5m0 0c-4.2 0-7-1.667-7-5c4.2 0 7 1.667 7 5">
+                            </path>
+                        </g>
+                    </svg>
+                </div>
+                <span class="text-sm font-semibold text-white tracking-tight">Memento</span>
+            </a>
+
+            <!-- Centered Navigation -->
+            <nav class="hidden md:flex -translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 items-center gap-1">
+                <!-- Product Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="px-4 py-2 text-xs font-medium text-white bg-white/5 rounded-full border border-white/10 transition-colors flex items-center gap-1">
+                        Product
+                        <iconify-icon icon="lucide:chevron-down" width="12"
+                            class="group-hover:rotate-180 transition-transform duration-200 ease-out"></iconify-icon>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[500px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out transform origin-top -translate-y-3 group-hover:translate-y-0">
+                        <div
+                            class="bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
+                            <div class="p-6 grid grid-cols-2 gap-6">
+                                <!-- Item 1 -->
+                                <a href="features.html" class="block group/item">
+                                    <div class="flex items-start gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover/item:bg-purple-500/20 transition-colors border border-purple-500/10">
+                                            <iconify-icon icon="lucide:zap" width="16"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <div
+                                                class="text-sm font-medium text-white mb-1 group-hover/item:text-purple-300 transition-colors">
+                                                Features</div>
+                                            <p class="text-[11px] text-neutral-500 leading-snug">The complete knowledge
+                                                engine.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- Item 2 -->
+                                <a href="solutions.html" class="block group/item">
+                                    <div class="flex items-start gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover/item:bg-blue-500/20 transition-colors border border-blue-500/10">
+                                            <iconify-icon icon="lucide:users" width="16"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <div
+                                                class="text-sm font-medium text-white mb-1 group-hover/item:text-blue-300 transition-colors">
+                                                Solutions</div>
+                                            <p class="text-[11px] text-neutral-500 leading-snug">For students,
+                                                researchers, & pros.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- Item 3 -->
+                                <a href="pricing.html" class="block group/item">
+                                    <div class="flex items-start gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 group-hover/item:bg-green-500/20 transition-colors border border-green-500/10">
+                                            <iconify-icon icon="lucide:credit-card" width="16"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <div
+                                                class="text-sm font-medium text-white mb-1 group-hover/item:text-green-300 transition-colors">
+                                                Pricing</div>
+                                            <p class="text-[11px] text-neutral-500 leading-snug">Flexible plans for
+                                                every mind.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Footer -->
+                            <div class="bg-white/5 p-4 border-t border-white/5 flex flex-col gap-2">
+                                <a href="features.html"
+                                    class="flex items-center gap-2 text-xs text-neutral-400 hover:text-white transition-colors">
+                                    <iconify-icon icon="lucide:book" width="14"></iconify-icon>
+                                    Documentation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resources Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1 group-hover:text-white">
+                        Resources
+                        <iconify-icon icon="lucide:chevron-down" width="12"
+                            class="group-hover:rotate-180 transition-transform duration-200 ease-out"></iconify-icon>
+                    </button>
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[400px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out transform origin-top -translate-y-3 group-hover:translate-y-0">
+                        <div
+                            class="bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden p-6 grid gap-6">
+                            <a href="blog.html" class="flex items-center gap-3 group/item">
+                                <div
+                                    class="w-8 h-8 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-400 group-hover/item:bg-pink-500/20 transition-colors border border-pink-500/10">
+                                    <iconify-icon icon="lucide:newspaper" width="16"></iconify-icon>
+                                </div>
+                                <div>
+                                    <div
+                                        class="text-sm font-medium text-white group-hover/item:text-pink-300 transition-colors">
+                                        Blog
+                                    </div>
+                                    <p class="text-[11px] text-neutral-500">Latest updates & insights.</p>
+                                </div>
+                            </a>
+                            <a href="faq.html" class="flex items-center gap-3 group/item">
+                                <div
+                                    class="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover/item:bg-cyan-500/20 transition-colors border border-cyan-500/10">
+                                    <iconify-icon icon="lucide:help-circle" width="16"></iconify-icon>
+                                </div>
+                                <div>
+                                    <div
+                                        class="text-sm font-medium text-white group-hover/item:text-cyan-300 transition-colors">
+                                        FAQ
+                                    </div>
+                                    <p class="text-[11px] text-neutral-500">Common questions answered.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Company Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1 group-hover:text-white">
+                        Company
+                        <iconify-icon icon="lucide:chevron-down" width="12"
+                            class="group-hover:rotate-180 transition-transform duration-200 ease-out"></iconify-icon>
+                    </button>
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[400px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out transform origin-top -translate-y-3 group-hover:translate-y-0">
+                        <div
+                            class="bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
+                            <div class="p-6 grid gap-6">
+                                <a href="team.html" class="flex items-center gap-3 group/item">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-neutral-800 flex items-center justify-center text-white group-hover/item:bg-neutral-700 transition-colors border border-white/5">
+                                        <iconify-icon icon="lucide:users-2" width="16"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <div
+                                            class="text-sm font-medium text-white group-hover/item:text-neutral-300 transition-colors">
+                                            Our
+                                            Team</div>
+                                        <p class="text-[11px] text-neutral-500">Meet the builders.</p>
+                                    </div>
+                                </a>
+                                <a href="contact.html" class="flex items-center gap-3 group/item">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-neutral-800 flex items-center justify-center text-white group-hover/item:bg-neutral-700 transition-colors border border-white/5">
+                                        <iconify-icon icon="lucide:mail" width="16"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <div
+                                            class="text-sm font-medium text-white group-hover/item:text-neutral-300 transition-colors">
+                                            Contact Us</div>
+                                        <p class="text-[11px] text-neutral-500">Get in touch.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="bg-white/5 p-4 border-t border-white/5 flex items-center justify-between">
+                                <a href="privacy.html"
+                                    class="text-[10px] text-neutral-500 hover:text-white transition-colors">Privacy
+                                    Policy</a>
+                                <a href="terms.html"
+                                    class="text-[10px] text-neutral-500 hover:text-white transition-colors">Terms of
+                                    Service</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="pricing.html"
+                    class="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors">Pricing</a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-4 z-20 shrink-0">
+                <a href="https://app.memento.lunartech.ai/signin" class="hidden sm:inline-flex text-xs font-medium text-neutral-400 hover:text-white transition-colors px-4 py-1.5 rounded-full border border-transparent hover:border-white/10 hover:bg-white/5">Sign in</a>
+                <a href="https://app.memento.lunartech.ai/signup" class="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-500/30 transition-all text-white shadow-[0_0_20px_-10px_rgba(168,85,247,0.3)] hover:shadow-[0_0_25px_-5px_rgba(168,85,247,0.5)] overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <iconify-icon icon="lucide:sparkles" width="14" stroke-width="1.5"
+                        class="text-purple-300 group-hover:text-purple-200 transition-colors relative z-10"></iconify-icon>
+                    <span class="z-10 text-xs font-medium tracking-wide relative">Sign up</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. HERO SECTION (Style 2 - Creative Intelligence) -->
+    <main
+        class="flex-grow grid grid-cols-1 lg:grid-cols-12 lg:px-12 lg:my-20 gap-12 min-h-[80vh] mt-24 mb-12 pr-6 pl-6 relative gap-x-12 gap-y-12 content-wait-for-load">
+
+        <!-- Background Grid -->
+        <div class="absolute inset-0 grid-bg pointer-events-none z-0 opacity-30"></div>
+
+        <!-- Left Column: Text -->
+        <div class="lg:col-span-5 flex flex-col justify-center z-20 relative pt-10 lg:pt-0">
+            <div class="inline-flex items-center gap-2 mb-6">
+                <span class="flex h-2 w-2 rounded-full bg-purple-500 shadow-[0_0_10px_rgba(139,92,246,0.5)]"></span>
+                <span class="text-purple-500 font-mono text-xs uppercase tracking-widest">System Sync Active</span>
+            </div>
+
+            <h1
+                class="lg:text-[6rem] leading-[0.9] uppercase text-5xl font-medium text-white tracking-tighter mb-8 font-display">
+                Knowledge<br>
+                <span class="text-neutral-700">Intell</span>igence
+            </h1>
+
+            <p class="text-lg text-neutral-400 max-w-md leading-relaxed mb-12 font-light">
+                Meet Memento. Your AI partner for cognitive synthesis. Auto-connect ideas, generate insights, and
+                standardize your learning workflow instantly.
+            </p>
+
+            <div class="flex flex-col gap-4 gap-x-4 gap-y-4 items-start">
+                <!-- Custom Button Component -->
+                <a href="https://app.memento.lunartech.ai/signup"
+                    class="group inline-flex justify-center items-center hover:border-purple-500 transition-colors duration-300 sm:w-auto w-full border-neutral-800 border pt-4 pr-4 pb-4 pl-4 relative">
+                    <div
+                        class="absolute top-0 left-0 w-2 h-2 border-t border-l border-purple-500 opacity-0 group-hover:opacity-100 transition-all duration-300 -translate-x-1 -translate-y-1 group-hover:translate-x-0 group-hover:translate-y-0">
+                    </div>
+                    <div
+                        class="group-hover:opacity-100 transition-all duration-300 group-hover:translate-x-0 group-hover:translate-y-0 opacity-0 w-2 h-2 border-purple-500 border-r border-b absolute right-0 bottom-0 translate-x-1 translate-y-1">
+                    </div>
+
+                    <button
+                        class="flex gap-3 uppercase z-10 sm:justify-start text-sm font-medium text-white tracking-wider bg-transparent w-full relative gap-x-3 gap-y-3 items-center justify-center">
+                        Start Free Trial
+                        <iconify-icon icon="lucide:arrow-up-right" width="16"></iconify-icon>
+                    </button>
+                </a>
+            </div>
+        </div>
+
+        <!-- Center Column: Floating UI Cards -->
+        <div class="lg:col-span-5 lg:h-auto flex h-[600px] relative perspective-1200 items-center justify-center">
+
+            <!-- Centerpiece: Profile Card -->
+            <div
+                class="relative z-20 w-72 bg-[#0A0A0A] border border-white/10 shadow-2xl floating-card transform rotate-[-2deg] p-6 flex flex-col items-center text-center group">
+                <!-- Cursor -->
+                <div class="absolute -top-4 -right-4 z-30 drop-shadow-lg animate-bounce-slow">
+                    <div class="bg-purple-500 text-black text-[10px] font-bold px-2 py-0.5 rounded-sm mb-1 ml-4">AI
+                        Agent</div>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        class="fill-purple-500 stroke-[#0A0A0A] stroke-2">
+                        <path d="M3 3L10.07 19.97L12.58 12.58L19.97 10.07L3 3Z"></path>
+                    </svg>
+                </div>
+
+                <div class="relative mb-6 mt-2">
+                    <div
+                        class="w-24 h-24 rounded-full overflow-hidden border-2 border-neutral-800 group-hover:border-purple-500/50 transition-all duration-500 bg-neutral-900 flex items-center justify-center">
+                        <iconify-icon icon="lucide:brain-circuit" width="48" class="text-purple-500"></iconify-icon>
+                    </div>
+                    <div class="absolute bottom-0 right-1 w-4 h-4 bg-green-500 rounded-full border-2 border-[#0A0A0A]">
+                    </div>
+                </div>
+
+                <h2 class="text-4xl font-display font-bold text-white tracking-tight mb-1">94%</h2>
+                <p class="text-neutral-500 text-xs font-mono uppercase tracking-widest mb-6">Retention Rate</p>
+
+                <div class="w-full h-1 bg-neutral-800 rounded-full overflow-hidden">
+                    <div class="h-full w-[94%] bg-purple-500"></div>
+                </div>
+            </div>
+
+            <!-- Floating Element 1: Audit List (Top Left) -->
+            <div class="absolute top-[5%] left-[-5%] sm:left-[0%] w-64 bg-[#0A0A0A]/90 backdrop-blur-md border border-white/10 p-4 shadow-xl floating-card z-10 transform -rotate-6"
+                style="animation-delay: 1s;">
+                <div class="flex items-center justify-between mb-4 border-b border-white/5 pb-2">
+                    <div class="flex items-center gap-2 text-white">
+                        <iconify-icon icon="lucide:shield-check" class="text-purple-500"></iconify-icon>
+                        <span class="text-sm font-medium">Source Audit</span>
+                    </div>
+                    <span class="text-xs text-neutral-500 font-mono">#802</span>
+                </div>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-neutral-400">Broken Links</span>
+                        <span class="text-purple-500 bg-purple-500/10 px-1.5 py-0.5 rounded">0</span>
+                    </div>
+                    <div class="flex items-center justify-between text-xs">
+                        <span class="text-neutral-400">New Connections</span>
+                        <span class="text-purple-500 bg-purple-500/10 px-1.5 py-0.5 rounded">12</span>
+                    </div>
+                    <button
+                        class="w-full mt-2 bg-white/5 hover:bg-purple-500 hover:text-white text-neutral-300 text-[10px] uppercase tracking-wider py-2 transition-colors border border-white/5">
+                        Auto-Synthesize
+                    </button>
+                </div>
+            </div>
+
+            <!-- Floating Element 2: Chat Bubble (Bottom Right) -->
+            <div class="absolute bottom-[10%] right-[-5%] sm:right-[0%] w-60 bg-[#0A0A0A] border border-white/10 p-4 shadow-xl floating-card z-30 transform rotate-6"
+                style="animation-delay: 2s;">
+                <div class="flex gap-3 mb-3">
+                    <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center shrink-0">
+                        <iconify-icon icon="lucide:bot" class="text-black"></iconify-icon>
+                    </div>
+                    <div class="bg-neutral-900 p-2 rounded-lg rounded-tl-none border border-white/5">
+                        <p class="text-xs text-neutral-300 leading-relaxed">I found a contradiction in your notes
+                            regarding Quantum Entanglement.</p>
+                    </div>
+                </div>
+                <div class="flex gap-2 pl-11">
+                    <div class="w-2 h-2 bg-white/20 rounded-full animate-pulse"></div>
+                    <div class="w-2 h-2 bg-white/20 rounded-full animate-pulse delay-75"></div>
+                    <div class="w-2 h-2 bg-white/20 rounded-full animate-pulse delay-150"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Right Column: Stats & Sidebar -->
+        <div class="lg:col-span-2 flex flex-col relative z-20 lg:border-l lg:border-white/5 lg:pl-8">
+            <div class="hidden lg:block beam-border-v" style="left: -1px;"></div>
+
+            <div class="flex flex-col justify-center h-full gap-12">
+                <div class="group cursor-pointer">
+                    <span
+                        class="block text-5xl font-light tracking-tighter text-neutral-700 group-hover:text-purple-500 transition-colors duration-300 font-display">2.4k</span>
+                    <span
+                        class="text-[10px] text-neutral-500 uppercase tracking-widest mt-2 block border-l-2 border-transparent group-hover:border-purple-500 pl-2 transition-all">Papers</span>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <span
+                        class="block text-5xl font-light tracking-tighter text-neutral-700 group-hover:text-purple-500 transition-colors duration-300 font-display">142</span>
+                    <span
+                        class="text-[10px] text-neutral-500 uppercase tracking-widest mt-2 block border-l-2 border-transparent group-hover:border-purple-500 pl-2 transition-all">Connections</span>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="flex items-center gap-2 mb-2">
+                        <div
+                            class="w-8 h-8 rounded-full bg-[#0A0A0A] border border-white/10 flex items-center justify-center group-hover:border-purple-500 transition-colors">
+                            <iconify-icon icon="lucide:database" width="16"
+                                class="text-neutral-500 group-hover:text-purple-500"></iconify-icon>
+                        </div>
+                        <div
+                            class="w-8 h-8 rounded-full bg-[#0A0A0A] border border-white/10 flex items-center justify-center group-hover:border-purple-500 transition-colors">
+                            <iconify-icon icon="lucide:network" width="16"
+                                class="text-neutral-500 group-hover:text-purple-500"></iconify-icon>
+                        </div>
+                    </div>
+                    <p class="text-[10px] text-neutral-500 uppercase tracking-widest leading-relaxed pl-2">
+                        Graph Health Checks
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 2. KNOWLEDGE ENGINE (Bento Grid) -->
+    <section class="container mx-auto px-6 py-24 reveal-on-scroll" id="features">
+        <div class="mb-24 max-w-3xl relative">
+            <div
+                class="absolute -left-20 -top-20 w-64 h-64 bg-purple-500/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen">
+            </div>
+            <h2 class="text-4xl md:text-6xl font-medium mb-8 tracking-tighter text-white relative z-10">
+                The Knowledge
+                <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-violet-400 to-indigo-400">Engine</span>
+            </h2>
+            <p class="text-neutral-400 text-lg md:text-xl font-light leading-relaxed max-w-xl">
+                A symphony of tools designed to transform passive consumption into active mastery. Don't just
+                read—experience your knowledge.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-fr">
+
+            <!-- Item 1: Wide Feature -->
+            <div
+                class="md:col-span-2 group relative p-8 md:p-12 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-purple-500/20 transition-all duration-500 backdrop-blur-sm">
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                </div>
+                <div
+                    class="absolute top-0 right-0 w-80 h-80 bg-purple-500/5 blur-[80px] rounded-full group-hover:bg-purple-500/10 transition-colors duration-700">
+                </div>
+
+                <div class="relative z-10 flex flex-col h-full justify-between items-start">
+                    <div
+                        class="w-14 h-14 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-8 text-purple-300 shadow-lg shadow-purple-900/20 group-hover:scale-105 transition-transform duration-500">
+                        <iconify-icon icon="lucide:database" width="28"></iconify-icon>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl md:text-3xl font-medium text-white mb-4 tracking-tight">Intelligent Source
+                            Management</h3>
+                        <p class="text-neutral-400 text-base md:text-lg leading-relaxed max-w-lg font-light">The central
+                            nervous system for your library. Automatically categorize, tag, and cross-reference PDFs,
+                            articles, and notes into a cohesive knowledge graph.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2: Tall/Standard -->
+            <div
+                class="group relative p-8 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-blue-500/20 transition-all duration-500 backdrop-blur-sm flex flex-col justify-between">
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                </div>
+                <div class="relative z-10">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-6 text-blue-300 shadow-lg shadow-blue-900/20">
+                        <iconify-icon icon="lucide:globe" width="24"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-medium text-white mb-3 tracking-tight">Auto-Discovery</h3>
+                    <p class="text-sm text-neutral-400 leading-relaxed font-light">Proactively hunts for relevant
+                        materials tailored to your skill level.</p>
+                </div>
+            </div>
+
+            <!-- Item 3: Standard -->
+            <div
+                class="group relative p-8 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-emerald-500/20 transition-all duration-500 backdrop-blur-sm">
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                </div>
+                <div class="relative z-10">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-6 text-emerald-300 shadow-lg shadow-emerald-900/20">
+                        <iconify-icon icon="lucide:search" width="24"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-medium text-white mb-3 tracking-tight">Deep Research</h3>
+                    <p class="text-sm text-neutral-400 leading-relaxed font-light">Semantic search with built-in fact
+                        checking and source verification.</p>
+                </div>
+            </div>
+
+            <!-- Item 4: Wide Feature (Podcast) -->
+            <div
+                class="md:col-span-2 group relative p-8 md:p-12 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-pink-500/20 transition-all duration-500 backdrop-blur-sm">
+                <div
+                    class="absolute inset-0 bg-gradient-to-bl from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                </div>
+                <div
+                    class="absolute -right-20 -bottom-20 w-80 h-80 bg-pink-500/5 blur-[80px] rounded-full group-hover:bg-pink-500/10 transition-colors duration-700">
+                </div>
+
+                <div class="relative z-10 flex flex-col md:flex-row gap-8 justify-between h-full items-end">
+                    <div class="max-w-md">
+                        <div
+                            class="w-14 h-14 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-8 text-pink-300 shadow-lg shadow-pink-900/20">
+                            <iconify-icon icon="lucide:mic-2" width="28"></iconify-icon>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-medium text-white mb-4 tracking-tight">AI Podcast Studio
+                        </h3>
+                        <p class="text-neutral-400 text-base md:text-lg leading-relaxed font-light">Generate immersive,
+                            multi-participant podcasts where AI co-hosts discuss, debate, and improvise based on your
+                            materials.</p>
+                    </div>
+                    <!-- Visual Waveform Decoration -->
+                    <div class="hidden md:flex items-center gap-1.5 h-16 opacity-40">
+                        <span class="w-1 h-4 bg-pink-400/80 rounded-full animate-pulse"></span>
+                        <span
+                            class="w-1 h-8 bg-pink-400/80 rounded-full animate-[pulse_1.5s_ease-in-out_infinite]"></span>
+                        <span
+                            class="w-1 h-12 bg-pink-400/80 rounded-full animate-[pulse_1s_ease-in-out_infinite]"></span>
+                        <span
+                            class="w-1 h-6 bg-pink-400/80 rounded-full animate-[pulse_1.2s_ease-in-out_infinite]"></span>
+                        <span
+                            class="w-1 h-10 bg-pink-400/80 rounded-full animate-[pulse_1.8s_ease-in-out_infinite]"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Row 3: Three singles -->
+            <div
+                class="group relative p-8 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-amber-500/20 transition-all duration-500 backdrop-blur-sm">
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                </div>
+                <div class="relative z-10">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-6 text-amber-300 shadow-lg shadow-amber-900/20">
+                        <iconify-icon icon="lucide:audio-waveform" width="24"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-medium text-white mb-3 tracking-tight">Voice Cloning</h3>
+                    <p class="text-sm text-neutral-400 leading-relaxed font-light">Personalized narrations in your own
+                        voice.</p>
+                </div>
+            </div>
+
+            <div
+                class="group relative p-8 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-cyan-500/20 transition-all duration-500 backdrop-blur-sm">
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                </div>
+                <div class="relative z-10">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-6 text-cyan-300 shadow-lg shadow-cyan-900/20">
+                        <iconify-icon icon="lucide:clapperboard" width="24"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-medium text-white mb-3 tracking-tight">Auto Video</h3>
+                    <p class="text-sm text-neutral-400 leading-relaxed font-light">Turn notes into professional video
+                        content.</p>
+                </div>
+            </div>
+
+            <div
+                class="group relative p-8 bg-neutral-900/30 border border-white/5 rounded-[2rem] overflow-hidden hover:border-rose-500/20 transition-all duration-500 backdrop-blur-sm">
+                <div
+                    class="absolute inset-0 bg-gradient-to-b from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                </div>
+                <div class="relative z-10">
+                    <div
+                        class="w-12 h-12 rounded-2xl bg-neutral-800/80 border border-white/10 flex items-center justify-center mb-6 text-rose-300 shadow-lg shadow-rose-900/20">
+                        <iconify-icon icon="lucide:users" width="24"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-medium text-white mb-3 tracking-tight">Debate Room</h3>
+                    <p class="text-sm text-neutral-400 leading-relaxed font-light">Live roundtable debates on any topic.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 3. DEEP LEARNING SYNTHESIS (Interactive Grid) -->
+    <section class="py-24 border-t border-white/5 reveal-on-scroll">
+        <div class="container mx-auto px-6">
+
+            <div class="text-center mb-20 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-semibold mb-4 tracking-tight text-white">Deep Learning Synthesis
+                </h2>
+                <p class="text-neutral-400">Don't just read. Listen, watch, and interact with 6 modes of synthesis.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Card 1 -->
+                <div
+                    class="group relative rounded-2xl border border-white/10 bg-neutral-900 overflow-hidden p-6 hover:border-purple-500/30 transition-colors duration-500">
+                    <div
+                        class="w-10 h-10 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mb-4 text-purple-400">
+                        <iconify-icon icon="lucide:mic" width="20"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Text to Audio</h3>
+                    <p class="text-sm text-neutral-400 mb-6 h-10">Upload a complex paper. Get a lively debate podcast
+                        between two AI hosts.</p>
+
+                    <div class="bg-black rounded-xl border border-white/5 p-4 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent"></div>
+                        <div
+                            class="bg-neutral-900 rounded-lg px-3 py-2 text-[10px] text-neutral-300 font-mono mb-3 border border-white/5 truncate">
+                            Input: "Theory_of_Relativity.pdf"
+                        </div>
+                        <div
+                            class="flex items-center justify-center h-12 bg-neutral-900/50 rounded-lg border border-white/5 gap-1">
+                            <div class="w-1 bg-purple-400 h-4 animate-float"></div>
+                            <div class="w-1 bg-purple-400 h-8 animate-float" style="animation-delay: 0.1s"></div>
+                            <div class="w-1 bg-purple-400 h-6 animate-float" style="animation-delay: 0.2s"></div>
+                            <div class="w-1 bg-purple-400 h-3 animate-float" style="animation-delay: 0.3s"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div
+                    class="group relative rounded-2xl border border-white/10 bg-neutral-900 overflow-hidden p-6 hover:border-blue-500/30 transition-colors duration-500">
+                    <div
+                        class="w-10 h-10 rounded-full bg-blue-500/10 border border-blue-500/20 flex items-center justify-center mb-4 text-blue-400">
+                        <iconify-icon icon="lucide:video" width="20"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Concept to Docu</h3>
+                    <p class="text-sm text-neutral-400 mb-6 h-10">Auto-generate mini-documentaries with relevant stock
+                        footage and narration.</p>
+
+                    <div class="bg-black rounded-xl border border-white/5 p-4 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent"></div>
+                        <div class="flex gap-2 mb-3">
+                            <div class="flex-1 h-8 bg-neutral-800 rounded border border-white/5"></div>
+                            <div class="flex-1 h-8 bg-neutral-800 rounded border border-white/5"></div>
+                            <div class="flex-1 h-8 bg-neutral-800 rounded border border-white/5"></div>
+                        </div>
+                        <div class="h-1 rounded-full bg-neutral-800 w-full overflow-hidden">
+                            <div class="h-full bg-blue-500 w-[72%]"></div>
+                        </div>
+                        <div class="flex justify-between mt-2">
+                            <span class="text-[10px] text-neutral-500">Rendering...</span>
+                            <span class="text-[10px] text-blue-400">72%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div
+                    class="group relative rounded-2xl border border-white/10 bg-neutral-900 overflow-hidden p-6 hover:border-green-500/30 transition-colors duration-500">
+                    <div
+                        class="w-10 h-10 rounded-full bg-green-500/10 border border-green-500/20 flex items-center justify-center mb-4 text-green-400">
+                        <iconify-icon icon="lucide:users" width="20"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Debate Sim</h3>
+                    <p class="text-sm text-neutral-400 mb-6 h-10">Spawn 4 AI experts with opposing viewpoints to argue a
+                        topic live.</p>
+
+                    <div class="bg-black rounded-xl border border-white/5 p-4 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-green-500/5 to-transparent"></div>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-green-500/20"></div>
+                                <div class="h-1.5 w-2/3 bg-neutral-800 rounded"></div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-red-500/20"></div>
+                                <div class="h-1.5 w-1/2 bg-neutral-800 rounded"></div>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="w-3 h-3 rounded-full bg-blue-500/20"></div>
+                                <div class="h-1.5 w-3/4 bg-neutral-800 rounded"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div
+                    class="group relative rounded-2xl border border-white/10 bg-neutral-900 overflow-hidden p-6 hover:border-pink-500/30 transition-colors duration-500">
+                    <div
+                        class="w-10 h-10 rounded-full bg-pink-500/10 border border-pink-500/20 flex items-center justify-center mb-4 text-pink-400">
+                        <iconify-icon icon="lucide:brain-circuit" width="20"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Reality Tutor</h3>
+                    <p class="text-sm text-neutral-400 mb-6 h-10">An adaptive AI professor that tests your gaps with
+                        Socratic questioning.</p>
+
+                    <div
+                        class="bg-black rounded-xl border border-white/5 p-4 relative overflow-hidden flex flex-col gap-2">
+                        <div class="absolute inset-0 bg-gradient-to-b from-pink-500/5 to-transparent"></div>
+                        <div
+                            class="self-start bg-neutral-800 rounded-lg rounded-tl-none px-2 py-1.5 max-w-[80%] border border-white/5">
+                            <div class="h-1 w-12 bg-neutral-600 rounded mb-1"></div>
+                            <div class="h-1 w-20 bg-neutral-600 rounded"></div>
+                        </div>
+                        <div
+                            class="self-end bg-pink-900/30 rounded-lg rounded-tr-none px-2 py-1.5 max-w-[80%] border border-pink-500/20">
+                            <div class="h-1 w-16 bg-pink-400/50 rounded"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div
+                    class="group relative rounded-2xl border border-white/10 bg-neutral-900 overflow-hidden p-6 hover:border-orange-500/30 transition-colors duration-500">
+                    <div
+                        class="w-10 h-10 rounded-full bg-orange-500/10 border border-orange-500/20 flex items-center justify-center mb-4 text-orange-400">
+                        <iconify-icon icon="lucide:library" width="20"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Course Builder</h3>
+                    <p class="text-sm text-neutral-400 mb-6 h-10">Turn loose notes into a structured curriculum with
+                        modules and quizzes.</p>
+
+                    <div class="bg-black rounded-xl border border-white/5 p-4 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-orange-500/5 to-transparent"></div>
+                        <div class="space-y-1.5">
+                            <div
+                                class="flex items-center justify-between bg-neutral-900 border border-white/5 p-1.5 rounded">
+                                <div class="h-1.5 w-16 bg-neutral-700 rounded"></div>
+                                <div class="w-3 h-3 rounded-full border border-white/10"></div>
+                            </div>
+                            <div
+                                class="flex items-center justify-between bg-neutral-900 border border-white/5 p-1.5 rounded">
+                                <div class="h-1.5 w-20 bg-neutral-700 rounded"></div>
+                                <div class="w-3 h-3 rounded-full border border-white/10"></div>
+                            </div>
+                            <div
+                                class="flex items-center justify-between bg-neutral-900 border border-white/5 p-1.5 rounded">
+                                <div class="h-1.5 w-12 bg-neutral-700 rounded"></div>
+                                <div class="w-3 h-3 rounded-full bg-orange-500"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div
+                    class="group relative rounded-2xl border border-white/10 bg-neutral-900 overflow-hidden p-6 hover:border-cyan-500/30 transition-colors duration-500">
+                    <div
+                        class="w-10 h-10 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mb-4 text-cyan-400">
+                        <iconify-icon icon="lucide:fingerprint" width="20"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-2">Voice Cloning</h3>
+                    <p class="text-sm text-neutral-400 mb-6 h-10">Listen to your study materials narrated in your own
+                        voice or a custom AI persona.</p>
+
+                    <div
+                        class="bg-black rounded-xl border border-white/5 p-4 relative overflow-hidden flex items-center gap-3">
+                        <div class="absolute inset-0 bg-gradient-to-b from-cyan-500/5 to-transparent"></div>
+                        <div
+                            class="w-8 h-8 rounded-full bg-neutral-800 border border-white/10 flex items-center justify-center">
+                            <iconify-icon icon="lucide:user" width="14" class="text-neutral-500"></iconify-icon>
+                        </div>
+                        <div class="flex-1 flex items-center gap-0.5 h-6">
+                            <div class="w-0.5 bg-cyan-500 h-2 animate-float"></div>
+                            <div class="w-0.5 bg-cyan-500 h-4 animate-float" style="animation-delay: 0.1s"></div>
+                            <div class="w-0.5 bg-cyan-500 h-3 animate-float" style="animation-delay: 0.2s"></div>
+                            <div class="w-0.5 bg-cyan-500 h-5 animate-float" style="animation-delay: 0.3s"></div>
+                            <div class="w-0.5 bg-cyan-500 h-2 animate-float" style="animation-delay: 0.4s"></div>
+                            <div class="w-0.5 bg-neutral-800 h-1"></div>
+                            <div class="w-0.5 bg-neutral-800 h-1"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. SECURITY & PRIVACY -->
+    <section class="py-24 border-t border-white/5 reveal-on-scroll">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-semibold text-white mb-4">Your thoughts, encrypted.</h2>
+                <p class="text-neutral-400 max-w-2xl mx-auto">We use state-of-the-art encryption to ensure your second
+                    brain remains private.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="bg-neutral-900/50 border border-white/5 p-8 rounded-2xl group hover:border-purple-500/30 transition-colors">
+                    <iconify-icon icon="lucide:shield-check" width="32"
+                        class="text-purple-400 mb-4 group-hover:scale-110 transition-transform"></iconify-icon>
+                    <h3 class="text-xl font-medium text-white mb-2">End-to-End Encryption</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed">Your data is encrypted at rest and in transit.
+                        Only you hold the keys.</p>
+                </div>
+                <div
+                    class="bg-neutral-900/50 border border-white/5 p-8 rounded-2xl group hover:border-blue-500/30 transition-colors">
+                    <iconify-icon icon="lucide:lock" width="32"
+                        class="text-blue-400 mb-4 group-hover:scale-110 transition-transform"></iconify-icon>
+                    <h3 class="text-xl font-medium text-white mb-2">Local-First</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed">Data stays on your device unless you explicitly
+                        choose to sync.</p>
+                </div>
+                <div
+                    class="bg-neutral-900/50 border border-white/5 p-8 rounded-2xl group hover:border-green-500/30 transition-colors">
+                    <iconify-icon icon="lucide:eye-off" width="32"
+                        class="text-green-400 mb-4 group-hover:scale-110 transition-transform"></iconify-icon>
+                    <h3 class="text-xl font-medium text-white mb-2">No Training on Data</h3>
+                    <p class="text-neutral-400 text-sm leading-relaxed">We never use your personal data to train our
+                        foundational models.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. DEVELOPER API -->
+    <section class="py-24 bg-neutral-900/20 reveal-on-scroll">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-semibold text-white mb-6">Build on Memento.</h2>
+                <p class="text-neutral-400 mb-8 leading-relaxed">Extend your second brain with our robust API. Connect
+                    custom data sources, build agents, and automate your workflow.</p>
+                <ul class="space-y-4 mb-8">
+                    <li class="flex items-center gap-3 text-neutral-300">
+                        <div
+                            class="w-6 h-6 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400">
+                            <iconify-icon icon="lucide:check" width="14"></iconify-icon>
+                        </div>
+                        REST & GraphQL Endpoints
+                    </li>
+                    <li class="flex items-center gap-3 text-neutral-300">
+                        <div
+                            class="w-6 h-6 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400">
+                            <iconify-icon icon="lucide:check" width="14"></iconify-icon>
+                        </div>
+                        Webhooks for Real-time Updates
+                    </li>
+                    <li class="flex items-center gap-3 text-neutral-300">
+                        <div
+                            class="w-6 h-6 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400">
+                            <iconify-icon icon="lucide:check" width="14"></iconify-icon>
+                        </div>
+                        Granular Permission Scopes
+                    </li>
+                </ul>
+                <a href="https://app.memento.lunartech.ai/signup" class="text-purple-400 hover:text-purple-300 font-medium flex items-center gap-2 group">
+                    Read the Docs <iconify-icon icon="lucide:arrow-right" width="16"
+                        class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+                </a>
+            </div>
+            <div
+                class="bg-[#0A0A0A] border border-white/10 rounded-xl p-6 font-mono text-xs text-neutral-400 shadow-2xl overflow-hidden relative group hover:border-purple-500/30 transition-colors">
+                <div class="absolute top-0 right-0 p-4 flex gap-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500/20"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500/20"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500/20"></div>
+                </div>
+                <pre class="mt-4"><span class="text-purple-400">const</span> memento = <span class="text-purple-400">new</span> MementoClient({
+  apiKey: <span class="text-green-400">'mem_sk_...'</span>
+});
+
+<span class="text-neutral-500">// Query your knowledge graph</span>
+<span class="text-purple-400">const</span> results = <span class="text-purple-400">await</span> memento.graph.query({
+  concept: <span class="text-green-400">'Neural Networks'</span>,
+  depth: <span class="text-orange-400">2</span>
+});
+
+console.log(results.connections);</pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. GLOBAL INFRASTRUCTURE -->
+    <section class="py-24 reveal-on-scroll text-center">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-semibold text-white mb-6">Low latency, everywhere.</h2>
+            <p class="text-neutral-400 max-w-2xl mx-auto mb-12">Our edge network ensures your second brain is always
+                available, no matter where you are.</p>
+            <div
+                class="relative max-w-4xl mx-auto aspect-[2/1] bg-neutral-900/30 rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden">
+                <div
+                    class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent">
+                </div>
+                <div class="grid grid-cols-12 gap-8 opacity-20">
+                    <!-- Abstract Map Dots -->
+                    <div class="w-1 h-1 rounded-full bg-white"></div>
+                    <div class="w-1 h-1 rounded-full bg-white"></div>
+                    <div class="w-1 h-1 rounded-full bg-white"></div>
+                    <div class="w-1 h-1 rounded-full bg-white"></div>
+                    <div class="w-1 h-1 rounded-full bg-white"></div>
+                    <div class="w-1 h-1 rounded-full bg-white"></div>
+                    <div class="w-1 h-1 rounded-full bg-white"></div>
+                    <div class="w-1 h-1 rounded-full bg-white"></div>
+                    <div class="w-1 h-1 rounded-full bg-white"></div>
+                    <div class="w-1 h-1 rounded-full bg-white"></div>
+                    <div class="w-1 h-1 rounded-full bg-white"></div>
+                    <div class="w-1 h-1 rounded-full bg-white"></div>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <p class="text-neutral-500 font-mono text-sm tracking-widest uppercase">24 Edge Locations • 99.99%
+                        Uptime</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. CTA -->
+    <section class="py-32 reveal-on-scroll">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl md:text-5xl font-semibold text-white mb-8 tracking-tight">Ready to upgrade your mind?
+            </h2>
+
+            <div class="max-w-xl mx-auto relative group">
+                <div
+                    class="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200">
+                </div>
+                <div class="relative flex items-center bg-[#0A0A0A] rounded-xl border border-white/10 p-2 shadow-2xl">
+                    <iconify-icon icon="lucide:search" width="20" class="text-neutral-500 ml-4"></iconify-icon>
+                    <input type="text" placeholder="What do you want to learn today?"
+                        class="w-full bg-transparent border-none text-white placeholder-neutral-500 focus:ring-0 px-4 py-3 outline-none">
+                    <button
+                        class="bg-white text-black px-6 py-3 rounded-lg font-medium hover:bg-neutral-200 transition-colors shrink-0">
+                        Start
+                    </button>
+                </div>
+            </div>
+            <p class="text-neutral-500 text-sm mt-6">No credit card required. 5 free uploads included.</p>
+        </div>
+    </section>
+
+    <footer class="overflow-hidden bg-[#050505] w-full border-white/5 border-t pt-20 pb-0 relative">
+
+        <!-- Newsletter Pill -->
+        <div class="flex -translate-y-1/2 z-30 mt-16 mb-16 pr-6 pl-6 absolute top-0 right-0 left-0 justify-center">
+            <div
+                class="bg-[#0A0A0A] border border-white/10 rounded-full py-3 pl-6 pr-2 flex items-center gap-4 shadow-2xl max-w-md w-full group hover:border-purple-500/50 transition-colors">
+                <input type="text" placeholder="Join the waitlist..."
+                    class="bg-transparent border-none outline-none text-white text-sm w-full placeholder:text-neutral-600 font-mono focus:ring-0">
+                <button
+                    class="w-8 h-8 bg-white text-black rounded-full flex items-center justify-center hover:bg-purple-500 hover:text-white transition-colors shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        data-lucide="arrow-right" class="lucide lucide-arrow-right w-4 h-4">
+                        <path d="M5 12h14" class=""></path>
+                        <path d="m12 5 7 7-7 7" class=""></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div class="w-full px-6 lg:px-12 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-20">
+            <!-- Left -->
+            <div class="lg:col-span-7">
+                <h2
+                    class="text-5xl lg:text-[6rem] leading-[0.9] font-medium text-white tracking-tighter mb-10 font-display">
+                    Capture.
+                    <span class="text-neutral-700">Synthesize.</span>
+                    Master.
+                </h2>
+                <div class="flex flex-wrap gap-8 opacity-40 hover:opacity-100 transition-opacity duration-500">
+                    <!-- Logos (Letters only style) -->
+                    <span class="font-display font-bold tracking-tighter text-xl text-white">OPENAI</span>
+                    <span class="font-display font-bold tracking-tighter text-xl text-white">ANTHROPIC</span>
+                    <span class="font-display font-bold tracking-tighter text-xl text-white">META</span>
+                    <span class="font-display font-bold tracking-tighter text-xl text-white">MISTRAL</span>
+                </div>
+            </div>
+
+            <!-- Right (Purple Card) -->
+            <div class="lg:col-span-5 flex lg:justify-end items-center">
+                <div
+                    class="w-full max-w-sm bg-purple-600 p-8 relative overflow-hidden group transform hover:-translate-y-2 transition-transform duration-500 rounded-3xl">
+                    <iconify-icon icon="lucide:brain-circuit" width="128"
+                        class="absolute -right-4 -top-4 text-black/10 rotate-12"></iconify-icon>
+
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold text-white mb-4 tracking-tight font-display">Start Learning Now
+                        </h3>
+                        <p class="text-white/80 text-sm font-medium leading-relaxed mb-8">
+                            Access the complete knowledge engine. Transform your library today.
+                        </p>
+                        <div class="flex items-center justify-between border-t border-white/20 pt-4">
+                            <span class="text-xs font-bold uppercase tracking-widest text-white">v2.4 Reality
+                                Mode</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" data-lucide="arrow-up-right"
+                                class="lucide lucide-arrow-up-right w-5 h-5 text-white">
+                                <path d="M7 7h10v10" class=""></path>
+                                <path d="M7 17 17 7" class=""></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Watermark -->
+        <div class="relative w-full overflow-hidden pointer-events-none select-none pt-12">
+            <h1
+                class="text-[20vw] leading-none font-bold text-white/5 text-center -mb-12 tracking-tighter font-display">
+                MEMENTO
+            </h1>
+            <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#050505] to-transparent"></div>
+        </div>
+
+        <div class="absolute bottom-6 w-full flex justify-center z-30">
+            <p class="text-[10px] text-neutral-700 font-mono uppercase tracking-widest">© 2026 Memento Inc.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navbar scroll effect
+            const navbarBg = document.getElementById('navbar-bg');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbarBg.classList.remove('bg-transparent');
+                    navbarBg.classList.add('bg-black/50');
+                } else {
+                    navbarBg.classList.add('bg-transparent');
+                    navbarBg.classList.remove('bg-black/50');
+                }
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+        });
+    </script>
+
+</body>
+
+</html>

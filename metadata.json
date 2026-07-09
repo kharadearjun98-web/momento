@@ -1,0 +1,7 @@
+{
+  "name": "Memento – Harness Your Brilliance - Mentor Hour / Handbook",
+  "description": "A hyper-personalized learning studio leveraging liquid-glass aesthetics and AI to transform information into knowledge.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

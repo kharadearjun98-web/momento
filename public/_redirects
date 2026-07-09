@@ -1,0 +1,24 @@
+# Cloudflare Pages landing pages.
+/features.html /landing/home/features.html 200
+/solutions.html /landing/home/solutions.html 200
+/pricing.html /landing/home/pricing.html 200
+/blog.html /landing/home/blog.html 200
+/faq.html /landing/home/faq.html 200
+/team.html /landing/home/team.html 200
+/contact.html /landing/home/contact.html 200
+/privacy.html /landing/home/privacy.html 200
+/terms.html /landing/home/terms.html 200
+
+# React app fallback for auth and product routes.
+/signin /app/index.html 200
+/signup /app/index.html 200
+/reset-password /app/index.html 200
+/auth/callback /app/index.html 200
+/choose-plan /app/index.html 200
+/notebooks /app/index.html 200
+/new /app/index.html 200
+/discover /app/index.html 200
+/profile /app/index.html 200
+/settings /app/index.html 200
+/notebook/* /app/index.html 200
+/style-guide /app/index.html 200

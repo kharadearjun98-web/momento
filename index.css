@@ -1,0 +1,442 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #0B0E13;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #0B0E13;
+  color: #ffffff;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  background-color: #0B0E13;
+}
+
+/* Custom Scrollbar Styles */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(34, 211, 238, 0.7) rgba(30, 41, 59, 0.8);
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(30, 41, 59, 0.8);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.8), rgba(139, 92, 246, 0.7));
+  border-radius: 10px;
+  border: 2px solid rgba(30, 41, 59, 0.8);
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 1), rgba(139, 92, 246, 0.9));
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 1), rgba(139, 92, 246, 1));
+}
+
+/* Hide scrollbar utility class */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* Invisible scrollbar - keeps scroll functionality but hides visual appearance */
+.invisible-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.invisible-scrollbar::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  display: none;
+}
+
+.invisible-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border: none;
+}
+
+.invisible-scrollbar::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: none;
+}
+
+/* ========================================
+   KATEX MATH FORMULAS - Premium Styling
+   ======================================== */
+
+/* Base KaTeX text color */
+.katex {
+  color: #e2e8f0 !important;
+  font-size: 1.1em;
+}
+
+/* Display math - Clean teal block style */
+.katex-display {
+  margin: 1.5rem 0 !important;
+  padding: 1.5rem 2rem !important;
+  background: linear-gradient(135deg, rgba(13, 42, 42, 0.95), rgba(17, 50, 50, 0.9)) !important;
+  border-radius: 1rem !important;
+  border: 1px solid rgba(34, 211, 238, 0.15) !important;
+  border-left: 3px solid rgba(34, 211, 238, 0.4) !important;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+  overflow-x: auto;
+  text-align: center;
+}
+
+/* Display math inner container */
+.katex-display > .katex {
+  font-size: 1.2em;
+}
+
+/* Inline math - subtle teal highlight */
+p .katex,
+li .katex,
+span .katex:not(.katex-display .katex) {
+  background: rgba(34, 211, 238, 0.08) !important;
+  padding: 0.1rem 0.4rem !important;
+  border-radius: 0.25rem !important;
+  border: none !important;
+  color: #e2e8f0 !important;
+  font-size: 1.05em;
+}
+
+/* Math operators (=, +, -, etc) */
+.katex .mrel {
+  color: #94a3b8 !important;
+}
+
+.katex .mbin {
+  color: #94a3b8 !important;
+}
+
+/* Functions like sin, cos, log, sum, int */
+.katex .mop {
+  color: #5eead4 !important;
+}
+
+/* Variables and text */
+.katex .mord,
+.katex .mathnormal {
+  color: #e2e8f0 !important;
+}
+
+/* Greek letters */
+.katex .mord.mathnormal {
+  color: #e2e8f0 !important;
+}
+
+/* Fractions */
+.katex .mfrac .frac-line {
+  border-color: #64748b !important;
+}
+
+/* Subscripts and superscripts */
+.katex .msupsub {
+  color: #e2e8f0 !important;
+}
+
+/* Parentheses, brackets */
+.katex .mopen,
+.katex .mclose {
+  color: #94a3b8 !important;
+}
+
+/* Large operators (sums, integrals) */
+.katex .mop.op-symbol {
+  color: #22d3ee !important;
+}
+
+/* Square root styling */
+.katex .sqrt > .sqrt-sign {
+  color: #94a3b8 !important;
+}
+
+/* Matrix styling */
+.katex .mtable {
+  color: #e2e8f0 !important;
+}
+
+/* ========================================
+   MARKDOWN TABLES - Elegant Styling
+   ======================================== */
+
+/* Chat message tables */
+.prose table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(15, 23, 42, 0.5);
+}
+
+.prose thead {
+  background: rgba(139, 92, 246, 0.15);
+}
+
+.prose th {
+  padding: 0.875rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  color: #f1f5f9;
+  border-bottom: 1px solid rgba(139, 92, 246, 0.3);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.prose td {
+  padding: 0.75rem 1rem;
+  color: #cbd5e1;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}
+
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* ========================================
+   MARKDOWN HEADERS - Typography
+   ======================================== */
+
+.prose h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prose h2 {
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose h3 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose h4 {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* ========================================
+   MARKDOWN LISTS
+   ======================================== */
+
+.prose ul,
+.prose ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  color: #cbd5e1;
+  margin-bottom: 0.375rem;
+  line-height: 1.6;
+}
+
+.prose li::marker {
+  color: #64748b;
+}
+
+/* Beautiful Animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
+}
+
+/* ========================================
+   AUTH PAGE STYLES
+   ======================================== */
+
+/* Mesh Gradient Background */
+.mesh-gradient {
+  background-color: #191022;
+  background-image:
+    radial-gradient(at 0% 0%, hsla(271, 78%, 45%, 1) 0, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(217, 89%, 61%, 1) 0, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(189, 100%, 56%, 1) 0, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(266, 74%, 46%, 1) 0, transparent 50%);
+}
+
+/* Glass Card Effects */
+.glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.glass-review-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 20px 20px 50px -5px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.glass-review-card:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 25px rgba(140, 43, 238, 0.2);
+}
+
+/* 3D Perspective Container */
+.iso-container {
+  perspective: 2000px;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.iso-plane {
+  transform: rotateX(15deg) rotateY(-10deg) rotateZ(5deg) scale(1.05);
+  transform-style: preserve-3d;
+}
+
+/* Gradient Masks */
+.gradient-mask-y {
+  mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+}
+
+/* Button Effects */
+.btn-primary-glow {
+  background-color: #8c2bee;
+  box-shadow: 0 0 20px rgba(140, 43, 238, 0.4);
+  transition: all 0.3s ease;
+}
+
+.btn-primary-glow:hover {
+  background-color: #7a25d0;
+  box-shadow: 0 0 35px rgba(140, 43, 238, 0.6);
+  transform: translateY(-1px);
+}
+
+.btn-social {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.btn-social:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.02);
+}
+
+/* Noise Texture Overlay */
+.noise-overlay {
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  opacity: 0.2;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* Star icon glow */
+.star-glow {
+  filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.5));
+}
+
+/* ========================================
+   SCROLL ANIMATIONS
+   ======================================== */
+@keyframes scroll-vertical {
+  0% {
+    transform: translateY(0);
+  }
+
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-scroll-slow {
+  animation: scroll-vertical 80s linear infinite;
+}
+
+.animate-scroll-medium {
+  animation: scroll-vertical 65s linear infinite;
+}
+
+.animate-scroll-fast {
+  animation: scroll-vertical 50s linear infinite;
+}

@@ -1,0 +1,521 @@
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contact — Memento</title>
+    <meta name="description" content="Get in touch with the Memento team.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <!-- Preload UnicornStudio -->
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            if (!window.UnicornStudio) {
+                window.UnicornStudio = { isInitialized: !1 };
+                var i = document.createElement("script");
+                i.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js";
+                i.onload = function () {
+                    if (!window.UnicornStudio.isInitialized) {
+                        UnicornStudio.init();
+                        window.UnicornStudio.isInitialized = !0;
+                        setTimeout(() => {
+                            document.querySelectorAll('.content-wait-for-load').forEach(el => el.classList.add('content-loaded'));
+                        }, 100);
+                    }
+                };
+                (document.head || document.body).appendChild(i);
+            }
+        });
+    </script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        purple: {
+                            400: '#A78BFA',
+                            500: '#8B5CF6',
+                            600: '#7C3AED',
+                            900: '#2E1065',
+                        },
+                        neutral: {
+                            850: '#1a1a1a',
+                            900: '#111111',
+                            950: '#050505',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Geist', 'Inter', 'sans-serif'],
+                        display: ['Geist', 'sans-serif'],
+                        mono: ['Geist Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'glow': '0 0 60px -15px rgba(139, 92, 246, 0.15)',
+                        'glow-sm': '0 0 20px -5px rgba(139, 92, 246, 0.3)',
+                    },
+                }
+            },
+            plugins: [
+                function ({ addUtilities }) {
+                    addUtilities({
+                        '.perspective-1000': { perspective: '1000px' },
+                        '.transform-style-3d': { transformStyle: 'preserve-3d' },
+                        '.backface-hidden': { backfaceVisibility: 'hidden' },
+                    })
+                }
+            ]
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            font-family: 'Geist', sans-serif;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-size: 14px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #444;
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            filter: blur(5px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .reveal-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            filter: blur(0);
+        }
+
+        .content-wait-for-load {
+            opacity: 0;
+            transition: opacity 1s ease-out;
+            will-change: opacity;
+        }
+
+        .content-loaded {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-purple-500/30 selection:text-white">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 flex justify-center w-full content-wait-for-load">
+        <div id="navbar-bg"
+            class="flex bg-transparent w-full border-white/5 border-b py-6 px-8 relative backdrop-blur-xl items-center justify-between transition-all duration-300">
+            <!-- Logo Section -->
+            <a href="index.html" class="flex items-center gap-2.5 z-20 shrink-0">
+                <div
+                    class="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600/20 to-indigo-600/20 border border-purple-500/20 shadow-[0_0_15px_-3px_rgba(147,51,234,0.15)]">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="1em" viewBox="0 0 24 24"
+                        class="text-purple-300" data-icon-set="lucide" data-lucide="flower-2">
+                        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2">
+                            <path
+                                d="M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v1M9 8a3 3 0 1 0 3 3M9 8h1m5 0a3 3 0 1 1-3 3m3-3h-1m-2 3v-1">
+                            </path>
+                            <circle cx="12" cy="8" r="2"></circle>
+                            <path
+                                d="M12 10v12m0 0c4.2 0 7-1.667 7-5c-4.2 0-7 1.667-7 5m0 0c-4.2 0-7-1.667-7-5c4.2 0 7 1.667 7 5">
+                            </path>
+                        </g>
+                    </svg>
+                </div>
+                <span class="text-sm font-semibold text-white tracking-tight">Memento</span>
+            </a>
+
+            <!-- Centered Navigation -->
+            <nav class="hidden md:flex -translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 items-center gap-1">
+                <!-- Product Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="px-4 py-2 text-xs font-medium text-white bg-white/5 rounded-full border border-white/10 transition-colors flex items-center gap-1">
+                        Product
+                        <iconify-icon icon="lucide:chevron-down" width="12"
+                            class="group-hover:rotate-180 transition-transform duration-200 ease-out"></iconify-icon>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[500px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out transform origin-top -translate-y-3 group-hover:translate-y-0">
+                        <div
+                            class="bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
+                            <div class="p-6 grid grid-cols-2 gap-6">
+                                <!-- Item 1 -->
+                                <a href="features.html" class="block group/item">
+                                    <div class="flex items-start gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-400 group-hover/item:bg-purple-500/20 transition-colors border border-purple-500/10">
+                                            <iconify-icon icon="lucide:zap" width="16"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <div
+                                                class="text-sm font-medium text-white mb-1 group-hover/item:text-purple-300 transition-colors">
+                                                Features</div>
+                                            <p class="text-[11px] text-neutral-500 leading-snug">The complete knowledge
+                                                engine.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- Item 2 -->
+                                <a href="solutions.html" class="block group/item">
+                                    <div class="flex items-start gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover/item:bg-blue-500/20 transition-colors border border-blue-500/10">
+                                            <iconify-icon icon="lucide:users" width="16"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <div
+                                                class="text-sm font-medium text-white mb-1 group-hover/item:text-blue-300 transition-colors">
+                                                Solutions</div>
+                                            <p class="text-[11px] text-neutral-500 leading-snug">For students,
+                                                researchers, & pros.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                                <!-- Item 3 -->
+                                <a href="pricing.html" class="block group/item">
+                                    <div class="flex items-start gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-green-500/10 flex items-center justify-center text-green-400 group-hover/item:bg-green-500/20 transition-colors border border-green-500/10">
+                                            <iconify-icon icon="lucide:credit-card" width="16"></iconify-icon>
+                                        </div>
+                                        <div>
+                                            <div
+                                                class="text-sm font-medium text-white mb-1 group-hover/item:text-green-300 transition-colors">
+                                                Pricing</div>
+                                            <p class="text-[11px] text-neutral-500 leading-snug">Flexible plans for
+                                                every mind.</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <!-- Footer -->
+                            <div class="bg-white/5 p-4 border-t border-white/5 flex flex-col gap-2">
+                                <a href="features.html"
+                                    class="flex items-center gap-2 text-xs text-neutral-400 hover:text-white transition-colors">
+                                    <iconify-icon icon="lucide:book" width="14"></iconify-icon>
+                                    Documentation
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resources Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1 group-hover:text-white">
+                        Resources
+                        <iconify-icon icon="lucide:chevron-down" width="12"
+                            class="group-hover:rotate-180 transition-transform duration-200 ease-out"></iconify-icon>
+                    </button>
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[400px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out transform origin-top -translate-y-3 group-hover:translate-y-0">
+                        <div
+                            class="bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden p-6 grid gap-6">
+                            <a href="blog.html" class="flex items-center gap-3 group/item">
+                                <div
+                                    class="w-8 h-8 rounded-lg bg-pink-500/10 flex items-center justify-center text-pink-400 group-hover/item:bg-pink-500/20 transition-colors border border-pink-500/10">
+                                    <iconify-icon icon="lucide:newspaper" width="16"></iconify-icon>
+                                </div>
+                                <div>
+                                    <div
+                                        class="text-sm font-medium text-white group-hover/item:text-pink-300 transition-colors">
+                                        Blog
+                                    </div>
+                                    <p class="text-[11px] text-neutral-500">Latest updates & insights.</p>
+                                </div>
+                            </a>
+                            <a href="faq.html" class="flex items-center gap-3 group/item">
+                                <div
+                                    class="w-8 h-8 rounded-lg bg-cyan-500/10 flex items-center justify-center text-cyan-400 group-hover/item:bg-cyan-500/20 transition-colors border border-cyan-500/10">
+                                    <iconify-icon icon="lucide:help-circle" width="16"></iconify-icon>
+                                </div>
+                                <div>
+                                    <div
+                                        class="text-sm font-medium text-white group-hover/item:text-cyan-300 transition-colors">
+                                        FAQ
+                                    </div>
+                                    <p class="text-[11px] text-neutral-500">Common questions answered.</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Company Dropdown -->
+                <div class="relative group">
+                    <button
+                        class="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors flex items-center gap-1 group-hover:text-white">
+                        Company
+                        <iconify-icon icon="lucide:chevron-down" width="12"
+                            class="group-hover:rotate-180 transition-transform duration-200 ease-out"></iconify-icon>
+                    </button>
+                    <div
+                        class="absolute top-full left-1/2 -translate-x-1/2 pt-6 w-[400px] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-out transform origin-top -translate-y-3 group-hover:translate-y-0">
+                        <div
+                            class="bg-[#0A0A0A] border border-white/10 rounded-2xl shadow-2xl backdrop-blur-xl overflow-hidden">
+                            <div class="p-6 grid gap-6">
+                                <a href="team.html" class="flex items-center gap-3 group/item">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-neutral-800 flex items-center justify-center text-white group-hover/item:bg-neutral-700 transition-colors border border-white/5">
+                                        <iconify-icon icon="lucide:users-2" width="16"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <div
+                                            class="text-sm font-medium text-white group-hover/item:text-neutral-300 transition-colors">
+                                            Our
+                                            Team</div>
+                                        <p class="text-[11px] text-neutral-500">Meet the builders.</p>
+                                    </div>
+                                </a>
+                                <a href="contact.html" class="flex items-center gap-3 group/item">
+                                    <div
+                                        class="w-8 h-8 rounded-lg bg-neutral-800 flex items-center justify-center text-white group-hover/item:bg-neutral-700 transition-colors border border-white/5">
+                                        <iconify-icon icon="lucide:mail" width="16"></iconify-icon>
+                                    </div>
+                                    <div>
+                                        <div
+                                            class="text-sm font-medium text-white group-hover/item:text-neutral-300 transition-colors">
+                                            Contact Us</div>
+                                        <p class="text-[11px] text-neutral-500">Get in touch.</p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="bg-white/5 p-4 border-t border-white/5 flex items-center justify-between">
+                                <a href="privacy.html"
+                                    class="text-[10px] text-neutral-500 hover:text-white transition-colors">Privacy
+                                    Policy</a>
+                                <a href="terms.html"
+                                    class="text-[10px] text-neutral-500 hover:text-white transition-colors">Terms of
+                                    Service</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="pricing.html"
+                    class="px-4 py-2 text-xs font-medium text-neutral-400 hover:text-white transition-colors">Pricing</a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="flex items-center gap-4 z-20 shrink-0">
+                <a href="https://app.memento.lunartech.ai/signin" class="hidden sm:inline-flex text-xs font-medium text-neutral-400 hover:text-white transition-colors px-4 py-1.5 rounded-full border border-transparent hover:border-white/10 hover:bg-white/5">Sign in</a>
+                <a href="https://app.memento.lunartech.ai/signup" class="group relative inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-500/30 transition-all text-white shadow-[0_0_20px_-10px_rgba(168,85,247,0.3)] hover:shadow-[0_0_25px_-5px_rgba(168,85,247,0.5)] overflow-hidden">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <iconify-icon icon="lucide:sparkles" width="14" stroke-width="1.5"
+                        class="text-purple-300 group-hover:text-purple-200 transition-colors relative z-10"></iconify-icon>
+                    <span class="z-10 text-xs font-medium tracking-wide relative">Sign up</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. HERO & FORM -->
+    <section class="min-h-screen flex items-center justify-center px-6 py-32 relative content-wait-for-load">
+        <div
+            class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-purple-900/20 via-[#050505]/50 to-[#050505] -z-10">
+        </div>
+
+        <div class="container mx-auto max-w-6xl grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+            <!-- Left: Info -->
+            <div class="space-y-12">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-medium tracking-tighter text-white mb-6">Get in touch.</h1>
+                    <p class="text-lg text-neutral-400 max-w-md leading-relaxed font-light">
+                        Have a question about Memento? We'd love to hear from you. Our team is distributed across the
+                        globe, but we're always just a message away.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                            <iconify-icon icon="lucide:mail" class="text-neutral-400"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-medium text-white">Email</h3>
+                            <p class="text-neutral-500 text-sm">hello@memento.ai</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div
+                            class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+                            <iconify-icon icon="lucide:map-pin" class="text-neutral-400"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-medium text-white">HQ</h3>
+                            <p class="text-neutral-500 text-sm">San Francisco, CA</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-8 border-t border-white/5">
+                    <p class="text-neutral-500 text-sm mb-4">Follow us</p>
+                    <div class="flex gap-4">
+                        <a href="contact.html" class="text-neutral-400 hover:text-white transition-colors"><iconify-icon
+                                icon="simple-icons:x" width="20"></iconify-icon></a>
+                        <a href="contact.html" class="text-neutral-400 hover:text-white transition-colors"><iconify-icon
+                                icon="simple-icons:linkedin" width="20"></iconify-icon></a>
+                        <a href="contact.html" class="text-neutral-400 hover:text-white transition-colors"><iconify-icon
+                                icon="simple-icons:github" width="20"></iconify-icon></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Form -->
+            <div
+                class="bg-neutral-900/30 border border-white/10 rounded-3xl p-8 md:p-10 backdrop-blur-xl shadow-2xl relative overflow-hidden">
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-purple-500/10 blur-[80px] rounded-full pointer-events-none">
+                </div>
+
+                <form class="space-y-6 relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-xs font-medium text-neutral-400 uppercase tracking-wider">Name</label>
+                            <input type="text"
+                                class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                                placeholder="Jane Doe">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-xs font-medium text-neutral-400 uppercase tracking-wider">Email</label>
+                            <input type="email"
+                                class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                                placeholder="jane@example.com">
+                        </div>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-xs font-medium text-neutral-400 uppercase tracking-wider">Subject</label>
+                        <select
+                            class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all appearance-none">
+                            <option>General Inquiry</option>
+                            <option>Support</option>
+                            <option>Enterprise</option>
+                            <option>Partnership</option>
+                        </select>
+                    </div>
+
+                    <div class="space-y-2">
+                        <label class="text-xs font-medium text-neutral-400 uppercase tracking-wider">Message</label>
+                        <textarea rows="4"
+                            class="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-neutral-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/50 transition-all"
+                            placeholder="How can we help?"></textarea>
+                    </div>
+
+                    <button type="submit"
+                        class="w-full bg-white text-black font-medium py-3 rounded-lg hover:bg-neutral-200 transition-colors">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="overflow-hidden bg-[#050505] w-full border-white/5 border-t pt-20 pb-0 relative">
+        <!-- Footer content same as other pages -->
+        <div class="w-full px-6 lg:px-12 py-20 grid grid-cols-1 lg:grid-cols-12 gap-12 relative z-20">
+            <div class="lg:col-span-7">
+                <h2
+                    class="text-5xl lg:text-[6rem] leading-[0.9] font-medium text-white tracking-tighter mb-10 font-display">
+                    Capture.
+                    <span class="text-neutral-700">Synthesize.</span>
+                    Master.
+                </h2>
+            </div>
+            <div class="lg:col-span-5 flex lg:justify-end items-center">
+                <div
+                    class="w-full max-w-sm bg-purple-600 p-8 relative overflow-hidden group transform hover:-translate-y-2 transition-transform duration-500 rounded-3xl">
+                    <iconify-icon icon="lucide:brain-circuit" width="128"
+                        class="absolute -right-4 -top-4 text-black/10 rotate-12"></iconify-icon>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold text-white mb-4 tracking-tight font-display">Start Learning Now
+                        </h3>
+                        <p class="text-white/80 text-sm font-medium leading-relaxed mb-8">Access the complete knowledge
+                            engine. Transform your library today.</p>
+                        <div class="flex items-center justify-between border-t border-white/20 pt-4">
+                            <span class="text-xs font-bold uppercase tracking-widest text-white">v2.4 Reality
+                                Mode</span>
+                            <iconify-icon icon="lucide:arrow-up-right" width="20" class="text-white"></iconify-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="relative w-full overflow-hidden pointer-events-none select-none pt-12">
+            <h1
+                class="text-[20vw] leading-none font-bold text-white/5 text-center -mb-12 tracking-tighter font-display">
+                MEMENTO</h1>
+            <div class="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#050505] to-transparent"></div>
+        </div>
+        <div class="absolute bottom-6 w-full flex justify-center z-30">
+            <p class="text-[10px] text-neutral-700 font-mono uppercase tracking-widest">© 2026 Memento Inc.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navbar scroll effect
+            const navbarBg = document.getElementById('navbar-bg');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbarBg.classList.remove('bg-transparent');
+                    navbarBg.classList.add('bg-black/50');
+                } else {
+                    navbarBg.classList.add('bg-transparent');
+                    navbarBg.classList.remove('bg-black/50');
+                }
+            });
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+        });
+    </script>
+
+</body>
+
+</html>

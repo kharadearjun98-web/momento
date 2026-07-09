@@ -1,0 +1,6 @@
+name = "memento"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-05-05"
+
+[vars]
+NODE_VERSION = "22"
